@@ -34,4 +34,5 @@ public class CollegeList {
 		getCollegeList().addElement(college);
 		return true;
 	}
+
 }

@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.regex.*;
-import java.io.IOException;
+//import java.io.IOException;
 import com.google.gson.*;
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
@@ -37,26 +37,26 @@ public class UniversityCrawler {
 	}
 
 	// TODO HACER TRANSLATOR A MANO METIENDO TODAS LAS SUBJECTS
-	public static String translate(String toTranslate) throws Exception {
-		// String textTranslated = translate.translate(toTranslate,
-		// Language.ENGLISH, Language.SPANISH);
-		// Replace client_id and client_secret with your own.
-		Translate.setClientId("02bdc5f1-c690-4b58-b5e8-7f7f2ffe54bb");
-		Translate.setClientSecret("1HntNtmSEzsUgPCygbDX3pNGl3JvzpobDb+Si8mSVW4=");
+	// public static String translate(String toTranslate) throws Exception {
+	// // String textTranslated = translate.translate(toTranslate,
+	// // Language.ENGLISH, Language.SPANISH);
+	// // Replace client_id and client_secret with your own.
+	// Translate.setClientId("02bdc5f1-c690-4b58-b5e8-7f7f2ffe54bb");
+	// Translate.setClientSecret("1HntNtmSEzsUgPCygbDX3pNGl3JvzpobDb+Si8mSVW4=");
+	//
+	// String textTranslated = Translate.execute(toTranslate, Language.SPANISH);
+	// return textTranslated;
+	// }
 
-		String textTranslated = Translate.execute(toTranslate, Language.SPANISH);
-		return textTranslated;
-	}
-
+	
 	// Crawl all the pages of university
-	public static String crawlUniversities(String url, String listSearchType, String listName,
+	public static String crawlUniversities(String url, String prefectureSearchName, String typeStudies, String typeUni,
 			CollegeList universitiesList, String jsonUniversitiesList) throws Exception {
 
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
-		int numberUniFound = 0;
-		boolean next = true;
+		boolean next = true; //Used to exit recursion
 
 		// Main info of each uni
 		String id = "";
@@ -65,8 +65,8 @@ public class UniversityCrawler {
 		String prefecture = "";
 		String type = "";
 		String collegeType = "Universidad";
-		boolean guideLinkState = false;
-		boolean imageLinkState = false;
+		String imageUrl = "";
+		String guideUrl = "";
 		String title = "";
 		String description = "";
 
@@ -79,7 +79,10 @@ public class UniversityCrawler {
 		Document document = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(0).get();
 
 		// Next page
+		
 		Elements textNextPage = document.select("div.pager > a, div.pager > span");
+		if (textNextPage.isEmpty()) //Check if there is no next Page
+			next = false;
 		for (Element element : textNextPage) {
 			if (element.text().equals(">")) {
 				if (element.hasAttr("href")) {
@@ -117,26 +120,22 @@ public class UniversityCrawler {
 			type = prefectureDirty.split("/")[1];
 			// type = translate(type);
 
-			// Checking img link
-			if (element.select("div.leftBlock > a > img").first() != null) {
-				imageLinkState = true;
-			} else {
-				imageLinkState = false;
-			}
+			// Getting img link
+			if (element.select("div.leftBlock > a > img").first() != null) //{
+				imageUrl = "http://www.jpss.jp/uploads" + id + "main.jpg";
+				imageUrl = imageUrl.replace("/en", "");
 
-			// Checking guide link
-			if (element.select("div.dlBtn > a > img").first() != null) {
-				guideLinkState = true;
-			} else {
-				guideLinkState = false;
-			}
+
+			// Getting guide link
+			if (element.select("div.dlBtn > a > img").first() != null) //{
+				guideUrl = "http://www.jpss.jp/uploads" + id + "guide.zip";
+				guideUrl = guideUrl.replace("/en", "");
 
 			// Getting title and description
-
 			if (element.select("div.rightBlock > p").first() != null) {
 				Element getTitle = element.select("div.rightBlock > p").first();
 				title = getTitle.text().trim();
-				//title = translate(title);
+				// title = translate(title);
 
 				Element getDescription = getTitle.nextElementSibling();
 				description = getDescription.text().trim();
@@ -153,56 +152,90 @@ public class UniversityCrawler {
 					String facultyTitle = faculty.attr("title");
 					String facultyHref = faculty.attr("href");
 
-					// Mejora la velocidad de search
-//					if (listSearchType == "prefecture" && prefecture.contains(listName)) {
-//						facultyTitle = translate(facultyTitle);
-//					}
-//
-//					if (listSearchType == "typeStudies") {
-//
-//						for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
-//							if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(listName)) {
-//								facultyTitle = translate(facultyTitle);
-//							}
-//						}
-//					}
-//
-//					if (listSearchType == "typeUni" && type.equals(listName)) {
-//						facultyTitle = translate(facultyTitle);
-//					}
+					// Usar traductor o no
+					facultyTitle = Translator.translate(facultyTitle);
 
 					facultyList.addCollegeFaculty(new CollegeFaculty(facultyTitle, facultyHref));
 
 				}
 			}
 
-			if (listSearchType == "prefecture" && prefecture.contains(listName)) {
+			// Prefectura
+			if (!prefectureSearchName.equals("") && prefecture.contains(prefectureSearchName) && typeStudies.equals("")
+					&& typeUni.equals("")) {
+
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideLinkState, imageLinkState, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList);
+				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 
 			}
-			if (listSearchType == "typeStudies") {
+			// Prefectura + TypeStudies
+			if (!prefectureSearchName.equals("") && prefecture.contains(prefectureSearchName) && !typeStudies.equals("")
+					&& typeUni.equals("")) {
 
 				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
-					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(listName)) {
+					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)) {
 						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-								guideLinkState, imageLinkState, title, description, facultyList);
+								guideUrl, imageUrl, title, description, facultyList);
+						// university.getFacultyList().translateCollegeFacultyList();
 						universitiesList.addCollege(university);
 					}
 				}
 			}
-			if (listSearchType == "typeUni" && type.equals(listName)) {
+			// Prefectura + typeUni
+			if (!prefectureSearchName.equals("") && prefecture.contains(prefectureSearchName) && typeStudies.equals("")
+					&& !typeUni.equals("")) {
+				if (type.equals(typeUni)) {
+					University university = new University(id, japaneseName, name, prefecture, type, collegeType,
+							guideUrl, imageUrl, title, description, facultyList);
+					// university.getFacultyList().translateCollegeFacultyList();
+					universitiesList.addCollege(university);
+				}
+			}
+			// typeStudies
+			if (!typeStudies.equals("") && prefectureSearchName.equals("") && typeUni.equals("")) {
+
+				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
+					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)) {
+						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
+								guideUrl, imageUrl, title, description, facultyList);
+						// university.getFacultyList().translateCollegeFacultyList();
+						universitiesList.addCollege(university);
+					}
+				}
+			}
+			// typeStudies + typeUni
+			if (!typeStudies.equals("") && prefectureSearchName.equals("") && !typeUni.equals("")) {
+
+				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
+					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)
+							&& type.equals(typeUni)) {
+						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
+								guideUrl, imageUrl, title, description, facultyList);
+						// university.getFacultyList().translateCollegeFacultyList();
+						universitiesList.addCollege(university);
+					}
+				}
+			}
+			// typeUni
+			if (!typeUni.equals("") && type.equals(typeUni) && prefectureSearchName.equals("")
+					&& typeStudies.equals("")) {
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideLinkState, imageLinkState, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList);
+				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 			}
-			if (listSearchType == "all") {
+
+			// prefectura + typeStudies + typeUni
+			if (prefectureSearchName.equals("") && typeStudies.equals("") && typeUni.equals("")) {
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideLinkState, imageLinkState, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList);
+				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 			}
 		}
+
 		// Si no hay nexpage, paramos, si si hay, seguimos con su URL
 		System.out.println(nextPageString);
 		jsonUniversitiesList = gson.toJson(universitiesList);
@@ -210,25 +243,33 @@ public class UniversityCrawler {
 								// pagina
 			return jsonUniversitiesList;
 		} else {
-			return jsonUniversitiesList = crawlUniversities(nextPageString, listSearchType, listName, universitiesList,
-					jsonUniversitiesList);
+			return jsonUniversitiesList = crawlUniversities(nextPageString, prefectureSearchName, typeStudies, typeUni,
+					universitiesList, jsonUniversitiesList);
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		// tipo de busqueda (prefecture, typeStudies, typeUni = Type of
-		// university
-		// National Public Private Japanese school of foreign university)
-		// Permite hacer una primera búsqueda por encima. Te muestra las
-		// universidades. Si se quiere info avanzada
-		// queda por TODO
-		// String url = "http://www.jpss.jp/en/search/?tb=1&search_x=1";
-		String url = "http://www.jpss.jp/en/search/?tb=1&search_x=1";
-		String listSearchType = "prefecture";
-		CollegeList universitiesList = new CollegeList(listSearchType);
-
-		String returnJson = "";
-		String jsonUniversitiesList = crawlUniversities(url, listSearchType, "Tokyo", universitiesList, returnJson);
-		System.out.println("Links: " + jsonUniversitiesList);
-	}
+//	public static void main(String[] args) throws Exception {
+//		// tipo de busqueda (prefecture, typeStudies, typeUni = Type of
+//		// university
+//		// National Public Private Japanese school of foreign university)
+//		// Permite hacer una primera búsqueda por encima. Te muestra las
+//		// universidades. Si se quiere info avanzada
+//		// queda por TODO y ver SI ES MAS RAPIDO PONER /Tokyo en PREFECTURAS
+//		// String url = "http://www.jpss.jp/en/search/?tb=1&search_x=1";
+//		// String url = "http://www.jpss.jp/en/search/?tb=1&search_x=1";
+//		// //Lento, busca Tokyo en las 31
+//		String url = "http://www.jpss.jp/en/search/Prefecture/Iwate/"; // Mucho
+//																		// mas
+//																		// rápido
+//		// String listSearchType = "prefecture";
+//		String prefecture = "Iwate";
+//		String typeStudies = "";
+//		String typeUni = "";
+//		CollegeList universitiesList = new CollegeList(prefecture + typeStudies + typeUni);
+//
+//		String returnJson = "";
+//		String jsonUniversitiesList = crawlUniversities(url, prefecture, typeStudies, typeUni, universitiesList,
+//				returnJson);
+//		System.out.println("Links: " + jsonUniversitiesList);
+//	}
 }

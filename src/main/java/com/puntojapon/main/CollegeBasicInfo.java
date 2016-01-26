@@ -14,8 +14,8 @@ public class CollegeBasicInfo {
 	private String prefecture = "";
 	private String type = "";  //Public or private
 	private String collegeType = "";
-	private boolean guideLink = false;
-	private boolean imageLink = false;
+	private String imageUrl = "";
+	private String guideUrl = "";
 	private String title = "";
 	private String description = "";
 	private CollegeFacultyList faculties;
@@ -44,16 +44,16 @@ public class CollegeBasicInfo {
 		this.collegeType = type;
 	}
 	
-	public void setGuideLink(boolean state) {
-		this.guideLink = state;
-	}
-	
-	public void setImageLink(boolean state) {
-		this.imageLink = state;
-	}
-	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	public void setGuideUrl(String guideUrl) {
+		this.guideUrl = guideUrl;
 	}
 	
 	public void setDescription (String description) {
@@ -88,41 +88,12 @@ public class CollegeBasicInfo {
 		return this.collegeType;
 	}
 	
-	public String getGuideLink() {
-		String address = "";
-		String typeGuide = "";
-		switch (getCollegeType()) {
-		case "university": 
-			typeGuide = "univ";
-			break;
-		case "graduate_school": 
-			typeGuide = "grad";
-			break;
-		}
-		if (this.guideLink) {
-			return address = "http://www.jpss.jp/uploads/" + typeGuide + "/" + getId() + "/guide.zip";
-		} else {
-			return address;
-		}
+	public String getImageUrl() {
+		return this.imageUrl;
 	}
 	
-	public String getImageLink() {
-		String address = "";
-		String typeImage = "";
-		switch (getCollegeType()){
-		case "university":
-			typeImage = "univ";
-			break;
-		case "graduate_school":
-			typeImage = "grad";
-			break;
-		}
-		
-		if (this.imageLink) {
-			return address = "http://www.jpss.jp/uploads/" + typeImage + "/" + getId() + "/main.jpg";
-		} else {
-			return address;
-		}
+	public String getGuideUrl() {
+		return this.guideUrl;
 	}
 	
 	public String getTitle() {

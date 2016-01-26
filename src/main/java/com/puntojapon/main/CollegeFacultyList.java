@@ -51,4 +51,10 @@ public class CollegeFacultyList {
 		this.collegeFacultyList.addElement(faculty);
 		return true;
 	}
+	
+	public void translateCollegeFacultyList(){
+		for (CollegeFaculty i : this.collegeFacultyList) {
+			i.setFacultyName(Translator.translate(i.getFacultyName()));
+		}
+	}
 }
