@@ -209,7 +209,7 @@ public class UniversityCrawler {
 
 			}
 			// Prefectura + TypeStudies
-			if (!prefectureSearchName[0].equals("") && Arrays.asList(prefectureSearchName).contains(prefecture) && !typeStudies.equals("")
+			if (!prefectureSearchName[0].equals("") && !typeStudies.equals("")
 					&& typeUni.equals("")) {
 
 				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
@@ -223,7 +223,7 @@ public class UniversityCrawler {
 				}
 			}
 			// Prefectura + typeUni
-			if (!prefectureSearchName[0].equals("") && Arrays.asList(prefectureSearchName).contains(prefecture) && typeStudies.equals("")
+			if (!prefectureSearchName[0].equals("") && typeStudies.equals("")
 					&& !typeUni.equals("")) {
 				if (type.equals(typeUni)) {
 					University university = new University(id, japaneseName, name, prefecture, type, collegeType,
@@ -234,7 +234,7 @@ public class UniversityCrawler {
 				}
 			}
 			// typeStudies
-			if (!typeStudies.equals("") && prefectureSearchName[0].equals("") && typeUni.equals("")) {
+			if (!typeStudies.equals("") && typeUni.equals("")) {
 
 				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
 					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)) {
@@ -247,7 +247,7 @@ public class UniversityCrawler {
 				}
 			}
 			// typeStudies + typeUni
-			if (!typeStudies.equals("") && prefectureSearchName[0].equals("") && !typeUni.equals("")) {
+			if (!typeStudies.equals("") && !typeUni.equals("")) {
 
 				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
 					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)
@@ -261,8 +261,7 @@ public class UniversityCrawler {
 				}
 			}
 			// typeUni
-			if (!typeUni.equals("") && type.equals(typeUni) && prefectureSearchName[0].equals("")
-					&& typeStudies.equals("")) {
+			if (!typeUni.equals("") && type.equals(typeUni) && typeStudies.equals("")) {
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
 						guideUrl, imageUrl, title, description, facultyList);
 				// university.getFacultyList().translateCollegeFacultyList();
@@ -271,13 +270,13 @@ public class UniversityCrawler {
 			}
 
 			// prefectura + typeStudies + typeUni
-			if (prefectureSearchName[0].equals("") && typeStudies.equals("") && typeUni.equals("")) {
-				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
-				// university.getFacultyList().translateCollegeFacultyList();
-				universitiesList.addCollege(university);
-				counter++;
-			}
+//			if (prefectureSearchName[0].equals("") && typeStudies.equals("") && typeUni.equals("")) {
+//				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
+//						guideUrl, imageUrl, title, description, facultyList);
+//				// university.getFacultyList().translateCollegeFacultyList();
+//				universitiesList.addCollege(university);
+//				counter++;
+//			}
 		}
 
 		// Si no hay nexpage, paramos, si si hay, seguimos con su URL
