@@ -45,8 +45,6 @@ public class GradSchoolUrlBuilder {
 
 		if (prefecture.length > 0 && !prefecture[0].equals("all"))
 			setUrlPrefecture(buildPrefectureUrl(prefecturesList, prefecture));
-		else
-			setUrlPrefecture("");
 		if (typeGrad.length > 0) // If many type grad
 			setTypeGradUrl(buildTypeGradUrl(typeGrad));
 		if (typeCourse.length > 0)
@@ -193,7 +191,7 @@ public class GradSchoolUrlBuilder {
 		String typeGradUrl = "";
 		String text = "";
 		for (String i : typeGrad) {
-			if (i.equals("national")) //TODO CAMBIAR ESTO POR GRAD
+			if (i.equals("national"))
 				text = nationalGrad;
 			if (i.equals("public"))
 				text = publicGrad;

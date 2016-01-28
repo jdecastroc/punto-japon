@@ -48,10 +48,16 @@ public class UniversityCrawler {
 	// String textTranslated = Translate.execute(toTranslate, Language.SPANISH);
 	// return textTranslated;
 	// }
-
+	
+	int collegeCounter;
+	
+	//builder
+	public UniversityCrawler(){
+		this.collegeCounter = 0;
+	};
 	
 	// Crawl all the pages of university
-	public static String crawlUniversities(String url, String[] prefectureSearchName, String typeStudies,
+	public String crawlUniversities(String url, String[] prefectureSearchName, String typeStudies,
 			CollegeList universitiesList, String jsonUniversitiesList, int counter) throws Exception {
 
 		// Create the College List of Universities
@@ -196,11 +202,20 @@ public class UniversityCrawler {
 		if (next == false) { // no ha encontrado mas universidades en esta
 								// pagina
 			System.out.println("Universidades: " + counter);
+			setCollegeCounter(counter);
 			return jsonUniversitiesList;
 		} else {
 			return jsonUniversitiesList = crawlUniversities(nextPageString, prefectureSearchName, typeStudies, 
 					universitiesList, jsonUniversitiesList, counter);
 		}
+	}
+
+	public int getCollegeCounter() {
+		return collegeCounter;
+	}
+
+	public void setCollegeCounter(int collegeCounter) {
+		this.collegeCounter = collegeCounter;
 	}
 
 //	public static void main(String[] args) throws Exception {

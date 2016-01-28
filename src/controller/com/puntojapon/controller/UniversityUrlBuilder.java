@@ -93,8 +93,6 @@ public class UniversityUrlBuilder {
 
 		if (prefecture.length > 0 && !prefecture[0].equals("all"))
 			setUrlPrefecture(buildPrefectureUrl(prefecturesList, prefecture));
-		else
-			setUrlPrefecture("");
 		if (typeStudiesList.length > 0)
 			setUrlTypeStudies(buildStudiesUrl(typeStudiesList));
 		if (typeUni.length > 0) // If many type uni
@@ -274,7 +272,7 @@ public class UniversityUrlBuilder {
 			if (i.contains("Medical"))
 				text = medicalDentalUrl;
 			if (i.contains("Pharmacy"))
-				text = medicalDentalUrl;
+				text = pharmacyUrl;
 			if (i.contains("Physical Science"))
 				text = physicalScienceUrl;
 			if (i.contains("Engineering"))

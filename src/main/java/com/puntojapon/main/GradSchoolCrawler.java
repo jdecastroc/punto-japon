@@ -48,9 +48,15 @@ public class GradSchoolCrawler {
 	// return textTranslated;
 	// }
 
+	int collegeCounter;
+	
+	//builder
+	public GradSchoolCrawler(){
+		this.collegeCounter = 0;
+	};
 	
 	// Crawl all the pages of Graduate schools
-	public static String crawlGradSchools(String url, String[] prefectureSearchName, String typeStudies,
+	public String crawlGradSchools(String url, String[] prefectureSearchName, String typeStudies,
 			CollegeList gradSchoolsList, String jsongradSchoolsList, int counter) throws Exception {
 
 		// Create the College List of Universities
@@ -203,5 +209,13 @@ public class GradSchoolCrawler {
 			return jsongradSchoolsList = crawlGradSchools(nextPageString, prefectureSearchName, typeStudies, 
 					gradSchoolsList, jsongradSchoolsList, counter);
 		}
+	}
+
+	public int getCollegeCounter() {
+		return collegeCounter;
+	}
+
+	public void setCollegeCounter(int collegeCounter) {
+		this.collegeCounter = collegeCounter;
 	}
 }
