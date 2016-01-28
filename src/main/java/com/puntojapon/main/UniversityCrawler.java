@@ -51,7 +51,7 @@ public class UniversityCrawler {
 
 	
 	// Crawl all the pages of university
-	public static String crawlUniversities(String url, String[] prefectureSearchName, String typeStudies, String typeUni,
+	public static String crawlUniversities(String url, String[] prefectureSearchName, String typeStudies,
 			CollegeList universitiesList, String jsonUniversitiesList, int counter) throws Exception {
 
 		// Create the College List of Universities
@@ -59,6 +59,7 @@ public class UniversityCrawler {
 
 		boolean next = true; //Used to exit recursion
 		System.out.println("Estoy -> " + url);
+		
 		// Main info of each uni
 		String id = "";
 		String japaneseName = "";
@@ -74,10 +75,7 @@ public class UniversityCrawler {
 		String nextPageString = "";
 
 		// Crawler
-		// String url = "http://www.jpss.jp/en/search/?tb=1&search_x=1"; //URL
-		// for universities search
 		// TODO Change userAgent when application finished
-		// TODO Speed-up esto de alguna manera, con un if fuera que compruebe directamente si la uni pertenece a lo que buscamos
 		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
 
 		// Next page
@@ -161,8 +159,8 @@ public class UniversityCrawler {
 
 				}
 			}
-			//(Arrays.asList(prefectureSearchName).contains(prefecture)
 			
+			//TODO Limpiar esta parte de abajo
 			//all
 			if (prefectureSearchName[0].equals("")) {
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
@@ -172,13 +170,7 @@ public class UniversityCrawler {
 				counter++;
 			}
 			
-			// Prefectura 
-			// TODO
-			// Las prefecturas tipo Kanagawa, Tokyo, Shizuoka que van juntas no se cogen. Esto es porque es un String literal. habría
-			// que partirlo y comprobar que, si existe la primera prefectura, se meta o bien hacer un if que meta todo a saco para el array de
-			// 47 prefecturas. Es importante tener en cuenta que cada prefectura tiene un numero asociado en la URL (1-2-3-4)
-			// Este if funciona correctamente para el "ALL" PERO NO PARA el resto. Por ej Tokyo, Kanagawa en la URL no cojera
-			// Tokyo, Kanagawa / Private hay que hacer que compare la prefectura con el primero. Hbara que hacerlo por los numeros"
+			//1 prefecture chosen
 			if (!prefectureSearchName[0].equals("") && prefectureSearchName.length >= 46){
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
 						guideUrl, imageUrl, title, description, facultyList);
@@ -186,113 +178,27 @@ public class UniversityCrawler {
 				universitiesList.addCollege(university);
 				counter++;
 			}
-//			boolean hasPrefecture = false;
-//			String[] prefectureList = prefecture.split(" ");
 			
-//			for (int i = 0; i < prefectureList.length; i++){
-//				//System.out.println(prefectureList[i]);
-//				if (!Arrays.asList(prefectureSearchName).contains(prefectureList[i])){
-//						hasPrefecture = false;
-//				} else { 
-//					hasPrefecture = true;
-//				}
-//			}
-			
+			//More than 1 prefecture
 			if (!prefectureSearchName[0].equals("") && typeStudies.equals("")
-					&& typeUni.equals("") && prefectureSearchName.length < 46) {
+					&& prefectureSearchName.length < 46) {
 
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
 						guideUrl, imageUrl, title, description, facultyList);
+				//Traduccion
 				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 				counter++;
 
 			}
-			// Prefectura + TypeStudies
-			if (!prefectureSearchName[0].equals("") && !typeStudies.equals("")
-					&& typeUni.equals("")) {
-
-				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
-					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)) {
-						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-								guideUrl, imageUrl, title, description, facultyList);
-						// university.getFacultyList().translateCollegeFacultyList();
-						universitiesList.addCollege(university);
-						counter++;
-					}
-				}
-			}
-			// Prefectura + typeUni
-			if (!prefectureSearchName[0].equals("") && typeStudies.equals("")
-					&& !typeUni.equals("")) {
-				if (type.equals(typeUni)) {
-					University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-							guideUrl, imageUrl, title, description, facultyList);
-					// university.getFacultyList().translateCollegeFacultyList();
-					universitiesList.addCollege(university);
-					counter++;
-				}
-			}
-			// typeStudies
-			if (!typeStudies.equals("") && typeUni.equals("")) {
-
-				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
-					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)) {
-						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-								guideUrl, imageUrl, title, description, facultyList);
-						// university.getFacultyList().translateCollegeFacultyList();
-						universitiesList.addCollege(university);
-						counter++;
-					}
-				}
-			}
-			// typeStudies + typeUni
-			if (!typeStudies.equals("") && !typeUni.equals("")) {
-
-				for (int i = 0; i < facultyList.getCollegeFacultySize(); i++) {
-					if (facultyList.getCollegeFacultyAt(i).getFacultyName().contains(typeStudies)
-							&& type.equals(typeUni)) {
-						University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-								guideUrl, imageUrl, title, description, facultyList);
-						// university.getFacultyList().translateCollegeFacultyList();
-						universitiesList.addCollege(university);
-						counter++;
-					}
-				}
-			}
-			// typeUni
-			if (!typeUni.equals("") && type.equals(typeUni) && typeStudies.equals("")) {
-				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
-				// university.getFacultyList().translateCollegeFacultyList();
-				universitiesList.addCollege(university);
-				counter++;
-			}
-
-			// prefectura + typeStudies + typeUni
-//			if (prefectureSearchName[0].equals("") && typeStudies.equals("") && typeUni.equals("")) {
-//				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-//						guideUrl, imageUrl, title, description, facultyList);
-//				// university.getFacultyList().translateCollegeFacultyList();
-//				universitiesList.addCollege(university);
-//				counter++;
-//			}
 		}
-
-		// Si no hay nexpage, paramos, si si hay, seguimos con su URL
-		// Si estoy recorriendo todas las paginas no paro hasta que next = false
-		// Si estoy recorriendo una pagina paro cuando acabe
-		
-		
-		
-		System.out.println(nextPageString);
 		jsonUniversitiesList = gson.toJson(universitiesList);
 		if (next == false) { // no ha encontrado mas universidades en esta
 								// pagina
 			System.out.println("Universidades: " + counter);
 			return jsonUniversitiesList;
 		} else {
-			return jsonUniversitiesList = crawlUniversities(nextPageString, prefectureSearchName, typeStudies, typeUni,
+			return jsonUniversitiesList = crawlUniversities(nextPageString, prefectureSearchName, typeStudies, 
 					universitiesList, jsonUniversitiesList, counter);
 		}
 	}
