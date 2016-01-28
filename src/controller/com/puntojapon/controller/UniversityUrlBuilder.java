@@ -83,8 +83,9 @@ public class UniversityUrlBuilder {
 	private String admisionUniUrl = "";
 	private String urlPrefecture = "";
 	private String urlTypeStudies = "";
+	private String nameUni = "";
 
-	public UniversityUrlBuilder(String[] prefecture, String[] typeStudiesList, String[] typeUni, String[] admisionMonth,
+	public UniversityUrlBuilder(String nameUni, String[] prefecture, String[] typeStudiesList, String[] typeUni, String[] admisionMonth,
 			String[] deadLine, String[] eju, String[] engExam, String[] admisionUni) {
 		// Build URL's
 		setPrefecture(prefecture);
@@ -110,6 +111,9 @@ public class UniversityUrlBuilder {
 			setAdmisionUniUrl(buildAdmisionUniUrl(engExam));
 		if (typeStudiesList.length > 0)
 			setUrlPrefecture(buildPrefectureUrl(prefecturesList, prefecture));
+		if (!nameUni.isEmpty())
+			setNameUni(nameUni);
+			
 	}
 
 	public String getSearchUrl(String[] prefecture) {
@@ -117,7 +121,7 @@ public class UniversityUrlBuilder {
 																		// prefectures
 																		// choosen
 
-			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl()
+			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni() +"&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl()
 					+ getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmisionUniUrl()
 					+ "&u%5Bac%5D=&a%5Bpf%5D=" + getUrlPrefecture() + "&search.x=177&search.y=11&search=search");
 
@@ -126,7 +130,7 @@ public class UniversityUrlBuilder {
 			if (getTypeStudiesList().length > 0) { // If many prefectures
 													// choosen and many studies
 													// choosen
-				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
+				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D="+ getNameUni() + "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
 						+ getTypeUniUrl() + getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
 						+ getAdmisionUniUrl() + getUrlTypeStudies() + "&a%5Bpf%5D=" + urlPrefecture
 						+ "&search.x=177&search.y=11&search=search");
@@ -135,14 +139,14 @@ public class UniversityUrlBuilder {
 			}
 		}
 		if (getPrefecture()[0].equals("all")) { // If no prefecture choosen
-			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl()
+			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni() + "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl()
 					+ getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmisionUniUrl()
 					+ "&u%5Bac%5D=&a%5Bpf%5D=" + urlPrefecture + "&search.x=177&search.y=11&search=search");
 
 			setPrefecture(prefecturesList);
 
 			if (typeStudiesList.length > 0) { // If many studies choosen
-				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
+				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni() + "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
 						+ getTypeUniUrl() + getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
 						+ getAdmisionUniUrl() + getUrlTypeStudies() + "&a%5Bpf%5D=" + getUrlPrefecture()
 						+ "&search.x=177&search.y=11&search=search");
@@ -151,6 +155,14 @@ public class UniversityUrlBuilder {
 			}
 		}
 		return getUrl();
+	}
+
+	private String getNameUni() {
+		return nameUni;
+	}
+
+	private void setNameUni(String nameUni) {
+		this.nameUni = nameUni;
 	}
 
 	public String[] getPrefecture() {
@@ -407,13 +419,13 @@ public class UniversityUrlBuilder {
 		String typeUniUrl = "";
 		String text = "";
 		for (String i : typeUni) {
-			if (i.equals("nationalUni"))
+			if (i.equals("national"))
 				text = nationalUni;
-			if (i.equals("publicUni"))
+			if (i.equals("public"))
 				text = publicUni;
-			if (i.equals("privateUni"))
+			if (i.equals("private"))
 				text = privateUni;
-			if (i.equals("jsfuUni"))
+			if (i.equals("jsfu"))
 				text = jsfuUni;
 			typeUniUrl = typeUniUrl + text;
 		}

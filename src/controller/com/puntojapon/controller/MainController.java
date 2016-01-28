@@ -10,6 +10,7 @@
 package com.puntojapon.controller;
 
 import com.puntojapon.main.CollegeList;
+import com.puntojapon.main.GradSchoolCrawler;
 import com.puntojapon.main.UniversityCrawler;
 
 import java.io.IOException;
@@ -28,9 +29,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 		
-	@RequestMapping(value = "/universidades/buscador/{prefecture}", method = RequestMethod.GET, produces = "application/json")
+	//http://localhost:8080/universidades/all/?nameUni=&typeUni=&admisionMonth=&deadLine=&eju=&engExam=&admisionUni=
+	@RequestMapping(value = "/universidades/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
+											@RequestParam(value="nameUni") String nameUni,
 											@RequestParam(value="typeUni") String[] typeUni,
 											@RequestParam(value="admisionMonth") String[] admisionMonth,
 											@RequestParam(value="deadLine") String[] deadLine,
@@ -46,7 +49,7 @@ public class MainController {
 		String returnJson = "";
 		int counter = 0;
 		
-		UniversityUrlBuilder search = new UniversityUrlBuilder(prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
+		UniversityUrlBuilder search = new UniversityUrlBuilder(nameUni, prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
 		System.out.println("Url final BUSQUEDA = " + search.getSearchUrl(prefecture));
 		url = search.getSearchUrl(prefecture);
 
@@ -56,10 +59,11 @@ public class MainController {
 		return universityList;
 	}
 
-	@RequestMapping(value = "/universidades/buscador/{prefecture}/{typeStudies}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/universidades/{prefecture}/{typeStudies}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
 			@PathVariable("typeStudies") String[] typeStudiesList,
+			@RequestParam(value="nameUni") String nameUni,
 			@RequestParam(value="typeUni") String[] typeUni,
 			@RequestParam(value="admisionMonth") String[] admisionMonth,
 			@RequestParam(value="deadLine") String[] deadLine,
@@ -76,7 +80,7 @@ public class MainController {
 		String returnJson = "";
 		int counter = 0;
 		
-		UniversityUrlBuilder search = new UniversityUrlBuilder(prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
+		UniversityUrlBuilder search = new UniversityUrlBuilder(nameUni, prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
 		System.out.println("Url final BUSQUEDA = " + search.getSearchUrl(prefecture));
 		url = search.getSearchUrl(prefecture);
 		
@@ -84,6 +88,32 @@ public class MainController {
 				returnJson, counter);
 
 		return universityList;
+	}
+	
+	//Grad school
+	@RequestMapping(value = "/posgrado/{prefecture}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
+											@RequestParam(value="nameGrad") String nameGrad,
+											@RequestParam(value="typeGrad") String[] typeGrad,
+											@RequestParam(value="typeCourse") String[] typeCourse,
+											@RequestParam(value="englishCourse") String[] englishCourse) throws Exception {
+
+		String gradSchoolList = "";
+		String url = "";
+		String typeStudies = "";
+		CollegeList gradSchoolsList = new CollegeList(String.join(" ", prefecture) + typeStudies + String.join(" ", typeGrad));
+		String returnJson = "";
+		int counter = 0;
+		
+		GradSchoolUrlBuilder search = new GradSchoolUrlBuilder(nameGrad, prefecture, typeGrad, typeCourse, englishCourse);
+		System.out.println("Url final BUSQUEDA = " + search.getSearchUrl(prefecture));
+		url = search.getSearchUrl(prefecture);
+
+		gradSchoolList = GradSchoolCrawler.crawlGradSchools(url, prefecture, typeStudies, gradSchoolsList,
+				returnJson, counter);
+
+		return gradSchoolList;
 	}
 
 }
