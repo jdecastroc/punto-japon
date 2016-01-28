@@ -1,6 +1,6 @@
 package com.puntojapon.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -8,9 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.Test;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.junit.*;
 
 import com.puntojapon.controller.UniversityUrlBuilder;
 import com.puntojapon.main.CollegeList;
@@ -26,7 +24,7 @@ public class CrawlerTest {
 		int realUniversitiesCount = 0;
 		
 		// Test battery
-		String[] prefecture = {"Tokyo","Osaka"};
+		String[] prefecture = {"all"};
 		String[] typeStudiesList = {"Literature", "Language"};
 		String nameUni = "";
 		String[] typeUni = {"national"};
@@ -37,7 +35,7 @@ public class CrawlerTest {
 		String[] admisionUni = {};
 		
 		String url = "";
-		String correctUrl = "http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5But%5D%5B%5D=1&u%5Bej%5D%5B%5D=1&u%5Ben%5D%5B%5D=2&u%5Bac%5D=101-102-103-104-105-106-107-111-151-160-166&a%5Bpf%5D=13-27&search.x=123&search.y=9&search=search";
+		String correctUrl = "http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5But%5D%5B%5D=1&u%5Bej%5D%5B%5D=1&u%5Ben%5D%5B%5D=2&u%5Bac%5D=101-102-103-104-105-106-107-111-151-160-166&a%5Bpf%5D=&search.x=123&search.y=9&search=search";
 		 
 		String typeStudiess = ""; //TODO Mirar esto
 		

@@ -5,10 +5,13 @@ com\puntojapon\main\Translator.class
 com\puntojapon\main\CollegeFacultyList.class
 com\puntojapon\controller\MainController.class
 com\puntojapon\main\CollegeList.class
+com\puntojapon\main\TechSchoolCrawler.class
+com\puntojapon\test\CrawlerTest.class
 com\puntojapon\controller\UniversityUrlBuilder.class
 com\puntojapon\main\University.class
 com\puntojapon\main\GradSchoolCrawler.class
 com\puntojapon\controller\Application.class
 com\puntojapon\main\CollegeBasicInfo.class
 com\puntojapon\main\GradSchool.class
+com\puntojapon\controller\TechSchoolUrlBuilder.class
 com\puntojapon\main\CollegeFaculty.class

@@ -33,9 +33,11 @@ public class MainController {
 	@RequestMapping(value = "/universidades/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
-			@RequestParam(value = "nameUni") String nameUni, @RequestParam(value = "typeUni") String[] typeUni,
+			@RequestParam(value = "nameUni") String nameUni, 
+			@RequestParam(value = "typeUni") String[] typeUni,
 			@RequestParam(value = "admisionMonth") String[] admisionMonth,
-			@RequestParam(value = "deadLine") String[] deadLine, @RequestParam(value = "eju") String[] eju,
+			@RequestParam(value = "deadLine") String[] deadLine, 
+			@RequestParam(value = "eju") String[] eju,
 			@RequestParam(value = "engExam") String[] engExam,
 			@RequestParam(value = "admisionUni") String[] admisionUni) throws Exception {
 
@@ -53,8 +55,7 @@ public class MainController {
 		url = search.getSearchUrl(prefecture);
 
 		UniversityCrawler crawler = new UniversityCrawler();
-		universityList = crawler.crawlUniversities(url, prefecture, typeStudies, universitiesList, returnJson,
-				counter);
+		universityList = crawler.crawlUniversities(url, prefecture, typeStudies, universitiesList, returnJson, counter);
 
 		return universityList;
 	}
@@ -62,16 +63,18 @@ public class MainController {
 	@RequestMapping(value = "/universidades/{prefecture}/{typeStudies}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
-			@PathVariable("typeStudies") String[] typeStudiesList, @RequestParam(value = "nameUni") String nameUni,
+			@PathVariable("typeStudies") String[] typeStudiesList, 
+			@RequestParam(value = "nameUni") String nameUni,
 			@RequestParam(value = "typeUni") String[] typeUni,
 			@RequestParam(value = "admisionMonth") String[] admisionMonth,
-			@RequestParam(value = "deadLine") String[] deadLine, @RequestParam(value = "eju") String[] eju,
+			@RequestParam(value = "deadLine") String[] deadLine, 
+			@RequestParam(value = "eju") String[] eju,
 			@RequestParam(value = "engExam") String[] engExam,
 			@RequestParam(value = "admisionUni") String[] admisionUni) throws Exception {
 
 		String universityList = "";
 		String url = "";
-		String typeStudies = ""; //TODO LIMPIAR CODIGO
+		String typeStudies = ""; // TODO LIMPIAR CODIGO
 		CollegeList universitiesList = new CollegeList(
 				String.join(" ", prefecture) + " " + String.join(" ", typeStudiesList) + typeUni);
 		String returnJson = "";
@@ -83,8 +86,7 @@ public class MainController {
 		url = search.getSearchUrl(prefecture);
 
 		UniversityCrawler crawler = new UniversityCrawler();
-		universityList = crawler.crawlUniversities(url, prefecture, typeStudies, universitiesList, returnJson,
-				counter);
+		universityList = crawler.crawlUniversities(url, prefecture, typeStudies, universitiesList, returnJson, counter);
 
 		return universityList;
 	}
@@ -93,7 +95,8 @@ public class MainController {
 	@RequestMapping(value = "/posgrado/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchGradSchool(@PathVariable("prefecture") String[] prefecture,
-			@RequestParam(value = "nameGrad") String nameGrad, @RequestParam(value = "typeGrad") String[] typeGrad,
+			@RequestParam(value = "nameGrad") String nameGrad, 
+			@RequestParam(value = "typeGrad") String[] typeGrad,
 			@RequestParam(value = "typeCourse") String[] typeCourse,
 			@RequestParam(value = "englishCourse") String[] englishCourse) throws Exception {
 
@@ -111,12 +114,11 @@ public class MainController {
 		url = search.getSearchUrl(prefecture);
 
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
-		gradSchoolList = crawler.crawlGradSchools(url, prefecture, typeStudies, gradSchoolsList, returnJson,
-				counter);
+		gradSchoolList = crawler.crawlGradSchools(url, prefecture, typeStudies, gradSchoolsList, returnJson, counter);
 
 		return gradSchoolList;
 	}
-	
+
 	@RequestMapping(value = "/fp/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
@@ -125,8 +127,7 @@ public class MainController {
 		String techSchoolList = "";
 		String url = "";
 		String typeStudies = "";
-		CollegeList techSchoolsList = new CollegeList(
-				String.join(" ", prefecture));
+		CollegeList techSchoolsList = new CollegeList(String.join(" ", prefecture));
 		String returnJson = "";
 		int counter = 0;
 
@@ -134,8 +135,7 @@ public class MainController {
 		System.out.println("Url final BUSQUEDA = " + search.getSearchUrl(prefecture));
 		url = search.getSearchUrl(prefecture);
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
-		techSchoolList = crawler.crawlTechSchools(url, prefecture, typeStudies, techSchoolsList, returnJson,
-				counter);
+		techSchoolList = crawler.crawlTechSchools(url, prefecture, typeStudies, techSchoolsList, returnJson, counter);
 
 		return techSchoolList;
 	}

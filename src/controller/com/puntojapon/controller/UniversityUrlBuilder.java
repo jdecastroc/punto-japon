@@ -90,7 +90,8 @@ public class UniversityUrlBuilder {
 		// Build URL's
 		setPrefecture(prefecture);
 		setTypeStudiesList(typeStudiesList);
-
+		
+		//prefecture.length > 0 && !prefecture[0].equals("all")
 		if (prefecture.length > 0 && !prefecture[0].equals("all"))
 			setUrlPrefecture(buildPrefectureUrl(prefecturesList, prefecture));
 		if (typeStudiesList.length > 0)
@@ -304,7 +305,8 @@ public class UniversityUrlBuilder {
 				}
 			}
 		}
-		urlPrefectures = urlPrefectures.substring(0, urlPrefectures.length() - 1);
+		if (!urlPrefectures.equals(""))
+			urlPrefectures = urlPrefectures.substring(0, urlPrefectures.length() - 1);
 		return urlPrefectures;
 	}
 

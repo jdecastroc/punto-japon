@@ -74,7 +74,8 @@ public class TechSchoolUrlBuilder {
 					}
 				}
 			}
-			urlPrefectures = urlPrefectures.substring(0, urlPrefectures.length() - 1);
+			if (!urlPrefectures.equals(""))
+				urlPrefectures = urlPrefectures.substring(0, urlPrefectures.length() - 1);
 			return urlPrefectures;
 		}
 

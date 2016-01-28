@@ -1,3 +1,4 @@
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\TechSchoolCrawler.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\package-info.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\CollegeFacultyList.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\CollegeFaculty.java
@@ -5,6 +6,8 @@ G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\TechSchool.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\University.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\MainController.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\UniversityUrlBuilder.java
+G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\TechSchoolUrlBuilder.java
+G:\Desarrollo\punto-japon\src\test\java\com\puntojapon\test\CrawlerTest.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\GradSchoolUrlBuilder.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\Translator.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\Application.java
