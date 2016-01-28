@@ -134,6 +134,12 @@ public class MainController {
 		String ejuUrl = "";
 		String engExamUrl = "";
 		String admisionUniUrl = "";
+		String[] typeStudiesList={};
+//		public UniversityUrlBuilder(String[] prefecture, String[] typeStudiesList, String[] typeUni, String[] admisionMonth, String[] deadLine, String[] eju,
+//				String[] engExam, String[] admisionUni){
+		
+		UniversityUrlBuilder busqueda = new UniversityUrlBuilder(prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
+		System.out.println("Url final BUSQUEDA = " + busqueda.getSearchUrl(prefecture));
 		
 		//Type uni URL
 		if (typeUni.length > 0) //If many type uni
@@ -193,7 +199,7 @@ public class MainController {
 					"&u%5Bac%5D=&a%5Bpf%5D=&search.x=177&search.y=11&search=search";
 			prefecture = prefecturesList;
 		}
-
+		System.out.println("URL final SIN busqueda: " + url);
 		universityList = UniversityCrawler.crawlUniversities(url, prefecture, typeStudies, universitiesList,
 				returnJson, counter);
 
@@ -343,6 +349,9 @@ public class MainController {
 		String engExamUrl = "";
 		String admisionUniUrl = "";
 		
+		UniversityUrlBuilder busqueda = new UniversityUrlBuilder(prefecture, typeStudiesList, typeUni, admisionUni, deadLine, eju, engExam, admisionUni);
+		System.out.println("Url final BUSQUEDA = " + busqueda.getSearchUrl(prefecture));
+		
 		//Type uni URL
 		if (typeUni.length > 0) //If many type uni
 		typeUniUrl = buildTypeUniUrl(typeUni);
@@ -376,7 +385,7 @@ public class MainController {
 //				System.out.println("urlStudies -> " + urlStudies);
 //			}
 //		} else 
-			if (prefecture.length > 0 && !prefecture[0].equals("all")) { // If many prefectures choosen
+		if (prefecture.length > 0 && !prefecture[0].equals("all")) { // If many prefectures choosen
 			String urlPrefecture = buildPrefectureUrl(prefecturesList, prefecture);
 			//url = "http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5Bac%5D=&a%5Bpf%5D="
 			//		+ urlPrefecture + "&search.x=177&search.y=11&search=search";
@@ -416,12 +425,13 @@ public class MainController {
 			}
 		}
 
-		// Studies GET
-		// final String lawUrl =
-		// "http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5Bac%5D=201-202&a%5Bpf%5D=&search.x=115&search.y=19&search=search";
-		// Tokyo =
-		// http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5Bac%5D=201-202&a%5Bpf%5D=13&search.x=118&search.y=18&search=search
-
+//http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5But%5D%5B%5D=2&u%5Bac%5D=101-102-103-104-105-106-107-111&a%5Bpf%5D=13&search.x=177&search.y=11&search=search
+//http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5But%5D%5B%5D=2&u%5Bac%5D=101-102-103-104-105-106-107-111&a%5Bpf%5D=13&search.x=177&search.y=11&search=search		
+//http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5Bac%5D=&a%5Bpf%5D=13&search.x=177&search.y=11&search=search
+//http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5Bac%5D=&a%5Bpf%5D=13&search.x=177&search.y=11&search=search
+		
+		System.out.println("URL SIN busqueda - > " + url);
+		
 		universityList = UniversityCrawler.crawlUniversities(url, prefecture, typeStudies, universitiesList,
 				returnJson, counter);
 
