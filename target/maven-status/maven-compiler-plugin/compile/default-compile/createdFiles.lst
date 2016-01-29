@@ -15,3 +15,4 @@ com\puntojapon\main\CollegeBasicInfo.class
 com\puntojapon\main\GradSchool.class
 com\puntojapon\controller\TechSchoolUrlBuilder.class
 com\puntojapon\main\CollegeFaculty.class
+com\puntojapon\main\UniversityPageCrawler.class

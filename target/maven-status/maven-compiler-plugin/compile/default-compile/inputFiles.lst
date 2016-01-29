@@ -6,6 +6,7 @@ G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\TechSchool.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\University.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\MainController.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\UniversityUrlBuilder.java
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\main\UniversityPageCrawler.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\TechSchoolUrlBuilder.java
 G:\Desarrollo\punto-japon\src\test\java\com\puntojapon\test\CrawlerTest.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\GradSchoolUrlBuilder.java

@@ -18,8 +18,17 @@ public class CollegeBasicInfo {
 	private String guideUrl = "";
 	private String title = "";
 	private String description = "";
+	private String officialUrl = "";
 	private CollegeFacultyList faculties;
 	
+	public String getOfficialUrl() {
+		return officialUrl;
+	}
+
+	public void setOfficialUrl(String officialUrl) {
+		this.officialUrl = officialUrl;
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

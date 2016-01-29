@@ -13,6 +13,7 @@ import com.puntojapon.main.CollegeList;
 import com.puntojapon.main.GradSchoolCrawler;
 import com.puntojapon.main.TechSchoolCrawler;
 import com.puntojapon.main.UniversityCrawler;
+import com.puntojapon.main.UniversityPageCrawler;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -138,6 +139,16 @@ public class MainController {
 		techSchoolList = crawler.crawlTechSchools(url, prefecture, typeStudies, techSchoolsList, returnJson, counter);
 
 		return techSchoolList;
+	}
+	
+	//University Page
+	@RequestMapping(value = "/universidades/id/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversity(@PathVariable("id") String id) throws Exception {
+		String universityInfo = "";
+		universityInfo = UniversityPageCrawler.crawlUniversityPage(id);
+
+		return universityInfo;
 	}
 
 }

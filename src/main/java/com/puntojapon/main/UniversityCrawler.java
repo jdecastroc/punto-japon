@@ -127,15 +127,17 @@ public class UniversityCrawler {
 			// type = translate(type);
 
 			// Getting img link
-			if (element.select("div.leftBlock > a > img").first() != null) //{
+			if (element.select("div.leftBlock > a > img").first() != null) { //TODO Check
 				imageUrl = "http://www.jpss.jp/uploads" + id + "main.jpg";
 				imageUrl = imageUrl.replace("/en", "");
+			}
 
 
 			// Getting guide link
-			if (element.select("div.dlBtn > a > img").first() != null) //{
+			if (element.select("div.dlBtn > a > img").first() != null) { //TODO Check
 				guideUrl = "http://www.jpss.jp/uploads" + id + "guide.zip";
 				guideUrl = guideUrl.replace("/en", "");
+			}
 
 			// Getting title and description
 			if (element.select("div.rightBlock > p").first() != null) {
@@ -170,7 +172,7 @@ public class UniversityCrawler {
 			//all
 			if (prefectureSearchName[0].equals("")) {
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList, "");
 				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 				counter++;
@@ -179,7 +181,7 @@ public class UniversityCrawler {
 			//1 prefecture chosen
 			if (!prefectureSearchName[0].equals("") && prefectureSearchName.length >= 46){
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList, "");
 				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
 				counter++;
@@ -190,7 +192,7 @@ public class UniversityCrawler {
 					&& prefectureSearchName.length < 46) {
 
 				University university = new University(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList, "");
 				//Traduccion
 				// university.getFacultyList().translateCollegeFacultyList();
 				universitiesList.addCollege(university);
