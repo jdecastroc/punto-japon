@@ -28,7 +28,11 @@ public class TechSchoolUrlBuilder {
 		public String getSearchUrl(String[] prefecture) {
 			
 			//http://www.jpss.jp/en/search/?tb=3&a%5Bnm%5D=tokyo&a%5Bfw%5D=&a%5Bpf%5D=&search.x=0&search.y=0&search=search
-			setUrl("http://www.jpss.jp/en/search/?tb=3&a%5Bnm%5D=" + getNameTech() + "&a%5Bfw%5D=&a%5Bpf%5D=&search.x=0&search.y=0&search=search");
+			if (getPrefecture()[0].equals("all")) { // If no prefecture choosen
+				setUrl("http://www.jpss.jp/en/search/?tb=3&a%5Bnm%5D=" + getNameTech() + "&a%5Bfw%5D=&a%5Bpf%5D=&search.x=0&search.y=0&search=search");	
+			} else {
+				setUrl("http://www.jpss.jp/en/search/?tb=3&a%5Bnm%5D=" + getNameTech() + "&a%5Bfw%5D=&a%5Bpf%5D=" + getUrlPrefecture() +"&search.x=0&search.y=0&search=search");
+			}
 			return getUrl();
 		}
 

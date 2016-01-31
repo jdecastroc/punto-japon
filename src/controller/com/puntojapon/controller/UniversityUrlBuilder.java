@@ -318,12 +318,6 @@ public class UniversityUrlBuilder {
 				text = appOutsideJap;
 			if (i.equals("appInsideJap"))
 				text = appInsideJap;
-			if (i.equals("engToeflUsed"))
-				text = engToeflUsed;
-			if (i.equals("engOthers"))
-				text = engOthers;
-			if (i.equals("engToeflEtcUsed"))
-				text = engToeflEtcUsed;
 			admisionUniUrl = admisionUniUrl + text;
 		}
 		return admisionUniUrl;
