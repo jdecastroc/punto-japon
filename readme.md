@@ -19,7 +19,13 @@ Punto Japón es una aplicación móvil/web que acerca al usuario a una centraliz
 ## Búsqueda de universidades ##
 
 Armando la consulta:
+
+```
+#!java
+
 http://localhost:8080/universidades/<Prefecturas>/<Tipo de grados>?nameUni=&typeUni=&admisionMonth=&deadLine=&eju=&engExam=&admisionUni=
+```
+
 
 Consulta de ejemplo: 
 http://localhost:8080/universidades/Tokyo/Language?nameUni=&typeUni=&admisionMonth=&deadLine=&eju=&engExam=&admisionUni=
