@@ -19,6 +19,7 @@ public class UniversityPageCrawler {
 
 	public static String crawlUniversityPage(String id) throws Exception {
 
+		//TODO Adaptar para que sirva para universidades, escuelas de posgrado y fp
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 		String jsonUniversity = "";
