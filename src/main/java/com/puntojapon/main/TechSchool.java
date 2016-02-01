@@ -3,7 +3,7 @@ package com.puntojapon.main;
 public class TechSchool extends CollegeBasicInfo {
 
 	public TechSchool(String id, String japaneseName, String name, String prefecture, String type, String collegeType,
-			String guideUrl, String imageUrl, String title, String description, CollegeFacultyList faculties) {
+			String guideUrl, String imageUrl, String title, String description, CollegeFacultyList faculties, String officialUrl) {
 
 		this.setId(id);
 		this.setJapeneseName(japaneseName);
@@ -16,6 +16,6 @@ public class TechSchool extends CollegeBasicInfo {
 		this.setTitle(title);
 		this.setDescription(description);
 		this.setFaculties(faculties);
-
+		this.setOfficialUrl(officialUrl);
 	}
 }

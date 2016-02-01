@@ -172,7 +172,7 @@ public class GradSchoolCrawler {
 			//all
 			if (prefectureSearchName[0].equals("")) {
 				GradSchool gradSchool = new GradSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				// university.getFacultyList().translateCollegeFacultyList();
 				gradSchoolsList.addCollege(gradSchool);
 				counter++;
@@ -181,7 +181,7 @@ public class GradSchoolCrawler {
 			//1 prefecture chosen
 			if (!prefectureSearchName[0].equals("") && prefectureSearchName.length >= 46){
 				GradSchool gradSchool = new GradSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				// university.getFacultyList().translateCollegeFacultyList();
 				gradSchoolsList.addCollege(gradSchool);
 				counter++;
@@ -192,7 +192,7 @@ public class GradSchoolCrawler {
 					&& prefectureSearchName.length < 46) {
 
 				GradSchool gradSchool = new GradSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				//Traduccion
 				// university.getFacultyList().translateCollegeFacultyList();
 				gradSchoolsList.addCollege(gradSchool);

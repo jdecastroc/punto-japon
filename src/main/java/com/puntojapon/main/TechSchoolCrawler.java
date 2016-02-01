@@ -172,7 +172,7 @@ public class TechSchoolCrawler {
 			//all
 			if (prefectureSearchName[0].equals("")) {
 				TechSchool TechSchool = new TechSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				// university.getFacultyList().translateCollegeFacultyList();
 				TechSchoolsList.addCollege(TechSchool);
 				counter++;
@@ -181,7 +181,7 @@ public class TechSchoolCrawler {
 			//1 prefecture chosen
 			if (!prefectureSearchName[0].equals("") && prefectureSearchName.length >= 46){
 				TechSchool TechSchool = new TechSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				// university.getFacultyList().translateCollegeFacultyList();
 				TechSchoolsList.addCollege(TechSchool);
 				counter++;
@@ -192,7 +192,7 @@ public class TechSchoolCrawler {
 					&& prefectureSearchName.length < 46) {
 
 				TechSchool TechSchool = new TechSchool(id, japaneseName, name, prefecture, type, collegeType,
-						guideUrl, imageUrl, title, description, facultyList);
+						guideUrl, imageUrl, title, description, facultyList,"");
 				//Traduccion
 				// university.getFacultyList().translateCollegeFacultyList();
 				TechSchoolsList.addCollege(TechSchool);
