@@ -36,8 +36,6 @@ public class CrawlerTest {
 		
 		String url = "";
 		String correctUrl = "http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=&u%5But%5D%5B%5D=1&u%5Bej%5D%5B%5D=1&u%5Ben%5D%5B%5D=2&u%5Bac%5D=101-102-103-104-105-106-107-111-151-160-166&a%5Bpf%5D=&search.x=123&search.y=9&search=search";
-		 
-		String typeStudiess = ""; //TODO Mirar esto
 		
 		CollegeList universitiesList = new CollegeList(String.join(" ", prefecture)+ typeUni);
 		String returnJson = "";
@@ -48,7 +46,7 @@ public class CrawlerTest {
 		url = search.getSearchUrl(prefecture);
 		
 		UniversityCrawler crawlerTest1 = new UniversityCrawler();
-		crawlerTest1.crawlUniversities(url, prefecture, typeStudiess, universitiesList, returnJson,
+		crawlerTest1.crawlUniversities(url, prefecture, universitiesList, returnJson,
 				counter);
 		
 		crawlerUniversities = crawlerTest1.getCollegeCounter();

@@ -10,6 +10,8 @@ import java.util.Vector;
  */
 public class CollegeList {
 	private String searchType; //tipo de busqueda (prefecture, typeStudies, typeUni)
+	private int searchFound; //Numero de universidades encontradas
+	private boolean searchState; //Facilita una busqueda correcta o incorrecta
 	private Vector<Object> collegeList;
 	
 	public CollegeList(String searchType){ //type = prefectura,tipo_estudios,tipo_universidad(priv,pub)
@@ -19,6 +21,22 @@ public class CollegeList {
 	
 	public void setCollegeListType(String type) {
 		this.searchType = type;
+	}
+	
+	public void setSearchFound(int number){
+		this.searchFound = number;
+	}
+	
+	public void setSearchState(boolean state) {
+		this.searchState = state;
+	}
+	
+	public int getSearchFound() {
+		return this.searchFound;
+	}
+	
+	public boolean getSearchState() {
+		return this.searchState;
 	}
 	
 	public String getCollegeListType() {

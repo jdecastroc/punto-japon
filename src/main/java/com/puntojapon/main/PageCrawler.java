@@ -23,7 +23,6 @@ public class PageCrawler {
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 		String jsonUniversity = "";
-		//University university = null;
 		String url = "";
 		
 		if (crawlerType.equals("university")){
@@ -144,14 +143,10 @@ public class PageCrawler {
 
 			Elements facultiesDiv = element.select("div#SchoolMenu > ul.clearFix.padT15 > li");
 			for (Element facultyContent : facultiesDiv) {
-				// System.out.println("Entro a algun sitio");
 				Element facultiesRaw = facultyContent.select("a").first();
 
 				String facultyTitle = facultiesRaw.attr("title");
 				String facultyHref = facultiesRaw.attr("href");
-
-				// Usar traductor o no
-				// facultyTitle = Translator.translate(facultyTitle);
 
 				facultyList.addCollegeFaculty(new CollegeFaculty(facultyTitle, facultyHref));
 			}
@@ -159,22 +154,16 @@ public class PageCrawler {
 			if (crawlerType.equals("university")){
 				University college = new University(id, japaneseName, name, prefecture, type, collegeType, guideUrl, imageUrl,
 					title, description, facultyList, officialUrl);
-				// Traduccion
-				// university.getFacultyList().translateCollegeFacultyList();
 				jsonUniversity = gson.toJson(college);
 			}
 			if (crawlerType.equals("grad")){
 				GradSchool college = new GradSchool(id, japaneseName, name, prefecture, type, collegeType, guideUrl, imageUrl,
 						title, description, facultyList, officialUrl);
-				// Traduccion
-				// university.getFacultyList().translateCollegeFacultyList();
 				jsonUniversity = gson.toJson(college);
 			}
 			if (crawlerType.equals("fp")){
 				TechSchool college = new TechSchool(id, japaneseName, name, prefecture, type, collegeType, guideUrl, imageUrl,
 						title, description, facultyList, officialUrl);
-				// Traduccion
-				// university.getFacultyList().translateCollegeFacultyList();
 				jsonUniversity = gson.toJson(college);
 			}
 			
