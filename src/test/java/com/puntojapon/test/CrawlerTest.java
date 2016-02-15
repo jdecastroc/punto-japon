@@ -10,9 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.*;
 
-import com.puntojapon.controller.UniversityUrlBuilder;
-import com.puntojapon.main.CollegeList;
-import com.puntojapon.main.UniversityCrawler;
+import com.puntojapon.colleges.CollegeList;
+import com.puntojapon.colleges.UniversityCrawler;
+import com.puntojapon.colleges.UniversityUrlBuilder;
 
 public class CrawlerTest {
 
@@ -46,7 +46,7 @@ public class CrawlerTest {
 		url = search.getSearchUrl(prefecture);
 		
 		UniversityCrawler crawlerTest1 = new UniversityCrawler();
-		crawlerTest1.crawlUniversities(url, prefecture, universitiesList, returnJson,
+		crawlerTest1.getCollegeList(url, prefecture, universitiesList, returnJson,
 				counter);
 		
 		crawlerUniversities = crawlerTest1.getCollegeCounter();

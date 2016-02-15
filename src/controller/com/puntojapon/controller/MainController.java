@@ -8,16 +8,6 @@
  */
 package com.puntojapon.controller;
 
-import com.puntojapon.main.CollegeList;
-import com.puntojapon.main.GradSchoolCrawler;
-import com.puntojapon.main.PageCrawler;
-import com.puntojapon.main.TechSchoolCrawler;
-import com.puntojapon.main.UniversityCrawler;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Vector;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.puntojapon.colleges.CollegeList;
+import com.puntojapon.colleges.GradSchoolCrawler;
+import com.puntojapon.colleges.GradSchoolUrlBuilder;
+import com.puntojapon.colleges.TechSchoolCrawler;
+import com.puntojapon.colleges.TechSchoolUrlBuilder;
+import com.puntojapon.colleges.UniversityCrawler;
+import com.puntojapon.colleges.UniversityUrlBuilder;
 
 @RestController
 public class MainController {
@@ -53,7 +51,7 @@ public class MainController {
 		url = search.getSearchUrl(prefecture);
 
 		UniversityCrawler crawler = new UniversityCrawler();
-		universityList = crawler.crawlUniversities(url, prefecture, universitiesList, returnJson, counter);
+		universityList = crawler.getCollegeList(url, prefecture, universitiesList, returnJson, counter);
 
 		return universityList;
 	}
@@ -68,9 +66,8 @@ public class MainController {
 
 		String gradSchoolList = "";
 		String url = "";
-		String typeStudies = "";
 		CollegeList gradSchoolsList = new CollegeList(
-				String.join(" ", prefecture) + typeStudies + String.join(" ", typeGrad));
+				String.join(" ", prefecture) + String.join(" ", typeGrad));
 		String returnJson = "";
 		int counter = 0;
 
@@ -80,7 +77,7 @@ public class MainController {
 		url = search.getSearchUrl(prefecture);
 
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
-		gradSchoolList = crawler.crawlGradSchools(url, prefecture, typeStudies, gradSchoolsList, returnJson, counter);
+		gradSchoolList = crawler.getCollegeList(url, prefecture, gradSchoolsList, returnJson, counter);
 
 		return gradSchoolList;
 	}
@@ -92,7 +89,6 @@ public class MainController {
 
 		String techSchoolList = "";
 		String url = "";
-		String typeStudies = "";
 		CollegeList techSchoolsList = new CollegeList(String.join(" ", prefecture));
 		String returnJson = "";
 		int counter = 0;
@@ -101,7 +97,7 @@ public class MainController {
 		System.out.println("Url final BUSQUEDA = " + search.getSearchUrl(prefecture));
 		url = search.getSearchUrl(prefecture);
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
-		techSchoolList = crawler.crawlTechSchools(url, prefecture, typeStudies, techSchoolsList, returnJson, counter);
+		techSchoolList = crawler.getCollegeList(url, prefecture, techSchoolsList, returnJson, counter);
 
 		return techSchoolList;
 	}
@@ -111,8 +107,8 @@ public class MainController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversity(@PathVariable("id") String id) throws Exception {
 		String universityInfo = "";
-		String crawlerType = "university";
-		universityInfo = PageCrawler.crawlPage(id, crawlerType);
+		UniversityCrawler crawler = new UniversityCrawler();
+		universityInfo = crawler.getCollege(id);
 
 		return universityInfo;
 	}
@@ -122,8 +118,8 @@ public class MainController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchool(@PathVariable("id") String id) throws Exception {
 		String gradSchoolInfo = "";
-		String crawlerType = "grad";
-		gradSchoolInfo = PageCrawler.crawlPage(id, crawlerType);
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		gradSchoolInfo = crawler.getCollege(id);
 
 		return gradSchoolInfo;
 	}
@@ -133,8 +129,8 @@ public class MainController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchool(@PathVariable("id") String id) throws Exception {
 		String techSchoolInfo = "";
-		String crawlerType = "fp";
-		techSchoolInfo = PageCrawler.crawlPage(id, crawlerType);
+		TechSchoolCrawler crawler = new TechSchoolCrawler();
+		techSchoolInfo = crawler.getCollege(id);
 
 		return techSchoolInfo;
 	}
