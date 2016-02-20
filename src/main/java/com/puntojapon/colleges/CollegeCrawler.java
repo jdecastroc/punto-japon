@@ -20,6 +20,8 @@ public abstract class CollegeCrawler {
 
 	public abstract String getCollege(String id) throws Exception;
 
-	public abstract String getFaculty();
+	public abstract String getFacultyAdmissions(String parent, String id) throws Exception;
+	
+	public abstract String getFacultyInfo(String parent, String id) throws Exception;
 
 }

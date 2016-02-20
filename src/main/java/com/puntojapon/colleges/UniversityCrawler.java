@@ -3,6 +3,7 @@
  */
 package com.puntojapon.colleges;
 
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -246,9 +247,166 @@ public class UniversityCrawler extends CollegeCrawler {
 	}
 
 	@Override
-	public String getFaculty() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getFacultyAdmissions(String universityParent, String id) throws Exception {
+		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+		Faculty faculty = new Faculty(universityParent, id, "admissions");
+
+		System.out.println("Voy a -> " + "http://www.jpss.jp/en/univ/" + faculty.getUniversityParent() + "/"
+				+ faculty.getId() + "/");
+		Document document = Jsoup
+				.connect("http://www.jpss.jp/en/univ/" + faculty.getUniversityParent() + "/" + faculty.getId() + "/")
+				.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+
+		Elements text = document.select("div#DepCnt");
+
+		faculty.setHeaderContent(document, faculty, text);
+
+		// Table content
+		for (Element element : text) {
+			if (element.select("div#DepBody > div.unvExamTable > table > tbody > tr").first() != null) {
+				Elements rowTable = element.select("div#DepBody > div.unvExamTable > table > tbody > tr");
+				for (Element row : rowTable) {
+
+					Element getRowRegister = row.select("th").first();
+					Element getRowContent = row.select("td").first();
+					faculty.getFacultyAdmissions().addRowTableInfo(getRowRegister.text().trim(),
+							getRowContent.text().trim());
+				}
+			}
+
+			// Last update
+			if (element.select("div#DepBody > div.unvExamTable > p") != null) {
+				Element getLastUpdate = element.select("div#DepBody > div.unvExamTable > p").first();
+				faculty.getFacultyAdmissions().setLastUpdate(getLastUpdate.text());
+			}
+
+			// Websites
+			if (element.select("div#DepBody > div.unvExamTable.padT15").first() != null) {
+				Elements rowWebLinks = element.select("div#DepBody > div.unvExamTable.padT15 > table > tbody > tr");
+				for (Element row : rowWebLinks) {
+					Element getRowContent = row.select("th").first();
+					Element getRowRegister = row.select("td > a").first();
+					faculty.getFacultyAdmissions().addWebLink(getRowContent.text().trim(),
+							getRowRegister.text().trim());
+				}
+			}
+		}
+		return gson.toJson(faculty);
+	}
+
+	@Override
+	public String getFacultyInfo(String universityParent, String id) throws Exception {
+
+		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+		Faculty faculty = new Faculty(universityParent, id, "info");
+
+		System.out.println("Voy a -> " + "http://www.jpss.jp/en/univ/" + faculty.getUniversityParent() + "/"
+				+ faculty.getId() + "/info/");
+		Document document = Jsoup.connect(
+				"http://www.jpss.jp/en/univ/" + faculty.getUniversityParent() + "/" + faculty.getId() + "/info/")
+				.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+
+		Elements text = document.select("div#DepCnt");
+
+		faculty.setHeaderContent(document, faculty, text);
+
+		for (Element element : text) {
+			// Tab title
+			if (element.select("div#DepBody > div.leftBlock > div.InfoUnivCnt > div.defaultTitle > h4")
+					.first() != null) {
+				Element getTitle = element
+						.select("div#DepBody > div.leftBlock > div.InfoUnivCnt > div.defaultTitle > h4").first();
+				faculty.getFacultyInfo().setTitle(getTitle.text().trim());
+			}
+
+			// Info content
+			if (element.select("div#DepBody > div.leftBlock > div.InfoUnivCnt").first() != null) {
+				String objectRegister = "";
+				String objectContent = "";
+
+				Elements objectTable = element.select("div#DepBody > div.leftBlock > div.InfoUnivCnt > div.depObj");
+				for (Element object : objectTable) {
+
+					if (object.select("h5").first() != null) {
+						Element getObjectRegister = object.select("h5").first();
+						objectRegister = getObjectRegister.text().trim();
+					}
+					if (object.select("div.depObjIn > div.whiteBase > p.padB20").first() != null) {
+						Element getObjectContent = object.select("div.depObjIn > div.whiteBase > p.padB20").first();
+						objectContent = getObjectContent.text().trim();
+					}
+
+					faculty.getFacultyInfo().addObject(objectRegister, objectContent);
+				}
+			}
+
+			// Images
+			if (element.select("div#DepBody > div.rightBlock > div") != null) {
+				Elements images = element.select("div#DepBody > div.rightBlock > div");
+				for (Element image : images) {
+					if (image.select("img") != null) {
+						faculty.getFacultyInfo().addImage(image.select("img").attr("src"));
+					}
+				}
+			}
+
+			// Registered International Students
+			if (element.select("div#DepBody2 > div.infoCntB > div.defaultTitle > div.verticalBorder > h4") != null) {
+				String year = "";
+				Element getRegStudentsTitle = element
+						.select("div#DepBody2 > div.infoCntB > div.defaultTitle > div.verticalBorder > h4").first();
+
+				if (element
+						.select("div#DepBody2 > div.infoCntB > div.defaultTitle > div.verticalBorder > h5") != null) {
+					Element getRegStudentsYear = element
+							.select("div#DepBody2 > div.infoCntB > div.defaultTitle > div.verticalBorder > h5").first();
+					year = getRegStudentsYear.text().trim();
+				}
+
+				faculty.getFacultyInfo().setRegStudentsTitle(getRegStudentsTitle.text().trim() + " " + year);
+			}
+
+			if (element.select("div#DepBody2 > div.infoCntB > div.infoCntBIn > div.whiteBase") != null) {
+				Elements rows = element.select("div#DepBody2 > div.infoCntB > div.infoCntBIn > div.whiteBase > div");
+				for (Element row : rows) {
+					if (row.select("span.countryName").first() != null
+							&& row.select("span.peopleCount").first() != null) {
+						Element getCountryName = row.select("span.countryName").first();
+						Element getPeopleCount = row.select("span.peopleCount").first();
+						faculty.getFacultyInfo().addStudentInfo(getCountryName.text().trim(),
+								getPeopleCount.text().trim());
+					}
+				}
+			}
+
+			// Department info
+			if (element.select("div#DepBody2 > div.infoCntC").first() != null) {
+				String departTitle = "";
+				String departContent = "";
+				Elements tabs = element.select("div#DepBody2 > div.infoCntC > div");
+
+				for (Element tab : tabs) {
+
+					if (tab.select("h5").first() != null) {
+						if (tab.select("h5").first().parent().className().equals("departTitle clearFix")) {
+							Element getDepartTitle = tab.select("h5").first();
+							departTitle = getDepartTitle.text().trim();
+						}
+					}
+					if (tab.select("div.infoPointIn > p").first() != null) {
+						Element getDepartContent = tab.select("div.infoPointIn > p").first();
+						departContent = getDepartContent.text().trim();
+					}
+					if (!departTitle.equals("") && !departContent.equals("")) {
+						faculty.getFacultyInfo().addDepartmentInfo(departTitle, departContent);
+						// Reset
+						departTitle = "";
+						departContent = "";
+					}
+				}
+			}
+		}
+		return gson.toJson(faculty);
 	}
 
 }

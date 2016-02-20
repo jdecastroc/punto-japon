@@ -249,7 +249,13 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	}
 
 	@Override
-	public String getFaculty() {
+	public String getFacultyAdmissions(String parent, String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getFacultyInfo(String parent, String id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

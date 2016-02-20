@@ -134,5 +134,30 @@ public class MainController {
 
 		return techSchoolInfo;
 	}
+	
+	// University Faculty Page
+		@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
+		@ResponseStatus(HttpStatus.OK)
+		public @ResponseBody String showUniversityFacultyAdmissions(@PathVariable("idUniversity") String idUniversity,
+				@PathVariable("idFaculty") String idFaculty) throws Exception {
+			String facultyInfo = "";
+			UniversityCrawler crawler = new UniversityCrawler();
+			facultyInfo = crawler.getFacultyAdmissions(idUniversity, idFaculty);
+
+			return facultyInfo;
+		}
+		
+	// University Faculty Page
+		@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
+		@ResponseStatus(HttpStatus.OK)
+		public @ResponseBody String showUniversityFacultyInfo(@PathVariable("idUniversity") String idUniversity,
+				@PathVariable("idFaculty") String idFaculty) throws Exception {
+			String facultyInfo = "";
+			UniversityCrawler crawler = new UniversityCrawler();
+			facultyInfo = crawler.getFacultyInfo(idUniversity, idFaculty);
+
+			return facultyInfo;
+		}		
+	
 
 }
