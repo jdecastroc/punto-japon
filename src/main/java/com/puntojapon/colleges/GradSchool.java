@@ -1,5 +1,17 @@
+/**
+ * Faculty data structure
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
+ *
+ */
 package com.puntojapon.colleges;
 
+/**
+ * Provides the gradSchool data structure used in the gradSchool crawler
+ * 
+ * @author jdecastroc
+ * @see com.puntojapon.colleges.CollegeBasicInfo
+ */
 public class GradSchool extends CollegeBasicInfo {
 
 	public GradSchool(String id, String japaneseName, String name, String prefecture, String type, String guideUrl,
@@ -19,6 +31,9 @@ public class GradSchool extends CollegeBasicInfo {
 
 	}
 
+	/**
+	 * Main class constructor which sets all the specified variables
+	 */
 	public GradSchool() {
 		this.setId("");
 		this.setJapaneseName("");

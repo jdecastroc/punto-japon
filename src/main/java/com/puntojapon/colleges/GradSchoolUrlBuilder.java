@@ -1,5 +1,17 @@
+/**
+ * GradSchool Crawler
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
+ *
+ */
 package com.puntojapon.colleges;
 
+/**
+ * Provides the url Builder for the GradSchools. It builds the url which is
+ * going to be crawled following the url specifications of the crawling page
+ * 
+ * @author jdecastroc
+ */
 public class GradSchoolUrlBuilder extends UrlBuilder {
 
 	// Type of Study
@@ -28,6 +40,21 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 	private String englishCourseUrl = "";
 	private String nameGrad = "";
 
+	/**
+	 * Mainly class constructor. Build the search information provided by the
+	 * client in the urlBuilder.
+	 * 
+	 * @param nameGrad
+	 *            -> name of the grad school
+	 * @param prefecture
+	 *            -> name of the prefectures
+	 * @param typeGrad
+	 *            -> types of the graduation School
+	 * @param typeCourse
+	 *            -> types of the courses
+	 * @param englishCourse
+	 *            -> english course search field
+	 */
 	public GradSchoolUrlBuilder(String nameGrad, String[] prefecture, String[] typeGrad, String[] typeCourse,
 			String[] englishCourse) {
 		// Build URL's
@@ -45,6 +72,15 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 			setNameGrad(nameGrad);
 	}
 
+	/**
+	 * Build the final url which is going to be used by the crawler
+	 * 
+	 * @param prefecture
+	 *            -> prefecture list provided by the client which is going to be
+	 *            compared with the prefectures real list in order to check
+	 *            errors
+	 * @return the url which is going the be used by the crawler as a string
+	 */
 	@Override
 	public String getSearchUrl(String[] prefecture) {
 
@@ -71,38 +107,74 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 		return getUrl();
 	}
 
+	/**
+	 * @return the typeGradUrl builded
+	 */
 	private String getTypeGradUrl() {
 		return typeGradUrl;
 	}
 
+	/**
+	 * @return the typeCoursesUrl builded
+	 */
 	private String getTypeCourseUrl() {
 		return typeCourseUrl;
 	}
 
+	/**
+	 * @return the englishCourseUrl builded
+	 */
 	private String getEnglishCourseUrl() {
 		return englishCourseUrl;
 	}
 
+	/**
+	 * @return the nameGrad provided by the client
+	 */
 	private String getNameGrad() {
 		return nameGrad;
 	}
 
+	/**
+	 * @param typeGradUrl
+	 *            -> set the typeGradUrl builded
+	 */
 	private void setTypeGradUrl(String typeGradUrl) {
 		this.typeGradUrl = typeGradUrl;
 	}
 
+	/**
+	 * @param typeCourseUrl
+	 *            -> set the typeCourseUrl builded
+	 */
 	private void setTypeCourseUrl(String typeCourseUrl) {
 		this.typeCourseUrl = typeCourseUrl;
 	}
 
+	/**
+	 * @param englishCourseUrl
+	 *            -> set the englishCourseUrl builded
+	 */
 	private void setEnglishCourseUrl(String englishCourseUrl) {
 		this.englishCourseUrl = englishCourseUrl;
 	}
 
+	/**
+	 * @param nameGrad
+	 *            -> set the name of the gradSchool provided by the client
+	 */
 	private void setNameGrad(String nameGrad) {
 		this.nameGrad = nameGrad;
 	}
 
+	/**
+	 * Build the typeCourseUrl based on the typeCourse list provided by the
+	 * client
+	 * 
+	 * @param typeCourse
+	 *            -> typeCourse list with the search parameters
+	 * @return typeCourseUrl used to build the final url
+	 */
 	private String buildTypeCourseUrl(String[] typeCourse) {
 		String typeCourseUrl = "";
 		String text = "";
@@ -126,6 +198,14 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 		return typeCourseUrl;
 	}
 
+	/**
+	 * Build the englishCourseUrl based on the englishCourse parameters provided
+	 * by the client
+	 * 
+	 * @param englishCourse
+	 *            -> englishCourse parameters
+	 * @return englishCourseUrl used to build the final url
+	 */
 	private String buildEnglishCourseUrl(String[] englishCourse) {
 		String englishCourseUrl = "";
 		String text = "";
@@ -139,6 +219,14 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 		return englishCourseUrl;
 	}
 
+	/**
+	 * Build the typeGradUrl based on the typeGrad parameters provided by the
+	 * client
+	 * 
+	 * @param typeGrad
+	 *            -> typeGrad parameters
+	 * @return typeGradUrl used to build the final url
+	 */
 	private String buildTypeGradUrl(String[] typeGrad) {
 		String typeGradUrl = "";
 		String text = "";
@@ -155,5 +243,4 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 		}
 		return typeGradUrl;
 	}
-
 }

@@ -66,8 +66,7 @@ public class MainController {
 
 		String gradSchoolList = "";
 		String url = "";
-		CollegeList gradSchoolsList = new CollegeList(
-				String.join(" ", prefecture) + String.join(" ", typeGrad));
+		CollegeList gradSchoolsList = new CollegeList(String.join(" ", prefecture) + String.join(" ", typeGrad));
 		String returnJson = "";
 		int counter = 0;
 
@@ -134,30 +133,163 @@ public class MainController {
 
 		return techSchoolInfo;
 	}
-	
-	// University Faculty Page
-		@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
-		@ResponseStatus(HttpStatus.OK)
-		public @ResponseBody String showUniversityFacultyAdmissions(@PathVariable("idUniversity") String idUniversity,
-				@PathVariable("idFaculty") String idFaculty) throws Exception {
-			String facultyInfo = "";
-			UniversityCrawler crawler = new UniversityCrawler();
-			facultyInfo = crawler.getFacultyAdmissions(idUniversity, idFaculty);
 
-			return facultyInfo;
-		}
-		
-	// University Faculty Page
-		@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
-		@ResponseStatus(HttpStatus.OK)
-		public @ResponseBody String showUniversityFacultyInfo(@PathVariable("idUniversity") String idUniversity,
-				@PathVariable("idFaculty") String idFaculty) throws Exception {
-			String facultyInfo = "";
-			UniversityCrawler crawler = new UniversityCrawler();
-			facultyInfo = crawler.getFacultyInfo(idUniversity, idFaculty);
+	// University Faculty Admissions Page
+	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversityFacultyAdmissions(@PathVariable("idUniversity") String idUniversity,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyAdmissions = "";
+		UniversityCrawler crawler = new UniversityCrawler();
+		facultyAdmissions = crawler.getFacultyAdmissions(idUniversity, idFaculty);
 
-			return facultyInfo;
-		}		
-	
+		return facultyAdmissions;
+	}
+
+	// University Faculty Info Page
+	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversityFacultyInfo(@PathVariable("idUniversity") String idUniversity,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyInfo = "";
+		UniversityCrawler crawler = new UniversityCrawler();
+		facultyInfo = crawler.getFacultyInfo(idUniversity, idFaculty);
+
+		return facultyInfo;
+	}
+
+	// University Faculty Student Support Page
+	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversityFacultySupport(@PathVariable("idUniversity") String idUniversity,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultySupport = "";
+		UniversityCrawler crawler = new UniversityCrawler();
+		facultySupport = crawler.getFacultySupport(idUniversity, idFaculty);
+
+		return facultySupport;
+	}
+
+	// University Faculty Facilities Page
+	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversityFacultyFacilities(@PathVariable("idUniversity") String idUniversity,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyFacilities = "";
+		UniversityCrawler crawler = new UniversityCrawler();
+		facultyFacilities = crawler.getFacultyFacilities(idUniversity, idFaculty);
+
+		return facultyFacilities;
+	}
+
+	// University Faculty Access Page
+	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showUniversityFacultyAccess(@PathVariable("idUniversity") String idUniversity,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyAccess = "";
+		UniversityCrawler crawler = new UniversityCrawler();
+		facultyAccess = crawler.getFacultyAccess(idUniversity, idFaculty);
+
+		return facultyAccess;
+	}
+
+	// Grad Schools Faculty
+
+	// Grad School Faculty Admissions Page
+	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showGradSchoolFacultyAdmissions(@PathVariable("idGraduate") String idGraduate,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyAdmissions = "";
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		facultyAdmissions = crawler.getFacultyAdmissions(idGraduate, idFaculty);
+
+		return facultyAdmissions;
+	}
+
+	// Grad School Faculty Info Page
+	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showGradSchoolFacultyInfo(@PathVariable("idGraduate") String idGraduate,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyInfo = "";
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		facultyInfo = crawler.getFacultyInfo(idGraduate, idFaculty);
+
+		return facultyInfo;
+	}
+
+	// Grad School Faculty Support Page
+	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showGradSchoolFacultySupport(@PathVariable("idGraduate") String idGraduate,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultySupport = "";
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		facultySupport = crawler.getFacultySupport(idGraduate, idFaculty);
+
+		return facultySupport;
+	}
+
+	// Grad School Faculty Facilities Page
+	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showGradSchoolFacultyFacilities(@PathVariable("idGraduate") String idGraduate,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyFacilities = "";
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		facultyFacilities = crawler.getFacultyFacilities(idGraduate, idFaculty);
+
+		return facultyFacilities;
+	}
+
+	// Grad School Faculty Access Page
+	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showGradSchoolFacultyAccess(@PathVariable("idGraduate") String idGraduate,
+			@PathVariable("idFaculty") String idFaculty) throws Exception {
+		String facultyAccess = "";
+		GradSchoolCrawler crawler = new GradSchoolCrawler();
+		facultyAccess = crawler.getFacultyAccess(idGraduate, idFaculty);
+
+		return facultyAccess;
+	}
+
+	// Tech School Faculty Essential Information Page
+	@RequestMapping(value = "/fp/id/{idTechSchool}/admissions", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showTechSchoolFacultyEssentialInfo(@PathVariable("idTechSchool") String idTechSchool)
+			throws Exception {
+		String TechSchoolEssentialInfo = "";
+		TechSchoolCrawler crawler = new TechSchoolCrawler();
+		TechSchoolEssentialInfo = crawler.getFacultyAdmissions(idTechSchool, "no value");
+
+		return TechSchoolEssentialInfo;
+	}
+
+	// Tech School Faculty Information Page
+	@RequestMapping(value = "/fp/id/{idTechSchool}/info", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showTechSchoolFacultyInfo(@PathVariable("idTechSchool") String idTechSchool)
+			throws Exception {
+		String TechSchoolInfo = "";
+		TechSchoolCrawler crawler = new TechSchoolCrawler();
+		TechSchoolInfo = crawler.getFacultyInfo(idTechSchool, "no value");
+
+		return TechSchoolInfo;
+	}
+
+	// Tech School Faculty Information Page
+	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showTechSchoolFacultySupport(@PathVariable("idTechSchool") String idTechSchool)
+			throws Exception {
+		String TechSchoolSupport = "";
+		TechSchoolCrawler crawler = new TechSchoolCrawler();
+		TechSchoolSupport = crawler.getFacultySupport(idTechSchool, "no value");
+
+		return TechSchoolSupport;
+	}
 
 }
