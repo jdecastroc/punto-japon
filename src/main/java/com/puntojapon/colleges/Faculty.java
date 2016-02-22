@@ -453,7 +453,7 @@ public class Faculty {
 		private Vector<RowContent> departmentList = new Vector<RowContent>();
 
 		/**
-		 * Mainly class constructor. Doesn't have functionality.
+		 * @deprecated Mainly class constructor. Yet not used by the application
 		 */
 		public FacultyInfo() {
 
@@ -810,7 +810,7 @@ public class Faculty {
 		private Vector<MapData> maps = new Vector<MapData>();
 
 		/**
-		 * Mainly class constructor. Doesn't have functionality.
+		 * @deprecated Mainly class constructor. Yet not used by the application
 		 */
 		public FacultyAccess() {
 
@@ -1062,7 +1062,7 @@ public class Faculty {
 		private Vector<RowContent> courseAdmissionInfo = new Vector<RowContent>();
 
 		/**
-		 * Mainly class constructor. Doesn't have functionality
+		 * Mainly class constructor.
 		 */
 		public FacultyCourse() {
 		}
@@ -1302,7 +1302,8 @@ public class Faculty {
 		private String otherInfo = "";
 
 		/**
-		 * Mainly class constructor create a mapData object by the given reference variables
+		 * Mainly class constructor create a mapData object by the given
+		 * reference variables
 		 * 
 		 * @param name
 		 *            -> name of the map location
@@ -1354,14 +1355,14 @@ public class Faculty {
 		public String getAddress() {
 			return address;
 		}
-		
+
 		/**
 		 * @return the map location nearby places information
 		 */
 		public String getNearbyPlaces() {
 			return nearbyPlaces;
 		}
-		
+
 		/**
 		 * @return the map other map location information
 		 */
@@ -1370,42 +1371,48 @@ public class Faculty {
 		}
 
 		/**
-		 * @param name -> set the map location name
+		 * @param name
+		 *            -> set the map location name
 		 */
 		public void setName(String name) {
 			this.name = name;
 		}
 
 		/**
-		 * @param lng -> set the map location longitude
+		 * @param lng
+		 *            -> set the map location longitude
 		 */
 		public void setLng(String lng) {
 			this.lng = lng;
 		}
 
 		/**
-		 * @param lat -> set the map location latitude
+		 * @param lat
+		 *            -> set the map location latitude
 		 */
 		public void setLat(String lat) {
 			this.lat = lat;
 		}
 
 		/**
-		 * @param address -> set the map location address
+		 * @param address
+		 *            -> set the map location address
 		 */
 		public void setAddress(String address) {
 			this.address = address;
 		}
 
 		/**
-		 * @param nearbyPlaces -> set the map location nearby places information
+		 * @param nearbyPlaces
+		 *            -> set the map location nearby places information
 		 */
 		public void setNearbyPlaces(String nearbyPlaces) {
 			this.nearbyPlaces = nearbyPlaces;
 		}
 
 		/**
-		 * @param otherInfo -> set the other map location information
+		 * @param otherInfo
+		 *            -> set the other map location information
 		 */
 		public void setOtherInfo(String otherInfo) {
 			this.otherInfo = otherInfo;

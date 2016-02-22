@@ -1,5 +1,5 @@
 /**
- * GradSchool Crawler
+ * GradSchool Url Builder
  * @author jdecastroc
  * @version 2.0, 21 Feb 2016
  *
@@ -47,7 +47,7 @@ public class GradSchoolUrlBuilder extends UrlBuilder {
 	 * @param nameGrad
 	 *            -> name of the grad school
 	 * @param prefecture
-	 *            -> name of the prefectures
+	 *            -> list of the prefectures
 	 * @param typeGrad
 	 *            -> types of the graduation School
 	 * @param typeCourse

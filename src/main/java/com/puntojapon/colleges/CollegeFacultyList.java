@@ -22,15 +22,17 @@ public class CollegeFacultyList {
 	 * Mainly class constructor which sets the collegeName and initialize the
 	 * collegeFacultyList in order to save the college faculties
 	 * 
-	 * @param collegeName -> name of the college
+	 * @param collegeName
+	 *            -> name of the college
 	 */
 	public CollegeFacultyList(String collegeName) {
 		setListCollegeName(collegeName);
 		this.collegeFacultyList = new Vector<CollegeFaculty>();
 	}
-	
+
 	/**
-	 * @param collegeName -> set the list college name
+	 * @param collegeName
+	 *            -> set the list college name
 	 */
 	public void setListCollegeName(String collegeName) {
 		this.collegeName = collegeName;
@@ -72,7 +74,8 @@ public class CollegeFacultyList {
 	}
 
 	/**
-	 * @param index -> position of the value which content is going to be returned
+	 * @param index
+	 *            -> position of the value which content is going to be returned
 	 * @return the element contained in the index param
 	 */
 	public CollegeFaculty getCollegeFacultyAt(int index) {
@@ -80,8 +83,10 @@ public class CollegeFacultyList {
 	}
 
 	/**
-	 * @param faculty -> faculty object
-	 * @return whether or not adding the faculty object to the college faculty list was succesful or not
+	 * @param faculty
+	 *            -> faculty object
+	 * @return whether or not adding the faculty object to the college faculty
+	 *         list was succesful or not
 	 */
 	public boolean addCollegeFaculty(CollegeFaculty faculty) {
 		this.collegeFacultyList.addElement(faculty);
@@ -90,7 +95,9 @@ public class CollegeFacultyList {
 
 	/**
 	 * Translate all the faculties name based on the translator class
+	 * 
 	 * @see com.puntojapon.colleges.Translator#translate(String)
+	 * @deprecated Not used from the version 2.0. Maybe useful in the future.
 	 */
 	public void translateCollegeFacultyList() {
 		for (CollegeFaculty i : this.collegeFacultyList) {

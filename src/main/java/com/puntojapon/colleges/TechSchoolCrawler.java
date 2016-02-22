@@ -16,8 +16,8 @@ import com.google.gson.*;
 import com.puntojapon.colleges.Faculty.FacultyCourse;
 
 /**
- * Provides all the crawlers related with the Tech Schools searchs and also
- * Tech Schools faculties search
+ * Provides all the crawlers related with the Tech Schools searchs and also Tech
+ * Schools faculties search
  * 
  * @author jdecastroc
  * 
@@ -42,8 +42,12 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 *            to retrieve the crawled data
 	 * @param counter
 	 *            ->College counter for search details
-	 *            
-	 * @see com.puntojapon.colleges.CollegeCrawler#getCollegeList(java.lang.String, java.lang.String[], com.puntojapon.colleges.CollegeList, java.lang.String, int)
+	 * 
+	 * @return the json string with the techSchools crawled
+	 * 
+	 * @see com.puntojapon.colleges.CollegeCrawler#getCollegeList(java.lang.String,
+	 *      java.lang.String[], com.puntojapon.colleges.CollegeList,
+	 *      java.lang.String, int)
 	 */
 	@Override
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList TechSchoolsList,
@@ -189,6 +193,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the techSchool information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getCollege(java.lang.String)
 	 */
 	@Override
@@ -290,6 +296,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 * 
 	 * @param id
 	 *            -> id of the faculty
+	 * 
+	 * @return the json string with the faculty essential information
 	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyAdmissions(java.lang.String,
 	 *      java.lang.String)
@@ -439,6 +447,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty info
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyInfo(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -522,6 +532,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty support information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultySupport(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -566,14 +578,22 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		return gson.toJson(faculty);
 	}
 
+	/**
+	 * @deprecated Unused function due to the lack of the information related to
+	 *             the facilities of the techSchool
+	 */
 	@Override
-	public String getFacultyFacilities(String parent, String id){
+	public String getFacultyFacilities(String parent, String id) {
 		// Not implemented yet in the crawled page
 		return null;
 	}
 
+	/**
+	 * @deprecated Unused function due to the lack of the information related to
+	 *             the access of the techSchool
+	 */
 	@Override
-	public String getFacultyAccess(String parent, String id){
+	public String getFacultyAccess(String parent, String id) {
 		// Not implemented yet in the crawled page
 		return null;
 	}

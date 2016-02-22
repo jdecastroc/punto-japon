@@ -1,22 +1,30 @@
 /**
- * 
+ * Translator
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
  */
 package com.puntojapon.colleges;
 
 /**
- * @author Jorge de Castro
- *
+ * Provides a function which translate the name of the faculties in a manual way
+ * 
+ * @deprecated not used from version 2.0. Maybe useful in the future.
+ * @author jdecastroc
  */
 public class Translator {
-	
+
+	/**
+	 * Given a english string, evaluate it in order to translate it to spanish
+	 * 
+	 * @param textToTranslate
+	 *            -> text wich is going to be evaluated in order to be
+	 *            translated
+	 * @return the text translated to spanish if the english provided string
+	 *         match with the evaluated strings
+	 */
 	public static String translate(String textToTranslate) {
 
-		
-		
-//		if (textToTranslate.equals("and"))
-//			textToTranslate = textToTranslate.replace("and", "y");
-		
-		//Literature
+		// Literature
 		if (textToTranslate.equals("Faculty of Letters"))
 			textToTranslate = textToTranslate.replace("Faculty of Letters", "Facultad de letras");
 		if (textToTranslate.equals("Faculty of Humanities"))
@@ -25,15 +33,14 @@ public class Translator {
 			textToTranslate = textToTranslate.replace("Faculty of Law", "Facultad de Derecho");
 		if (textToTranslate.equals("Faculty of Management"))
 			textToTranslate = textToTranslate.replace("Faculty of Management", "Facultad de Gestión");
-//		if (textToTranslate.equals("of "))
-//			textToTranslate = textToTranslate.replace("of", "de");
-		
-		
+		// if (textToTranslate.equals("of "))
+		// textToTranslate = textToTranslate.replace("of", "de");
+
 		if (textToTranslate.equals("Art"))
 			textToTranslate = textToTranslate.replace("Art", "Arte");
 		if (textToTranslate.equals("Science"))
 			textToTranslate = textToTranslate.replace("Science", "Ciencia");
-		if (textToTranslate.equals("Humanities")) 
+		if (textToTranslate.equals("Humanities"))
 			textToTranslate = textToTranslate.replace("Humanities", "Humanidades");
 		if (textToTranslate.equals("Human"))
 			textToTranslate = textToTranslate.replace("Human", "Humanidades");
@@ -47,10 +54,10 @@ public class Translator {
 			textToTranslate = textToTranslate.replace("Literature", "Literatura");
 		if (textToTranslate.equals("literature"))
 			textToTranslate = textToTranslate.replace("literature", "Literatura");
-		if (textToTranslate.equals("Letters") || textToTranslate.equals("Faculty of Letters")){
+		if (textToTranslate.equals("Letters") || textToTranslate.equals("Faculty of Letters")) {
 			textToTranslate = textToTranslate.replace("Faculty of Letters", "Letras");
 			textToTranslate = textToTranslate.replace("Letters", "Letras");
-			
+
 		}
 		if (textToTranslate.equals("Education"))
 			textToTranslate = textToTranslate.replace("Education", "Educación");
@@ -98,23 +105,24 @@ public class Translator {
 			textToTranslate = textToTranslate.replace("Management", "Gestión y dirección");
 		if (textToTranslate.equals("Environment"))
 			textToTranslate = textToTranslate.replace("Environment", "Entorno");
-		
-		
-		
+
 		if (textToTranslate.equals("Society and Collaboration"))
 			textToTranslate = textToTranslate.replace("Society and Collaboration", " ciencias sociales y colaboración");
 		if (textToTranslate.equals("Art and Design"))
 			textToTranslate = textToTranslate.replace("Art and Design", "Arte y diseño");
 		if (textToTranslate.equals("Literature, Arts and Cultural Studies"))
-			textToTranslate = textToTranslate.replace("Literature, Arts and Cultural Studies", "Literatura, Arte y estudios Culturales");
+			textToTranslate = textToTranslate.replace("Literature, Arts and Cultural Studies",
+					"Literatura, Arte y estudios Culturales");
 		if (textToTranslate.equals("Literature and Social Sciences"))
-			textToTranslate = textToTranslate.replace("Literature and Social Sciences", "Literatura y ciencias sociales");
+			textToTranslate = textToTranslate.replace("Literature and Social Sciences",
+					"Literatura y ciencias sociales");
 		if (textToTranslate.equals("Law and Letters"))
 			textToTranslate = textToTranslate.replace("Law and Letters", "Derecho y letras");
 		if (textToTranslate.equals("Law and Literature"))
 			textToTranslate = textToTranslate.replace("Law and Literature", "Derecho y literatura");
 		if (textToTranslate.equals("Law, Economics and Humanities"))
-			textToTranslate = textToTranslate.replace("Law, Economics and Humanities", "Derecho, economía y humanidades");
+			textToTranslate = textToTranslate.replace("Law, Economics and Humanities",
+					"Derecho, economía y humanidades");
 		if (textToTranslate.equals("Letters and Education"))
 			textToTranslate = textToTranslate.replace("Letters and Education", "Educación y letras");
 		if (textToTranslate.equals("Education and Human Sciences"))
@@ -124,9 +132,11 @@ public class Translator {
 		if (textToTranslate.equals("Education and Human Studies"))
 			textToTranslate = textToTranslate.replace("Education and Human Studies", "Educación y Ciencias Humanas");
 		if (textToTranslate.equals("Education, Art and Science"))
-			textToTranslate = textToTranslate.replace("EEducation, Art and Science", "Educación, Arte y ciencias sociales");
+			textToTranslate = textToTranslate.replace("EEducation, Art and Science",
+					"Educación, Arte y ciencias sociales");
 		if (textToTranslate.equals("Education, Psychology and Human Studies"))
-			textToTranslate = textToTranslate.replace("Education, Psychology and Human Studies", "Education, piscología y estudios humanos");
+			textToTranslate = textToTranslate.replace("Education, Psychology and Human Studies",
+					"Education, piscología y estudios humanos");
 		if (textToTranslate.equals("Arts and Letters"))
 			textToTranslate = textToTranslate.replace("Arts and letters", "Artes y letras");
 		if (textToTranslate.equals("Arts and Sciences"))
@@ -134,15 +144,18 @@ public class Translator {
 		if (textToTranslate.equals("Social Policy"))
 			textToTranslate = textToTranslate.replace("Social Policy", "Política social");
 		if (textToTranslate.equals("Social Policy and Administration"))
-			textToTranslate = textToTranslate.replace("Social Policy and Administration", "Política social y administración");
+			textToTranslate = textToTranslate.replace("Social Policy and Administration",
+					"Política social y administración");
 		if (textToTranslate.equals("Cultural Policy"))
 			textToTranslate = textToTranslate.replace("Cultural Policy", "Política cultural");
 		if (textToTranslate.equals("Cultural Policy and Management"))
 			textToTranslate = textToTranslate.replace("Cultural Policy and Management", "Política cultural y gestión");
 		if (textToTranslate.equals("Cultural and Creative Studies"))
-			textToTranslate = textToTranslate.replace("Cultural and Creative Studies", "Estudios culturales y creativos");
+			textToTranslate = textToTranslate.replace("Cultural and Creative Studies",
+					"Estudios culturales y creativos");
 		if (textToTranslate.equals("Cultural and Historical Studies"))
-			textToTranslate = textToTranslate.replace("Cultural and Historical Studies", "Estudios culturales e históricos");
+			textToTranslate = textToTranslate.replace("Cultural and Historical Studies",
+					"Estudios culturales e históricos");
 		if (textToTranslate.equals("Policy Studies"))
 			textToTranslate = textToTranslate.replace("Policy Studies", "Estudios políticos");
 		if (textToTranslate.equals("Regional Policy"))
@@ -170,7 +183,8 @@ public class Translator {
 		if (textToTranslate.equals("Global and Media Studies"))
 			textToTranslate = textToTranslate.replace("Global and Media Studies", "Estudios globales y de los medios");
 		if (textToTranslate.equals("Global and Community Studies"))
-			textToTranslate = textToTranslate.replace("Global and Community Studies", "Estudios globales y de la comunicación");
+			textToTranslate = textToTranslate.replace("Global and Community Studies",
+					"Estudios globales y de la comunicación");
 		if (textToTranslate.equals("Intercultural Communication"))
 			textToTranslate = textToTranslate.replace("Intercultural Communication", "Comunicación intercultural");
 		if (textToTranslate.equals("Social Sciences"))
@@ -180,15 +194,19 @@ public class Translator {
 		if (textToTranslate.equals("Intercultural Studies"))
 			textToTranslate = textToTranslate.replace("Intercultural Studies", "Estudios interculturales");
 		if (textToTranslate.equals("Interhuman Symbiotic Studies"))
-			textToTranslate = textToTranslate.replace("Interhuman Symbiotic Studies", "Estudios interhumanos simbióticos");
+			textToTranslate = textToTranslate.replace("Interhuman Symbiotic Studies",
+					"Estudios interhumanos simbióticos");
 		if (textToTranslate.equals("International Studies"))
 			textToTranslate = textToTranslate.replace("International Studies", "Estudios internacionales");
 		if (textToTranslate.equals("International Studies and Regional Development"))
-			textToTranslate = textToTranslate.replace("International Studies and Regional Development", "Estudios internacionales y desarrollo regional");
+			textToTranslate = textToTranslate.replace("International Studies and Regional Development",
+					"Estudios internacionales y desarrollo regional");
 		if (textToTranslate.equals("International Studies and Liberal Arts"))
-			textToTranslate = textToTranslate.replace("International Studies and Liberal Arts", "Estudios internacionales y arte liberal");
+			textToTranslate = textToTranslate.replace("International Studies and Liberal Arts",
+					"Estudios internacionales y arte liberal");
 		if (textToTranslate.equals("International Studies of Culture"))
-			textToTranslate = textToTranslate.replace("International Studies of Culture", "Estudios internacionales de cultura");
+			textToTranslate = textToTranslate.replace("International Studies of Culture",
+					"Estudios internacionales de cultura");
 		if (textToTranslate.equals("International Tourism"))
 			textToTranslate = textToTranslate.replace("International Tourism", "Turismo Internacional");
 		if (textToTranslate.equals("International Communication"))
@@ -196,13 +214,15 @@ public class Translator {
 		if (textToTranslate.equals("International Relations"))
 			textToTranslate = textToTranslate.replace("International Relations", "Relaciones internacionales");
 		if (textToTranslate.equals("International Liberal Studies"))
-			textToTranslate = textToTranslate.replace("International Liberal Studies", "Estudios liberales internacionales");
+			textToTranslate = textToTranslate.replace("International Liberal Studies",
+					"Estudios liberales internacionales");
 		if (textToTranslate.equals("International Liberal Arts"))
 			textToTranslate = textToTranslate.replace("International Liberal Arts", "Artes liberales internacionales");
 		if (textToTranslate.equals("Urban Liberal Arts"))
 			textToTranslate = textToTranslate.replace("Urban Liberal Arts", "Artes liberales urbanas");
 		if (textToTranslate.equals("Urban Environmental Sciences"))
-			textToTranslate = textToTranslate.replace("Urban Environmental Sciences", "Ciencias de los entornos urbanos");
+			textToTranslate = textToTranslate.replace("Urban Environmental Sciences",
+					"Ciencias de los entornos urbanos");
 		if (textToTranslate.equals("Shinto Cultural Studies"))
 			textToTranslate = textToTranslate.replace("Shinto Cultural Studies", "Estudios culturales Shinto");
 		if (textToTranslate.equals("Buddhist Studies"))
@@ -210,17 +230,20 @@ public class Translator {
 		if (textToTranslate.equals("Fine Arts"))
 			textToTranslate = textToTranslate.replace("Fine Arts", "Artes creativas");
 		if (textToTranslate.equals("Modern Japanese Studies Program"))
-			textToTranslate = textToTranslate.replace("Modern Japanese Studies Program", "Programa de estudios japoneses modernos");
+			textToTranslate = textToTranslate.replace("Modern Japanese Studies Program",
+					"Programa de estudios japoneses modernos");
 		if (textToTranslate.equals("Japanese Studies"))
 			textToTranslate = textToTranslate.replace("Japanese Studies", "Estudios japoneses");
 		if (textToTranslate.equals("Cultural and Historical Studies"))
-			textToTranslate = textToTranslate.replace("Cultural and Historical Studies", "Estudios de historia y cultura");
+			textToTranslate = textToTranslate.replace("Cultural and Historical Studies",
+					"Estudios de historia y cultura");
 		if (textToTranslate.equals("Cultural Studies"))
 			textToTranslate = textToTranslate.replace("Cultural Studies", "Estudios culturales");
 		if (textToTranslate.equals("Culture, Media and Society"))
 			textToTranslate = textToTranslate.replace("Culture, Media and Society", "Cultura, media y sociedad");
 		if (textToTranslate.equals("Cultural and Creative Studies"))
-			textToTranslate = textToTranslate.replace("Cultural and Creative Studies", "Estudios culturales y creativos");
+			textToTranslate = textToTranslate.replace("Cultural and Creative Studies",
+					"Estudios culturales y creativos");
 		if (textToTranslate.equals("Language and Literature"))
 			textToTranslate = textToTranslate.replace("Language and Literature", "Lengua y literatura");
 		if (textToTranslate.equals("Language and Culture Studies"))
@@ -236,19 +259,22 @@ public class Translator {
 		if (textToTranslate.equals("Human Life Studies"))
 			textToTranslate = textToTranslate.replace("Human Life Studies", "Estudios de la salud humana");
 		if (textToTranslate.equals("Human Life and Environment"))
-			textToTranslate = textToTranslate.replace("Human Life and Environment", "Estudios de la salud humana y su entorno");
+			textToTranslate = textToTranslate.replace("Human Life and Environment",
+					"Estudios de la salud humana y su entorno");
 		if (textToTranslate.equals("Human Communication"))
 			textToTranslate = textToTranslate.replace("Human Communication", "Comunicación humana");
 		if (textToTranslate.equals("Humanities and Culture"))
 			textToTranslate = textToTranslate.replace("Humanities and Culture", "Humanidades y cultura");
 		if (textToTranslate.equals("Humanities, Law and Economics"))
-			textToTranslate = textToTranslate.replace("Humanities, Law and Economics", "Humanidades, Derecho y económicas");
+			textToTranslate = textToTranslate.replace("Humanities, Law and Economics",
+					"Humanidades, Derecho y económicas");
 		if (textToTranslate.equals("Humanities and Sciences"))
 			textToTranslate = textToTranslate.replace("Humanities and Sciences", "Ciencias humanas y sociales");
 		if (textToTranslate.equals("Humanities and Social Sciences"))
 			textToTranslate = textToTranslate.replace("Humanities and Social Sciences", "Ciencias humanas y sociales");
 		if (textToTranslate.equals("Humanities and Cultural Sciences"))
-			textToTranslate = textToTranslate.replace("Humanities and Cultural Sciences", "Ciencias humanas y culturales");
+			textToTranslate = textToTranslate.replace("Humanities and Cultural Sciences",
+					"Ciencias humanas y culturales");
 		if (textToTranslate.equals("Humanities & Social Sciences"))
 			textToTranslate = textToTranslate.replace("Humanities & Social Sciences", "Ciencias humanas y sociales");
 		if (textToTranslate.equals("Human Life Science"))
@@ -256,7 +282,8 @@ public class Translator {
 		if (textToTranslate.equals("Human and Social Sciences"))
 			textToTranslate = textToTranslate.replace("Human and Social Sciences", "Ciencias humanas y sociales");
 		if (textToTranslate.equals("Modern Japanese Studies Program"))
-			textToTranslate = textToTranslate.replace("Modern Japanese Studies Program", "Programa de estudio de Japonés moderno");
+			textToTranslate = textToTranslate.replace("Modern Japanese Studies Program",
+					"Programa de estudio de Japonés moderno");
 		if (textToTranslate.equals("Human and Social Studies"))
 			textToTranslate = textToTranslate.replace("Human and Social Studies", "Estudios humanos y sociales");
 		if (textToTranslate.equals("Human Life"))
@@ -270,7 +297,8 @@ public class Translator {
 		if (textToTranslate.equals("Human Development"))
 			textToTranslate = textToTranslate.replace("Human Development", "Desarrollo humano");
 		if (textToTranslate.equals("Human Development and Education"))
-			textToTranslate = textToTranslate.replace("Human Development and Education", "Desarrollo humano y educación");
+			textToTranslate = textToTranslate.replace("Human Development and Education",
+					"Desarrollo humano y educación");
 		if (textToTranslate.equals("Human Development and Culture"))
 			textToTranslate = textToTranslate.replace("Human Development and Culture", "Desarrollo humano y cultura");
 		if (textToTranslate.equals("Human  Development"))
@@ -287,17 +315,19 @@ public class Translator {
 			textToTranslate = textToTranslate.replace("Human Society", "Sociedad Humana");
 		if (textToTranslate.equals("Human and Culture Sciences"))
 			textToTranslate = textToTranslate.replace("Human and Culture Sciences", "Ciencias humanas y culturales");
-		if (textToTranslate.equals("Global Humanities")) 
+		if (textToTranslate.equals("Global Humanities"))
 			textToTranslate = textToTranslate.replace("Global Humanities", "Humanidades (Global)");
-		if (textToTranslate.equals("Global Humanities and Social Sciences")) 
-			textToTranslate = textToTranslate.replace("Global Humanities and Social Sciences", "Humanidades (Global) y ciencias sociales");
-		if (textToTranslate.equals("Global and Inter-cultural Studies")) 
-			textToTranslate = textToTranslate.replace("Global and Inter-cultural Studies", "Estudios globales y interculturales");
-		if (textToTranslate.equals("Global and Regional Studies")) 
+		if (textToTranslate.equals("Global Humanities and Social Sciences"))
+			textToTranslate = textToTranslate.replace("Global Humanities and Social Sciences",
+					"Humanidades (Global) y ciencias sociales");
+		if (textToTranslate.equals("Global and Inter-cultural Studies"))
+			textToTranslate = textToTranslate.replace("Global and Inter-cultural Studies",
+					"Estudios globales y interculturales");
+		if (textToTranslate.equals("Global and Regional Studies"))
 			textToTranslate = textToTranslate.replace("Global and Regional Studies", "Estudios globales y regionales");
-		if (textToTranslate.equals("Global Communication")) 
+		if (textToTranslate.equals("Global Communication"))
 			textToTranslate = textToTranslate.replace("Global Communication", "Comunicación global");
-		if (textToTranslate.equals("Global Communications")) 
+		if (textToTranslate.equals("Global Communications"))
 			textToTranslate = textToTranslate.replace("Global Communications", "Comunicaciones globales");
 		if (textToTranslate.equals("Human science"))
 			textToTranslate = textToTranslate.replace("Human science", "Ciencias humanas");
@@ -312,17 +342,23 @@ public class Translator {
 		if (textToTranslate.equals("Human Care Studies"))
 			textToTranslate = textToTranslate.replace("Human Care Studies", "Estudios sobre el cuidado humano");
 		if (textToTranslate.equals("Comprehensive Human Science"))
-			textToTranslate = textToTranslate.replace("Comprehensive Human Science", "Comprensión de las Ciencias humanas");
+			textToTranslate = textToTranslate.replace("Comprehensive Human Science",
+					"Comprensión de las Ciencias humanas");
 		if (textToTranslate.equals("International Human Studies"))
-			textToTranslate = textToTranslate.replace("International Human Studies", "Estudios internacionales de humanidades");
+			textToTranslate = textToTranslate.replace("International Human Studies",
+					"Estudios internacionales de humanidades");
 		if (textToTranslate.equals("Integrated Arts and Sciences"))
-			textToTranslate = textToTranslate.replace("Integrated Arts and Sciences", "Estudios de arte y ciencias sociales integrados");
+			textToTranslate = textToTranslate.replace("Integrated Arts and Sciences",
+					"Estudios de arte y ciencias sociales integrados");
 		if (textToTranslate.equals("Integrated Arts and Social Sciences"))
-			textToTranslate = textToTranslate.replace("Integrated Arts and Social Sciences", "Estudios de arte y ciencias sociales integrados");
+			textToTranslate = textToTranslate.replace("Integrated Arts and Social Sciences",
+					"Estudios de arte y ciencias sociales integrados");
 		if (textToTranslate.equals("Integrated Human Studies"))
-			textToTranslate = textToTranslate.replace("Integrated Human Studies", "Estudios humanos integrados (Arte, Humanidades, Ciencia)");
+			textToTranslate = textToTranslate.replace("Integrated Human Studies",
+					"Estudios humanos integrados (Arte, Humanidades, Ciencia)");
 		if (textToTranslate.equals("Integrated Human and Social Welfare"))
-			textToTranslate = textToTranslate.replace("Integrated Human and Social Welfare", "Estudios humanos integrados y bienestar social");
+			textToTranslate = textToTranslate.replace("Integrated Human and Social Welfare",
+					"Estudios humanos integrados y bienestar social");
 		if (textToTranslate.equals("Contemporary Psychology"))
 			textToTranslate = textToTranslate.replace("Contemporary Psychology", "Piscología contemporanea");
 		if (textToTranslate.equals("Contemporary Cultures"))
@@ -332,13 +368,15 @@ public class Translator {
 		if (textToTranslate.equals("Contemporary Humanities"))
 			textToTranslate = textToTranslate.replace("Contemporary Humanities", "Humanidades contemporáneas");
 		if (textToTranslate.equals("Contemporary Social Studies"))
-			textToTranslate = textToTranslate.replace("Contemporary Social Studies", "Estudios sociales contemporáneos");
+			textToTranslate = textToTranslate.replace("Contemporary Social Studies",
+					"Estudios sociales contemporáneos");
 		if (textToTranslate.equals("Contemporary Sociology"))
 			textToTranslate = textToTranslate.replace("Contemporary Sociology", "Estudios sociales contemporáneos");
 		if (textToTranslate.equals("World Englishes"))
 			textToTranslate = textToTranslate.replace("World Englishes", "Inglés global");
 		if (textToTranslate.equals("Psychological and Physiacal Science"))
-			textToTranslate = textToTranslate.replace("Psychological and Physiacal Science", "Ciencias psicológicas y físicas");
+			textToTranslate = textToTranslate.replace("Psychological and Physiacal Science",
+					"Ciencias psicológicas y físicas");
 		if (textToTranslate.equals("Clinical Education"))
 			textToTranslate = textToTranslate.replace("Clinical Education", "Educación clínica");
 		if (textToTranslate.equals("Life Science"))
@@ -356,7 +394,8 @@ public class Translator {
 		if (textToTranslate.equals("Social work"))
 			textToTranslate = textToTranslate.replace("Social work", "Estudios sobre el trabajo social");
 		if (textToTranslate.equals("Social and Management Studies"))
-			textToTranslate = textToTranslate.replace("Social and Management Studies", "Estudios sociales y de gestión");
+			textToTranslate = textToTranslate.replace("Social and Management Studies",
+					"Estudios sociales y de gestión");
 		if (textToTranslate.equals("Applied Sociology"))
 			textToTranslate = textToTranslate.replace("Applied Sociology", "Sociología aplicada");
 		if (textToTranslate.equals("Applied Psychology"))
@@ -370,7 +409,8 @@ public class Translator {
 		if (textToTranslate.equals("Medical Science"))
 			textToTranslate = textToTranslate.replace("Medical Science", "Ciencias médicas");
 		if (textToTranslate.equals("Medical Science and Welfare"))
-			textToTranslate = textToTranslate.replace("Medical Science and Welfare", "Ciencias médicas y del bienestar");
+			textToTranslate = textToTranslate.replace("Medical Science and Welfare",
+					"Ciencias médicas y del bienestar");
 		if (textToTranslate.equals("Health and Medical Science"))
 			textToTranslate = textToTranslate.replace("Health and Medical Science", "Ciencias médicas y de la salud");
 		if (textToTranslate.equals("Health and Medical Sciences"))
@@ -388,7 +428,8 @@ public class Translator {
 		if (textToTranslate.equals("Modern Culture"))
 			textToTranslate = textToTranslate.replace("Modern Culture", "Culturas modernas");
 		if (textToTranslate.equals("Modern Communication Studies"))
-			textToTranslate = textToTranslate.replace("Modern Communication Studies", "Estudios sobre la comunicación moderna");
+			textToTranslate = textToTranslate.replace("Modern Communication Studies",
+					"Estudios sobre la comunicación moderna");
 		if (textToTranslate.equals("Communication and Culture"))
 			textToTranslate = textToTranslate.replace("Communication and Culture", "Comunicación y cultura");
 		if (textToTranslate.equals("Information Enviroment"))
@@ -410,20 +451,23 @@ public class Translator {
 		if (textToTranslate.equals("Liberal Arts and Sciences"))
 			textToTranslate = textToTranslate.replace("Liberal Arts and Sciences", "Artes liberales y ciencias");
 		if (textToTranslate.equals("Informatics and Human Communication"))
-			textToTranslate = textToTranslate.replace("Informatics and Human Communication", "Informática y comunicación humana");
-	
-		
-		//Language
+			textToTranslate = textToTranslate.replace("Informatics and Human Communication",
+					"Informática y comunicación humana");
+
+		// Language
 		if (textToTranslate.equals("Business"))
 			textToTranslate = textToTranslate.replace("Business", "Estudios de negocios");
 		if (textToTranslate.equals("Language and Cultures"))
 			textToTranslate = textToTranslate.replace("Language and Cultures", "Lengua y culturas");
 		if (textToTranslate.equals("Hospitality & Tourism Management"))
-			textToTranslate = textToTranslate.replace("Hospitality & Tourism Management", "Gestión turística y hospitalidad");
+			textToTranslate = textToTranslate.replace("Hospitality & Tourism Management",
+					"Gestión turística y hospitalidad");
 		if (textToTranslate.equals("Center for Japanese Language and Culture"))
-			textToTranslate = textToTranslate.replace("Center for Japanese Language and Culture", "Facultad de lengua y cultura japonesa");
+			textToTranslate = textToTranslate.replace("Center for Japanese Language and Culture",
+					"Facultad de lengua y cultura japonesa");
 		if (textToTranslate.equals("Global Culture and Communication"))
-			textToTranslate = textToTranslate.replace("Global Culture and Communication", "Cultura global y comunicación");
+			textToTranslate = textToTranslate.replace("Global Culture and Communication",
+					"Cultura global y comunicación");
 		if (textToTranslate.equals("Japanese Language Program"))
 			textToTranslate = textToTranslate.replace("Japanese Language Program", "Programa de lengua japonesa");
 		if (textToTranslate.equals("Global Business"))
@@ -431,19 +475,24 @@ public class Translator {
 		if (textToTranslate.equals("Language Communication"))
 			textToTranslate = textToTranslate.replace("Language Communication", "Lenguaje y comunicación");
 		if (textToTranslate.equals("Tourism and Business Management"))
-			textToTranslate = textToTranslate.replace("Tourism and Business Management", "Dirección de empresas y turismo");
+			textToTranslate = textToTranslate.replace("Tourism and Business Management",
+					"Dirección de empresas y turismo");
 		if (textToTranslate.equals("Business Management"))
 			textToTranslate = textToTranslate.replace("Business Management", "Dirección de empresas");
 		if (textToTranslate.equals("English, IT and Management"))
-			textToTranslate = textToTranslate.replace("English, IT and Management", "Inglés, IT y Dirección de empresas");
+			textToTranslate = textToTranslate.replace("English, IT and Management",
+					"Inglés, IT y Dirección de empresas");
 		if (textToTranslate.equals("Global and Interdisciplinary Studies"))
-			textToTranslate = textToTranslate.replace("Global and Interdisciplinary Studies", "Estudios globales e interdisciplinares");
+			textToTranslate = textToTranslate.replace("Global and Interdisciplinary Studies",
+					"Estudios globales e interdisciplinares");
 		if (textToTranslate.equals("Cross-Cultural Studies"))
 			textToTranslate = textToTranslate.replace("Cross-Cultural Studies", "Estudios de culturas cruzadas");
 		if (textToTranslate.equals("Japanese Language Program for Foreign Students"))
-			textToTranslate = textToTranslate.replace("Japanese Language Program for Foreign Students", "Programa de lengua japonesa para extranjeros");
+			textToTranslate = textToTranslate.replace("Japanese Language Program for Foreign Students",
+					"Programa de lengua japonesa para extranjeros");
 		if (textToTranslate.equals("International Cultural Relations"))
-			textToTranslate = textToTranslate.replace("International Cultural Relations", "Relaciones culturales internacionales");
+			textToTranslate = textToTranslate.replace("International Cultural Relations",
+					"Relaciones culturales internacionales");
 		if (textToTranslate.equals("Media and Communication"))
 			textToTranslate = textToTranslate.replace("Media and Communitacion", "Medios y comunicaciones");
 		if (textToTranslate.equals("Global Business"))
@@ -453,7 +502,8 @@ public class Translator {
 		if (textToTranslate.equals("Emphasis Human Education"))
 			textToTranslate = textToTranslate.replace("Emphasis Human Education", "Humanidades");
 		if (textToTranslate.equals("International Studies and Business"))
-			textToTranslate = textToTranslate.replace("International Studies and Business", "Estudios internacionales y dirección de empresas");
+			textToTranslate = textToTranslate.replace("International Studies and Business",
+					"Estudios internacionales y dirección de empresas");
 		if (textToTranslate.equals("Cultural Development"))
 			textToTranslate = textToTranslate.replace("Cultural Development", "Desarrollo Cultural");
 		if (textToTranslate.equals("Human Cultures"))
@@ -463,31 +513,41 @@ public class Translator {
 		if (textToTranslate.equals("Digital Communications"))
 			textToTranslate = textToTranslate.replace("Digital Communications", "Facultad de Comunicaciones digitales");
 		if (textToTranslate.equals("International and Area Studies"))
-			textToTranslate = textToTranslate.replace("International and Area Studies", "Estudios internacionales y de area");
+			textToTranslate = textToTranslate.replace("International and Area Studies",
+					"Estudios internacionales y de area");
 		if (textToTranslate.equals("Applied International Studies"))
-			textToTranslate = textToTranslate.replace("Applied International Studies", "Estudios internacionales aplicados");
+			textToTranslate = textToTranslate.replace("Applied International Studies",
+					"Estudios internacionales aplicados");
 		if (textToTranslate.equals("Contemporary International Studies"))
-			textToTranslate = textToTranslate.replace("Contemporary International Studies", "Estudios internacionales contemporaneos");
+			textToTranslate = textToTranslate.replace("Contemporary International Studies",
+					"Estudios internacionales contemporaneos");
 		if (textToTranslate.equals("International Welfare Development"))
-			textToTranslate = textToTranslate.replace("International Welfare Development", "Estudios para el desarrollo del bienestar internacional");
+			textToTranslate = textToTranslate.replace("International Welfare Development",
+					"Estudios para el desarrollo del bienestar internacional");
 		if (textToTranslate.equals("International Career Development"))
-			textToTranslate = textToTranslate.replace("International Career Development", "Estudios para el desarrollo de la carrera profesional internacional");
+			textToTranslate = textToTranslate.replace("International Career Development",
+					"Estudios para el desarrollo de la carrera profesional internacional");
 		if (textToTranslate.equals("Future Learning"))
 			textToTranslate = textToTranslate.replace("Future Learning", "Aprendizaje del futuro");
 		if (textToTranslate.equals("Faculty of International Studies"))
-			textToTranslate = textToTranslate.replace("Faculty of International Studies", "Facultad de estudios internacionales");
+			textToTranslate = textToTranslate.replace("Faculty of International Studies",
+					"Facultad de estudios internacionales");
 		if (textToTranslate.equals("Economics and Business Administration"))
-			textToTranslate = textToTranslate.replace("Economics and Business Administration", "Económicas y administración de empresas");
+			textToTranslate = textToTranslate.replace("Economics and Business Administration",
+					"Económicas y administración de empresas");
 		if (textToTranslate.equals("Economics and Business Management"))
-			textToTranslate = textToTranslate.replace("Economics and Business Management", "Económicas y dirección de empresas");
-		
-		//Law
+			textToTranslate = textToTranslate.replace("Economics and Business Management",
+					"Económicas y dirección de empresas");
+
+		// Law
 		if (textToTranslate.equals("Law and Politics"))
 			textToTranslate = textToTranslate.replace("Law and Politics", "Derecho y política");
 		if (textToTranslate.equals("International Polítics, Economics and Communication"))
-			textToTranslate = textToTranslate.replace("International Polítics, Economics and Communication", "Políticas internacionales, economía y comunicación");
+			textToTranslate = textToTranslate.replace("International Polítics, Economics and Communication",
+					"Políticas internacionales, economía y comunicación");
 		if (textToTranslate.equals("Political Science and Economics"))
-			textToTranslate = textToTranslate.replace("Political Science and Economics", "Ciencias políticas y economía");
+			textToTranslate = textToTranslate.replace("Political Science and Economics",
+					"Ciencias políticas y economía");
 		if (textToTranslate.equals("Business and Public Policies"))
 			textToTranslate = textToTranslate.replace("Business and Public Policies", "Empresa y políticas públicas");
 		if (textToTranslate.equals("Policy Science"))
@@ -503,35 +563,42 @@ public class Translator {
 		if (textToTranslate.equals("Contemporary Policy"))
 			textToTranslate = textToTranslate.replace("Contemporary Policy", "Políticas contemporáneas");
 		if (textToTranslate.equals("Political Science & Economics"))
-			textToTranslate = textToTranslate.replace("Political Science & Economics", "Ciencias políticas y económicas");
+			textToTranslate = textToTranslate.replace("Political Science & Economics",
+					"Ciencias políticas y económicas");
 		if (textToTranslate.equals("Law, Politics and Economics"))
 			textToTranslate = textToTranslate.replace("Law, Politics and Economics", "Derecho, políticas y económicas");
 		if (textToTranslate.equals("Social and International Studies"))
-			textToTranslate = textToTranslate.replace("Social and International Studies", "Estudios sociales e internacionales");
+			textToTranslate = textToTranslate.replace("Social and International Studies",
+					"Estudios sociales e internacionales");
 		if (textToTranslate.equals("Community Development"))
 			textToTranslate = textToTranslate.replace("Community Development", "Desarrollo comunitario");
 		if (textToTranslate.equals("International Politics and Economics"))
-			textToTranslate = textToTranslate.replace("International Politics and Economics", "Política internacional y economía");
+			textToTranslate = textToTranslate.replace("International Politics and Economics",
+					"Política internacional y economía");
 		if (textToTranslate.equals("Administration and Social Sciences"))
-			textToTranslate = textToTranslate.replace("Administration and Social Sciences", "Administración y ciencias sociales");
+			textToTranslate = textToTranslate.replace("Administration and Social Sciences",
+					"Administración y ciencias sociales");
 		if (textToTranslate.equals("Healthcare Management"))
 			textToTranslate = textToTranslate.replace("Healthcare Management", "Gestión sanitaria");
 		if (textToTranslate.equals("Jurisprudence"))
 			textToTranslate = textToTranslate.replace("Jurisprudence", "Facultad de jurisprudencia");
 		if (textToTranslate.equals("Glocal Policy Management and Communications"))
-			textToTranslate = textToTranslate.replace("Glocal Policy Management and Communications", "Gestión política global y comunicaciones");
+			textToTranslate = textToTranslate.replace("Glocal Policy Management and Communications",
+					"Gestión política global y comunicaciones");
 		if (textToTranslate.equals("International College of Arts and Science"))
-			textToTranslate = textToTranslate.replace("International College of Arts and Science", "Colegio internacional de artes y ciencias");
+			textToTranslate = textToTranslate.replace("International College of Arts and Science",
+					"Colegio internacional de artes y ciencias");
 		if (textToTranslate.equals("Policy Management"))
 			textToTranslate = textToTranslate.replace("Policy Management", "Gestión política");
 		if (textToTranslate.equals("Commerce"))
 			textToTranslate = textToTranslate.replace("Commerce", "Comercio");
-		
-		//Economics, Management, Commerce
+
+		// Economics, Management, Commerce
 		if (textToTranslate.equals("Health and Sport Science"))
 			textToTranslate = textToTranslate.replace("Health and Sport Science", "Salud y ciencias del deporte");
 		if (textToTranslate.equals("International Politics, Economics and Communication"))
-			textToTranslate = textToTranslate.replace("International Politics, Economics and Communication", "Política internacional, económicas y comunicaciones");
+			textToTranslate = textToTranslate.replace("International Politics, Economics and Communication",
+					"Política internacional, económicas y comunicaciones");
 		if (textToTranslate.equals("Real Estate Sciences"))
 			textToTranslate = textToTranslate.replace("Real Estate Sciences", "Ciencias reales del estado");
 		if (textToTranslate.equals("Urban Life Studies"))
@@ -543,15 +610,18 @@ public class Translator {
 		if (textToTranslate.equals("Modern Chinese Studies"))
 			textToTranslate = textToTranslate.replace("Modern Chinese Studies", "Estudios de chino moderno");
 		if (textToTranslate.equals("Business Administration Education"))
-			textToTranslate = textToTranslate.replace("Business Administration Education", "Educación en dirección de empresas");
+			textToTranslate = textToTranslate.replace("Business Administration Education",
+					"Educación en dirección de empresas");
 		if (textToTranslate.equals("Financial Economy"))
 			textToTranslate = textToTranslate.replace("Financial Economy", "Economía financiera");
 		if (textToTranslate.equals("Sustainable System Sciences"))
-			textToTranslate = textToTranslate.replace("Sustainable System Sciences", "Ciencias de sistemas sostenibles");
+			textToTranslate = textToTranslate.replace("Sustainable System Sciences",
+					"Ciencias de sistemas sostenibles");
 		if (textToTranslate.equals("Commerce and Economics"))
 			textToTranslate = textToTranslate.replace("Commerce and Economics", "Comercio y economía");
 		if (textToTranslate.equals("Economics, Management and Information Science"))
-			textToTranslate = textToTranslate.replace("Economics, Management and Information Science", "Economía, Gestion de empresas y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Economics, Management and Information Science",
+					"Economía, Gestion de empresas y ciencias de la información");
 		if (textToTranslate.equals("Business Innovation"))
 			textToTranslate = textToTranslate.replace("Business Innovation", "Innovación de empresas");
 		if (textToTranslate.equals("Human Welfare Studies"))
@@ -563,7 +633,8 @@ public class Translator {
 		if (textToTranslate.equals("Social Design & Management"))
 			textToTranslate = textToTranslate.replace("Social Design & Management", "Diseño social y gestión");
 		if (textToTranslate.equals("Humanities and Social Sciences (Tentative)"))
-			textToTranslate = textToTranslate.replace("Humanities and Social Sciences (Tentative)", "Humanidades y ciencias sociales");
+			textToTranslate = textToTranslate.replace("Humanities and Social Sciences (Tentative)",
+					"Humanidades y ciencias sociales");
 		if (textToTranslate.equals("Social Information"))
 			textToTranslate = textToTranslate.replace("Social Information", "Información social");
 		if (textToTranslate.equals("Sports Human"))
@@ -587,11 +658,13 @@ public class Translator {
 		if (textToTranslate.equals("Art and Design"))
 			textToTranslate = textToTranslate.replace("Art and Design", "Arte y diseño");
 		if (textToTranslate.equals("Business, Marketing and Distribution"))
-			textToTranslate = textToTranslate.replace("Business, Marketing and Distribution", "Negocios, marketing y distribución");
+			textToTranslate = textToTranslate.replace("Business, Marketing and Distribution",
+					"Negocios, marketing y distribución");
 		if (textToTranslate.equals("Economics & Management"))
 			textToTranslate = textToTranslate.replace("Economics & Management", "Economía y gestión");
 		if (textToTranslate.equals("Environmental information business"))
-			textToTranslate = textToTranslate.replace("Environmental information business", "Negocios de información ambiental");
+			textToTranslate = textToTranslate.replace("Environmental information business",
+					"Negocios de información ambiental");
 		if (textToTranslate.equals("Health and Nutrition"))
 			textToTranslate = textToTranslate.replace("Health and Nutrition", "Salud y nutrición");
 		if (textToTranslate.equals("Health Sciences"))
@@ -609,7 +682,8 @@ public class Translator {
 		if (textToTranslate.equals("Econoinformatics"))
 			textToTranslate = textToTranslate.replace("Econoinformatics", "Economía e informática");
 		if (textToTranslate.equals("Information design and sociology"))
-			textToTranslate = textToTranslate.replace("Information design and sociology", "Diseño de la información y sociología");
+			textToTranslate = textToTranslate.replace("Information design and sociology",
+					"Diseño de la información y sociología");
 		if (textToTranslate.equals("Health Services Management"))
 			textToTranslate = textToTranslate.replace("Health Services Management", "Gestión de servicios sanitarios");
 		if (textToTranslate.equals("Commercial Science"))
@@ -617,17 +691,21 @@ public class Translator {
 		if (textToTranslate.equals("Economic Sciences"))
 			textToTranslate = textToTranslate.replace("Economic Sciences", "Ciencias económicas");
 		if (textToTranslate.equals("Social and Environment Studies"))
-			textToTranslate = textToTranslate.replace("Social and Environment Studies", "Estudios sociales y del entorno");
+			textToTranslate = textToTranslate.replace("Social and Environment Studies",
+					"Estudios sociales y del entorno");
 		if (textToTranslate.equals("International Business Management"))
-			textToTranslate = textToTranslate.replace("International Business Management", "Dirección de empresas internacionales");
+			textToTranslate = textToTranslate.replace("International Business Management",
+					"Dirección de empresas internacionales");
 		if (textToTranslate.equals("Project Design"))
 			textToTranslate = textToTranslate.replace("Project Design", "Diseño de proyectos");
 		if (textToTranslate.equals("Sport and Health Science"))
 			textToTranslate = textToTranslate.replace("Sport and Health Science", "Deportes y ciencias de la salud");
 		if (textToTranslate.equals("Tourism Sciences and Industrial Management"))
-			textToTranslate = textToTranslate.replace("Tourism Sciences and Industrial Management", "Turismo y gestión industrial");
+			textToTranslate = textToTranslate.replace("Tourism Sciences and Industrial Management",
+					"Turismo y gestión industrial");
 		if (textToTranslate.equals("Distribution and Logistics Systems"))
-			textToTranslate = textToTranslate.replace("Distribution and Logistics Systems", "Distribución y sistemas logísticos");
+			textToTranslate = textToTranslate.replace("Distribution and Logistics Systems",
+					"Distribución y sistemas logísticos");
 		//
 		if (textToTranslate.equals("Performing and Visual Arts"))
 			textToTranslate = textToTranslate.replace("Performing and Visual Arts", "Ejecución y artes visuales");
@@ -636,25 +714,33 @@ public class Translator {
 		if (textToTranslate.equals("System Design"))
 			textToTranslate = textToTranslate.replace("System Design", "Diseño de sistemas");
 		if (textToTranslate.equals("Medical Pharmaceutical Science"))
-			textToTranslate = textToTranslate.replace("Medical Pharmaceutical Science", "Ciencias sanitarias farmacéuticas");
+			textToTranslate = textToTranslate.replace("Medical Pharmaceutical Science",
+					"Ciencias sanitarias farmacéuticas");
 		if (textToTranslate.equals("Media and Information Resources"))
-			textToTranslate = textToTranslate.replace("Media and Information Resources", "Medios y recursos de información");
+			textToTranslate = textToTranslate.replace("Media and Information Resources",
+					"Medios y recursos de información");
 		if (textToTranslate.equals("Humanity and Environment"))
 			textToTranslate = textToTranslate.replace("Humanity and Environment", "Humanidad y medioambiente");
 		if (textToTranslate.equals("Lifelong Learning and Career Studies"))
-			textToTranslate = textToTranslate.replace("Lifelong Learning and Career Studies", "Aprendizaje vital y estudios de carrera");
+			textToTranslate = textToTranslate.replace("Lifelong Learning and Career Studies",
+					"Aprendizaje vital y estudios de carrera");
 		if (textToTranslate.equals("Engineering and Design"))
 			textToTranslate = textToTranslate.replace("Engineering and Design", "Ingeniería y diseño");
 		if (textToTranslate.equals("Bioscience and Applied Chemistry"))
-			textToTranslate = textToTranslate.replace("Bioscience and Applied Chemistry", "Biociencia y química aplicada");
+			textToTranslate = textToTranslate.replace("Bioscience and Applied Chemistry",
+					"Biociencia y química aplicada");
 		if (textToTranslate.equals("Computer and Information Sciences"))
-			textToTranslate = textToTranslate.replace("Computer and Information Sciences", "Ciencias de la computación y de la información");
+			textToTranslate = textToTranslate.replace("Computer and Information Sciences",
+					"Ciencias de la computación y de la información");
 		if (textToTranslate.equals("Fundamental Science and Engineering"))
-			textToTranslate = textToTranslate.replace("Fundamental Science and Engineering", "Ciencias fundamentales e ingeniería");
+			textToTranslate = textToTranslate.replace("Fundamental Science and Engineering",
+					"Ciencias fundamentales e ingeniería");
 		if (textToTranslate.equals("Creative Science and Engineering"))
-			textToTranslate = textToTranslate.replace("Creative Science and Engineering", "Ciencias creativas e ingeniería");
+			textToTranslate = textToTranslate.replace("Creative Science and Engineering",
+					"Ciencias creativas e ingeniería");
 		if (textToTranslate.equals("Advanced Science and Engineering"))
-			textToTranslate = textToTranslate.replace("Creative Science and Engineering", "Ciencias creativas e ingeniería");
+			textToTranslate = textToTranslate.replace("Creative Science and Engineering",
+					"Ciencias creativas e ingeniería");
 		if (textToTranslate.equals("Medicine"))
 			textToTranslate = textToTranslate.replace("Medicine", "Medicina");
 		if (textToTranslate.equals("Pharma-Science"))
@@ -664,9 +750,11 @@ public class Translator {
 		if (textToTranslate.equals("Fukuoka Medical Technology"))
 			textToTranslate = textToTranslate.replace("Fukuoka Medical Technology", "Tecnología médica (Fukuoka)");
 		if (textToTranslate.equals("Human Life and Environmental Sciences"))
-			textToTranslate = textToTranslate.replace("Human Life and Environmental Sciences", "Vida humana y ciencias del medioambiente");
+			textToTranslate = textToTranslate.replace("Human Life and Environmental Sciences",
+					"Vida humana y ciencias del medioambiente");
 		if (textToTranslate.equals("Community and Human Services"))
-			textToTranslate = textToTranslate.replace("Community and Human Services", "Servicios humanos y comunitarios");
+			textToTranslate = textToTranslate.replace("Community and Human Services",
+					"Servicios humanos y comunitarios");
 		if (textToTranslate.equals("Sociology & Social Work"))
 			textToTranslate = textToTranslate.replace("Sociology & Social Work", "Sociología y trabajo social");
 		if (textToTranslate.equals("Knowledge Engineering"))
@@ -678,15 +766,18 @@ public class Translator {
 		if (textToTranslate.equals("Human Life Design"))
 			textToTranslate = textToTranslate.replace("Human Life Design", "Diseño de vida humana");
 		if (textToTranslate.equals("Information Science and Arts"))
-			textToTranslate = textToTranslate.replace("Information Science and Arts", "Ciencias de la información y arte");
+			textToTranslate = textToTranslate.replace("Information Science and Arts",
+					"Ciencias de la información y arte");
 		if (textToTranslate.equals("Food Science"))
 			textToTranslate = textToTranslate.replace("Food Science", "Ciencias alimenticias");
 		if (textToTranslate.equals("Engineering Science"))
 			textToTranslate = textToTranslate.replace("Engineering Science", "Ingeniería y ciencias");
 		if (textToTranslate.equals("Environmental and Urban Engineering"))
-			textToTranslate = textToTranslate.replace("Environmental and Urban Engineering", "Ingeniería urbana y medioambiental");
+			textToTranslate = textToTranslate.replace("Environmental and Urban Engineering",
+					"Ingeniería urbana y medioambiental");
 		if (textToTranslate.equals("Chemistry Materials and Bioengineering"))
-			textToTranslate = textToTranslate.replace("Chemistry Materials and Bioengineering", "Materiales químicos y bioingeniería");
+			textToTranslate = textToTranslate.replace("Chemistry Materials and Bioengineering",
+					"Materiales químicos y bioingeniería");
 		if (textToTranslate.equals("Safety Science"))
 			textToTranslate = textToTranslate.replace("Safety Science", "Ciencias de la seguridad");
 		if (textToTranslate.equals("Health and Well-being"))
@@ -710,11 +801,14 @@ public class Translator {
 		if (textToTranslate.equals("Engineering (FGL)"))
 			textToTranslate = textToTranslate.replace("Sciences (FGL)", "Ingeniería (Programa global de liderazgo)");
 		if (textToTranslate.equals("Agriculture (FGL)"))
-			textToTranslate = textToTranslate.replace("Agriculture (FGL)", "Agricultura (Programa global de liderazgo)");
+			textToTranslate = textToTranslate.replace("Agriculture (FGL)",
+					"Agricultura (Programa global de liderazgo)");
 		if (textToTranslate.equals("Pharmacy and Pharmaceutical Sciences"))
-			textToTranslate = textToTranslate.replace("Pharmacy and Pharmaceutical Sciences", "Farmacia y ciencias farmacéuticas");
+			textToTranslate = textToTranslate.replace("Pharmacy and Pharmaceutical Sciences",
+					"Farmacia y ciencias farmacéuticas");
 		if (textToTranslate.equals("International College (Undergraduate English Courses)"))
-			textToTranslate = textToTranslate.replace("International College (Undergraduate English Courses)", "Colegio internacional (Cursos de inglés)");
+			textToTranslate = textToTranslate.replace("International College (Undergraduate English Courses)",
+					"Colegio internacional (Cursos de inglés)");
 		if (textToTranslate.equals("Pharmaceutical Sciences"))
 			textToTranslate = textToTranslate.replace("Pharmaceutical Sciences", "Ciencias farmacéuticas");
 		if (textToTranslate.equals("Management and Administration"))
@@ -727,17 +821,14 @@ public class Translator {
 			textToTranslate = textToTranslate.replace("Agriculture", "Agricultura");
 		if (textToTranslate.equals("The Japanese Language Course"))
 			textToTranslate = textToTranslate.replace("The Japanese Language Course", "Curso de lengua japonesa");
-		
-		
-		
-		
-		
+
 		if (textToTranslate.equals("Industrial Administraion"))
 			textToTranslate = textToTranslate.replace("Industrial Administraion", "Administración industrial");
 		if (textToTranslate.equals("Medical Informatics"))
 			textToTranslate = textToTranslate.replace("Medical Informatics", "Informática sanitaria");
 		if (textToTranslate.equals("Applied Information Technology"))
-			textToTranslate = textToTranslate.replace("Applied Information Technology", "Tecnologías de la información aplicadas");
+			textToTranslate = textToTranslate.replace("Applied Information Technology",
+					"Tecnologías de la información aplicadas");
 		if (textToTranslate.equals("Computer Science"))
 			textToTranslate = textToTranslate.replace("Computer Science", "Ciencias de la computación");
 		if (textToTranslate.equals("Business and Informatis"))
@@ -749,33 +840,41 @@ public class Translator {
 		if (textToTranslate.equals("Business and Informatics"))
 			textToTranslate = textToTranslate.replace("Business and Informatics", "Negocios e informática");
 		if (textToTranslate.equals("Business Administration and Information Science"))
-			textToTranslate = textToTranslate.replace("Business Administration and Information Science", "Administración de empresas y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Business Administration and Information Science",
+					"Administración de empresas y ciencias de la información");
 		if (textToTranslate.equals("Informatics  /  Department of Computer Science and Art"))
-			textToTranslate = textToTranslate.replace("Informatics  /  Department of Computer Science and Art", "Informática y arte");
+			textToTranslate = textToTranslate.replace("Informatics  /  Department of Computer Science and Art",
+					"Informática y arte");
 		if (textToTranslate.equals("Network and Information"))
 			textToTranslate = textToTranslate.replace("Network and Information", "Redes e información");
 		if (textToTranslate.equals("Administration and Informatics"))
 			textToTranslate = textToTranslate.replace("Administration and Informatics", "Administración e informática");
 		if (textToTranslate.equals("Science and Industrial Technology"))
-			textToTranslate = textToTranslate.replace("Science and Industrial Technology", "Ciencia y tecnología industrial");
+			textToTranslate = textToTranslate.replace("Science and Industrial Technology",
+					"Ciencia y tecnología industrial");
 		if (textToTranslate.equals("Humanity-Oriented Science and Engineering"))
-			textToTranslate = textToTranslate.replace("Humanity-Oriented Science and Engineering", "Ciencia orientada a la humanidad y ingeniería");
+			textToTranslate = textToTranslate.replace("Humanity-Oriented Science and Engineering",
+					"Ciencia orientada a la humanidad y ingeniería");
 		if (textToTranslate.equals("Industry and Information Science"))
-			textToTranslate = textToTranslate.replace("Industry and Information Science", "Industria y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Industry and Information Science",
+					"Industria y ciencias de la información");
 		if (textToTranslate.equals("Management and Information Science"))
-			textToTranslate = textToTranslate.replace("Management and Information Science", "Administración y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Management and Information Science",
+					"Administración y ciencias de la información");
 		if (textToTranslate.equals("Management and Information Systems"))
-			textToTranslate = textToTranslate.replace("Management and Information Systems", "Administración y sistemas de información");
+			textToTranslate = textToTranslate.replace("Management and Information Systems",
+					"Administración y sistemas de información");
 		if (textToTranslate.equals("Management and Information Sciences"))
-			textToTranslate = textToTranslate.replace("Management and Information Sciences", "Administración y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Management and Information Sciences",
+					"Administración y ciencias de la información");
 		if (textToTranslate.equals("Management & Information Sciences"))
-			textToTranslate = textToTranslate.replace("Management & Information Sciences", "Administración y ciencias de la información");
+			textToTranslate = textToTranslate.replace("Management & Information Sciences",
+					"Administración y ciencias de la información");
 		if (textToTranslate.equals("Informatics"))
 			textToTranslate = textToTranslate.replace("Informatics", "Informática");
 		if (textToTranslate.equals("Engineering"))
 			textToTranslate = textToTranslate.replace("Engineering", "Facultad de Ingeniería");
-		
-		
+
 		return textToTranslate;
 	}
 

@@ -11,7 +11,7 @@ package com.puntojapon.colleges;
  * universities, gradSchools and techSchools which information is going to be
  * crawled.
  * 
- * @author Jorge de Castro
+ * @author jdecastroc
  *
  */
 public abstract class CollegeBasicInfo {

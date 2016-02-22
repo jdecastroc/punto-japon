@@ -4,7 +4,6 @@
  * @version 2.0, 21 Feb 2016
  *
  */
-
 package com.puntojapon.colleges;
 
 import org.jsoup.Jsoup;
@@ -40,6 +39,8 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 *            to retrieve the crawled data
 	 * @param counter
 	 *            ->College counter for search details
+	 * 
+	 * @return the json string with the gradSchools crawled
 	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getCollegeList(java.lang.String,
 	 *      java.lang.String[], com.puntojapon.colleges.CollegeList,
@@ -191,10 +192,12 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the string object with the information of the college
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getCollege(java.lang.String)
 	 */
 	@Override
-	public String getCollege(String id){
+	public String getCollege(String id) {
 
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 		GradSchool gradSchool = new GradSchool();
@@ -291,11 +294,13 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty admissions information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyAdmissions(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public String getFacultyAdmissions(String gradSchoolParent, String id){
+	public String getFacultyAdmissions(String gradSchoolParent, String id) {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 		Faculty faculty = new Faculty(gradSchoolParent, id, "admissions");
 
@@ -360,11 +365,13 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty info
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyInfo(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public String getFacultyInfo(String gradSchoolParent, String id){
+	public String getFacultyInfo(String gradSchoolParent, String id) {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 		Faculty faculty = new Faculty(gradSchoolParent, id, "info");
 
@@ -497,11 +504,13 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty support information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultySupport(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public String getFacultySupport(String gradSchoolParent, String id){
+	public String getFacultySupport(String gradSchoolParent, String id) {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		// Specify which content of a faculty it's going to be crawled
@@ -577,11 +586,13 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty facilities information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyFacilities(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public String getFacultyFacilities(String gradSchoolParent, String id){
+	public String getFacultyFacilities(String gradSchoolParent, String id) {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		// Specify which content of a faculty it's going to be crawled
@@ -657,11 +668,13 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty access information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyAccess(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public String getFacultyAccess(String gradSchoolParent, String id){
+	public String getFacultyAccess(String gradSchoolParent, String id) {
 		String name = "";
 		String lng = "";
 		String lat = "";

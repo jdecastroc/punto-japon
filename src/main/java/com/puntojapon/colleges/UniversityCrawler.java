@@ -39,6 +39,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * @param counter
 	 *            ->College counter for search details
 	 * 
+	 * @return the json string with the universities crawled
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getCollegeList(java.lang.String,
 	 *      java.lang.String[], com.puntojapon.colleges.CollegeList,
 	 *      java.lang.String, int)
@@ -187,6 +189,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the university information crawled
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getCollege(java.lang.String)
 	 */
 	@Override
@@ -288,6 +292,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty admissions information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyAdmissions(java.lang.
 	 *      String, java.lang.String)
 	 */
@@ -354,6 +360,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * 
 	 * @param id
 	 *            -> id of the faculty
+	 * 
+	 * @return the json string with the faculty basic information
 	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyInfo(java.lang.String,
 	 *      java.lang.String)
@@ -492,6 +500,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * @param id
 	 *            -> id of the faculty
 	 * 
+	 * @return the json string with the faculty support information
+	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultySupport(java.lang.
 	 *      String, java.lang.String)
 	 */
@@ -570,6 +580,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * 
 	 * @param id
 	 *            -> id of the faculty
+	 * 
+	 * @return the json string with the faculty facilities information
 	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyFacilities(java.lang.
 	 *      String, java.lang.String)
@@ -651,6 +663,8 @@ public class UniversityCrawler extends CollegeCrawler {
 	 * 
 	 * @param id
 	 *            -> id of the faculty
+	 * 
+	 * @return the json string with the faculty access information
 	 * 
 	 * @see com.puntojapon.colleges.CollegeCrawler#getFacultyAccess(java.lang.String,
 	 *      java.lang.String)

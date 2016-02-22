@@ -1,14 +1,45 @@
 /**
- * 
+ * University data structure
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
+ *
  */
 package com.puntojapon.colleges;
 
 /**
- * @author Jorge de Castro
- *
+ * Provides the university data structure used in the university crawler
+ * 
+ * @author jdecastroc
+ * @see com.puntojapon.colleges.CollegeBasicInfo
  */
 public class University extends CollegeBasicInfo {
 
+	/**
+	 * Mainly class constructor which sets all the specified variables
+	 * 
+	 * @param id
+	 *            -> id of the college
+	 * @param japaneseName
+	 *            -> japanese name of the college
+	 * @param name
+	 *            -> english name of the college
+	 * @param prefecture
+	 *            -> prefecture which the college belongs
+	 * @param type
+	 *            -> college's type
+	 * @param guideUrl
+	 *            -> college's guide url
+	 * @param imageUrl
+	 *            -> college's image url
+	 * @param title
+	 *            -> college's title
+	 * @param description
+	 *            -> college's description
+	 * @param faculties
+	 *            -> college's faculties
+	 * @param officialUrl
+	 *            -> college's official url to the main college website
+	 */
 	public University(String id, String japaneseName, String name, String prefecture, String type, String guideUrl,
 			String imageUrl, String title, String description, CollegeFacultyList faculties, String officialUrl) {
 
@@ -25,6 +56,10 @@ public class University extends CollegeBasicInfo {
 		this.setOfficialUrl(officialUrl);
 	}
 
+	/**
+	 * Class constructor which sets all the specified variables with an empty
+	 * value
+	 */
 	public University() {
 		this.setId("");
 		this.setJapaneseName("");

@@ -1,5 +1,17 @@
+/**
+ * Universities Url Builder
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
+ *
+ */
 package com.puntojapon.colleges;
 
+/**
+ * Provides the url Builder for the Universities. It builds the url which is
+ * going to be crawled following the url specifications of the crawling page
+ * 
+ * @author jdecastroc
+ */
 public class UniversityUrlBuilder extends UrlBuilder {
 
 	// University subjects
@@ -67,16 +79,40 @@ public class UniversityUrlBuilder extends UrlBuilder {
 	private String[] typeStudiesList;
 
 	private String typeUniUrl = "";
-	private String admisionMonthUrl = "";
+	private String admissionMonthUrl = "";
 	private String deadLineUrl = "";
 	private String ejuUrl = "";
 	private String engExamUrl = "";
-	private String admisionUniUrl = "";
+	private String admissionUniUrl = "";
 	private String urlTypeStudies = "";
 	private String nameUni = "";
 
+	/**
+	 * Mainly class constructor. Build the search information in the urlBuilder
+	 * using the proper functions to build all the url based on the information
+	 * provided by the client search.
+	 * 
+	 * @param nameUni
+	 *            -> name of the university provided by the client to search
+	 * @param prefecture
+	 *            -> list of prefectures to search in
+	 * @param typeStudiesList
+	 *            -> list of the type of studies to evaluate in the search
+	 * @param typeUni
+	 *            -> list of type of Uni provided by the client
+	 * @param admissionMonth
+	 *            -> list of the admission months provided
+	 * @param deadLine
+	 *            -> list of the deadLine date provided
+	 * @param eju
+	 *            -> list of the eju parameter provided
+	 * @param engExam
+	 *            -> list of the engExam parameter provided
+	 * @param admisionUni
+	 *            -> list of admisionUni months provided by the client.
+	 */
 	public UniversityUrlBuilder(String nameUni, String[] prefecture, String[] typeStudiesList, String[] typeUni,
-			String[] admisionMonth, String[] deadLine, String[] eju, String[] engExam, String[] admisionUni) {
+			String[] admissionMonth, String[] deadLine, String[] eju, String[] engExam, String[] admisionUni) {
 		// Build URL's
 		setPrefecture(prefecture);
 		setTypeStudiesList(typeStudiesList);
@@ -88,8 +124,8 @@ public class UniversityUrlBuilder extends UrlBuilder {
 			setUrlTypeStudies(buildStudiesUrl(typeStudiesList));
 		if (typeUni.length > 0) // If many type uni
 			setTypeUniUrl(buildTypeUniUrl(typeUni));
-		if (admisionMonth.length > 0)
-			setAdmisionMonthUrl(buildAdmisionMonthUrl(admisionMonth));
+		if (admissionMonth.length > 0)
+			setAdmissionMonthUrl(buildAdmissionMonthUrl(admissionMonth));
 		if (deadLine.length > 0)
 			setDeadLineUrl(buildDeadLineUrl(deadLine));
 		if (eju.length > 0)
@@ -97,7 +133,7 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		if (engExam.length > 0)
 			setEngExamUrl(buildEngExamUrl(engExam));
 		if (admisionUni.length > 0)
-			setAdmisionUniUrl(buildAdmisionUniUrl(engExam));
+			setAdmissionUniUrl(buildAdmissionUniUrl(engExam));
 		if (typeStudiesList.length > 0)
 			setUrlPrefecture(buildPrefectureUrl(getPrefecturesList(), prefecture));
 		if (!nameUni.isEmpty())
@@ -105,6 +141,15 @@ public class UniversityUrlBuilder extends UrlBuilder {
 
 	}
 
+	/**
+	 * Build the final url which is going to be used by the crawler
+	 * 
+	 * @param prefecture
+	 *            -> prefecture list provided by the client which is going to be
+	 *            compared with the prefectures real list in order to check
+	 *            errors
+	 * @return the url which is going the be used by the crawler as a string
+	 */
 	@Override
 	public String getSearchUrl(String[] prefecture) {
 		if (prefecture.length > 0 && !prefecture[0].equals("all")) { // If many
@@ -112,8 +157,8 @@ public class UniversityUrlBuilder extends UrlBuilder {
 																		// choosen
 
 			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni() + "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
-					+ getTypeUniUrl() + getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
-					+ getAdmisionUniUrl() + "&u%5Bac%5D=&a%5Bpf%5D=" + getUrlPrefecture()
+					+ getTypeUniUrl() + getAdmissionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
+					+ getAdmissionUniUrl() + "&u%5Bac%5D=&a%5Bpf%5D=" + getUrlPrefecture()
 					+ "&search.x=177&search.y=11&search=search");
 
 			System.out.println("urlPrefecture -> " + urlPrefecture);
@@ -122,8 +167,8 @@ public class UniversityUrlBuilder extends UrlBuilder {
 													// choosen and many studies
 													// choosen
 				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni()
-						+ "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl() + getAdmisionMonthUrl()
-						+ getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmisionUniUrl() + getUrlTypeStudies()
+						+ "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl() + getAdmissionMonthUrl()
+						+ getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmissionUniUrl() + getUrlTypeStudies()
 						+ "&a%5Bpf%5D=" + urlPrefecture + "&search.x=177&search.y=11&search=search");
 
 				System.out.println("urlStudies -> " + getUrlTypeStudies());
@@ -131,16 +176,16 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		}
 		if (getPrefecture()[0].equals("all")) { // If no prefecture choosen
 			setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni() + "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D="
-					+ getTypeUniUrl() + getAdmisionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
-					+ getAdmisionUniUrl() + "&u%5Bac%5D=&a%5Bpf%5D=" + urlPrefecture
+					+ getTypeUniUrl() + getAdmissionMonthUrl() + getDeadLineUrl() + getEjuUrl() + getEngExamUrl()
+					+ getAdmissionUniUrl() + "&u%5Bac%5D=&a%5Bpf%5D=" + urlPrefecture
 					+ "&search.x=177&search.y=11&search=search");
 
 			setPrefecture(getPrefecturesList());
 
 			if (typeStudiesList.length > 0) { // If many studies choosen
 				setUrl("http://www.jpss.jp/en/search/?tb=1&a%5Bnm%5D=" + getNameUni()
-						+ "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl() + getAdmisionMonthUrl()
-						+ getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmisionUniUrl() + getUrlTypeStudies()
+						+ "&a%5Bfw%5D=&u%5Bfc%5D=&u%5Bdp%5D=" + getTypeUniUrl() + getAdmissionMonthUrl()
+						+ getDeadLineUrl() + getEjuUrl() + getEngExamUrl() + getAdmissionUniUrl() + getUrlTypeStudies()
 						+ "&a%5Bpf%5D=" + getUrlPrefecture() + "&search.x=177&search.y=11&search=search");
 
 				System.out.println("urlStudies -> " + getUrlTypeStudies());
@@ -149,78 +194,152 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return getUrl();
 	}
 
+	/**
+	 * @return the name of the uni provided by the client
+	 */
 	private String getNameUni() {
 		return nameUni;
 	}
 
+	/**
+	 * @param nameUni
+	 *            -> set the name of the uni which the urlBuilder is going to
+	 *            use
+	 */
 	private void setNameUni(String nameUni) {
 		this.nameUni = nameUni;
 	}
 
+	/**
+	 * @return the list of type of studies provided
+	 */
 	public String[] getTypeStudiesList() {
 		return typeStudiesList;
 	}
 
+	/**
+	 * @param typeStudiesList
+	 *            -> set the typeStudies string which is going to be used in the
+	 *            build of the final url
+	 */
 	private void setTypeStudiesList(String[] typeStudiesList) {
 		this.typeStudiesList = typeStudiesList;
 	}
 
+	/**
+	 * @return the TypeStudies url string build
+	 */
 	public String getUrlTypeStudies() {
 		return urlTypeStudies;
 	}
 
+	/**
+	 * @param urlTypeStudies
+	 *            -> set the typeStudies url build
+	 */
 	private void setUrlTypeStudies(String urlTypeStudies) {
 		this.urlTypeStudies = urlTypeStudies;
 	}
 
+	/**
+	 * @return the typeUni url build
+	 */
 	public String getTypeUniUrl() {
 		return typeUniUrl;
 	}
 
-	public String getAdmisionMonthUrl() {
-		return admisionMonthUrl;
+	/**
+	 * @return the admissionMonth ulr build
+	 */
+	public String getAdmissionMonthUrl() {
+		return admissionMonthUrl;
 	}
 
+	/**
+	 * @return the deadLine url build
+	 */
 	public String getDeadLineUrl() {
 		return deadLineUrl;
 	}
 
+	/**
+	 * @return the ejuUrl build
+	 */
 	public String getEjuUrl() {
 		return ejuUrl;
 	}
 
+	/**
+	 * @return the engExamUrl build
+	 */
 	public String getEngExamUrl() {
 		return engExamUrl;
 	}
 
-	public String getAdmisionUniUrl() {
-		return admisionUniUrl;
+	/**
+	 * @return the admissionUni url build
+	 */
+	public String getAdmissionUniUrl() {
+		return admissionUniUrl;
 	}
 
+	/**
+	 * @param typeUniUrl
+	 *            -> set the typUni url build
+	 */
 	private void setTypeUniUrl(String typeUniUrl) {
 		this.typeUniUrl = typeUniUrl;
 	}
 
-	private void setAdmisionMonthUrl(String admisionMonthUrl) {
-		this.admisionMonthUrl = admisionMonthUrl;
+	/**
+	 * @param admisionMonthUrl
+	 *            -> set the admissionMonth url build
+	 */
+	private void setAdmissionMonthUrl(String admisionMonthUrl) {
+		this.admissionMonthUrl = admisionMonthUrl;
 	}
 
+	/**
+	 * @param deadLineUrl
+	 *            -> set the deadLine url build
+	 */
 	private void setDeadLineUrl(String deadLineUrl) {
 		this.deadLineUrl = deadLineUrl;
 	}
 
+	/**
+	 * @param ejuUrl
+	 *            -> set the eju url build
+	 */
 	private void setEjuUrl(String ejuUrl) {
 		this.ejuUrl = ejuUrl;
 	}
 
+	/**
+	 * @param engExamUrl
+	 *            -> set the enExam url build
+	 */
 	private void setEngExamUrl(String engExamUrl) {
 		this.engExamUrl = engExamUrl;
 	}
 
-	private void setAdmisionUniUrl(String admisionUniUrl) {
-		this.admisionUniUrl = admisionUniUrl;
+	/**
+	 * @param admissionUniUrl
+	 *            -> set the admissionUni url build
+	 */
+	private void setAdmissionUniUrl(String admisionUniUrl) {
+		this.admissionUniUrl = admisionUniUrl;
 	}
 
+	/**
+	 * It build the part the final url related to the typeStudies given a
+	 * typeStudies list provided by the client
+	 * 
+	 * @param typeStudiesList
+	 *            -> type of studies list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
 	private String buildStudiesUrl(String[] typeStudiesList) {
 		String urlStudies = "";
 		String text = "";
@@ -264,7 +383,16 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return "&u%5Bac%5D=" + urlStudies;
 	}
 
-	private String buildAdmisionUniUrl(String[] admisionUni) {
+	/**
+	 * It build the part the final url related to the admission months given a
+	 * admisionUni list provided by the client
+	 * 
+	 * @param admisionUni
+	 *            -> admission months list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
+	private String buildAdmissionUniUrl(String[] admisionUni) {
 		String admisionUniUrl = "";
 		String text = "";
 		for (String i : admisionUni) {
@@ -277,6 +405,15 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return admisionUniUrl;
 	}
 
+	/**
+	 * It build the part the final url related to the english exam given a
+	 * engExam list with the search parameters provided by the client
+	 * 
+	 * @param engExam
+	 *            -> engExam related parameters list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
 	private String buildEngExamUrl(String[] engExam) {
 		String engExamUrl = "";
 		String text = "";
@@ -296,6 +433,15 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return engExamUrl;
 	}
 
+	/**
+	 * It build the part the final url related to the eju exam given a ejuExam
+	 * list with the search parameters provided by the client
+	 * 
+	 * @param engExam
+	 *            -> ejuExam related parameters list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
 	private String buildEjuExamUrl(String[] eju) {
 		String ejuUrl = "";
 		String text = "";
@@ -309,6 +455,15 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return ejuUrl;
 	}
 
+	/**
+	 * It build the part the final url related to the dead linea given a
+	 * deadLine list with the search parameters provided by the client
+	 * 
+	 * @param deadLine
+	 *            -> deadLine related parameters list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
 	private String buildDeadLineUrl(String[] deadLine) {
 		String deadLineUrl = "";
 		String text = "";
@@ -342,10 +497,21 @@ public class UniversityUrlBuilder extends UrlBuilder {
 		return deadLineUrl;
 	}
 
-	private String buildAdmisionMonthUrl(String[] admisionMonth) {
-		String admisionMonthUrl = "";
+	/**
+	 * It build the part the final url related to the admission months of the
+	 * university given a admissionMonths list with the search parameters
+	 * provided by the client
+	 * 
+	 * @param admissionMonth
+	 *            -> admission Month related parameters list provided by the
+	 *            client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
+	private String buildAdmissionMonthUrl(String[] admissionMonth) {
+		String admissionMonthUrl = "";
 		String text = "";
-		for (String i : admisionMonth) {
+		for (String i : admissionMonth) {
 			if (i.equals("januaryAdm"))
 				text = januaryAdm;
 			if (i.equals("marchAdm"))
@@ -358,11 +524,20 @@ public class UniversityUrlBuilder extends UrlBuilder {
 				text = septemberAdm;
 			if (i.equals("octoberAdm"))
 				text = octoberAdm;
-			admisionMonthUrl = admisionMonthUrl + text;
+			admissionMonthUrl = admissionMonthUrl + text;
 		}
-		return admisionMonthUrl;
+		return admissionMonthUrl;
 	}
 
+	/**
+	 * It build the part the final url related to the typeUni given a typeUni
+	 * list with the search parameters provided by the client
+	 * 
+	 * @param typeUni
+	 *            -> typeUni related parameters list provided by the client
+	 * @return a string used to build the final url which is going to be used
+	 *         for crawl the search
+	 */
 	private String buildTypeUniUrl(String[] typeUni) {
 		String typeUniUrl = "";
 		String text = "";

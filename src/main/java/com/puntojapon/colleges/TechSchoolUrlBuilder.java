@@ -1,9 +1,30 @@
+/**
+ * Tech School Url Builder
+ * @author jdecastroc
+ * @version 2.0, 21 Feb 2016
+ *
+ */
 package com.puntojapon.colleges;
 
+/**
+ * Provides the url Builder for the techSchools. It builds the url which is
+ * going to be crawled following the url specifications of the crawling page
+ * 
+ * @author jdecastroc
+ */
 public class TechSchoolUrlBuilder extends UrlBuilder {
 
 	private String nameTech = "";
 
+	/**
+	 * Mainly class constructor. Build the search information provided by the
+	 * client in the urlBuilder.
+	 * 
+	 * @param nameTech
+	 *            -> name of the tech school provided by the client
+	 * @param prefecture
+	 *            -> list of prefectures where search the techSchools
+	 */
 	public TechSchoolUrlBuilder(String nameTech, String[] prefecture) {
 		// Build URL's
 		setPrefecture(prefecture);
@@ -14,6 +35,15 @@ public class TechSchoolUrlBuilder extends UrlBuilder {
 			setNameTech(nameTech);
 	}
 
+	/**
+	 * Build the final url which is going to be used by the crawler
+	 * 
+	 * @param prefecture
+	 *            -> prefecture list provided by the client which is going to be
+	 *            compared with the prefectures real list in order to check
+	 *            errors
+	 * @return the url which is going the be used by the crawler as a string
+	 */
 	@Override
 	public String getSearchUrl(String[] prefecture) {
 
@@ -27,10 +57,17 @@ public class TechSchoolUrlBuilder extends UrlBuilder {
 		return getUrl();
 	}
 
+	/**
+	 * @return the name of the techSchool provided by the client
+	 */
 	private String getNameTech() {
 		return nameTech;
 	}
 
+	/**
+	 * @param nameTech
+	 *            -> set the techSchool name provided
+	 */
 	private void setNameTech(String nameTech) {
 		this.nameTech = nameTech;
 	}
