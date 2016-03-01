@@ -8,6 +8,9 @@
  */
 package com.puntojapon.controller;
 
+import java.io.File;
+import java.net.URL;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -292,12 +295,23 @@ public class MainController {
 
 		return TechSchoolSupport;
 	}
-	
+
+	// Update articles from the blog and index them in elastic search
 	@RequestMapping(value = "/articles/updateRepository", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String updateArticles()
-			throws Exception {		
+	public @ResponseBody String updateArticles() throws Exception {
 		KettleTransformation.start();
 		return "Artículos actualizados";
 	}
+
+	// Return articles .json
+	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody File getLatestArticles() throws Exception {
+	     
+		File file = new File("src/main/resources/sort.json");
+		
+		return file.exists()? file : null;
+	}
+
 }
