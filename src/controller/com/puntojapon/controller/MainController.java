@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.puntojapon.articles.KettleTransformation;
 import com.puntojapon.colleges.CollegeList;
 import com.puntojapon.colleges.GradSchoolCrawler;
 import com.puntojapon.colleges.GradSchoolUrlBuilder;
@@ -291,5 +292,13 @@ public class MainController {
 
 		return TechSchoolSupport;
 	}
-
+	
+	// Update json
+	@RequestMapping(value = "/articles/updateRepository", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody HttpStatus updateArticles()
+			throws Exception {		
+		KettleTransformation.start();
+		return HttpStatus.ACCEPTED;
+	}
 }
