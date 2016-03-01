@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.puntojapon.articles.KettleTransformation;
 import com.puntojapon.colleges.CollegeList;
 import com.puntojapon.colleges.GradSchoolCrawler;
@@ -311,8 +313,10 @@ public class MainController {
 	public @ResponseBody String getLatestArticles() throws Exception {
 	     
 		//File file = new File("src/main/resources/sort.json");
+		Gson prettyJson = new GsonBuilder().setPrettyPrinting().create();
 		String finalJson = "";
-		finalJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
+		//finalJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
+		finalJson = prettyJson.toJson(new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json"))));
 		
 		return !finalJson.equals("")? finalJson : "error";
 	}
