@@ -9,7 +9,8 @@
 package com.puntojapon.controller;
 
 import java.io.File;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -307,11 +308,13 @@ public class MainController {
 	// Return articles .json
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody File getLatestArticles() throws Exception {
+	public @ResponseBody String getLatestArticles() throws Exception {
 	     
-		File file = new File("src/main/resources/sort.json");
+		//File file = new File("src/main/resources/sort.json");
+		String finalJson = "";
+		finalJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
 		
-		return file.exists()? file : null;
+		return !finalJson.equals("")? finalJson : "error";
 	}
 
 }
