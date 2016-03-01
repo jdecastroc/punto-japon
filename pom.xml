@@ -41,6 +41,38 @@
 		</plugins>
 	</build>
 	<dependencies>
+	
+		<dependency>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>kettle-core</artifactId>
+			<version>5.3.0.0-200</version>
+		</dependency>
+		<dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle-dbdialog</artifactId>
+            <version>5.3.0.0-200</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle-engine</artifactId>
+            <version>5.3.0.0-200</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle-ui-swt</artifactId>
+            <version>5.3.0.0-200</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle5-log4j-plugin</artifactId>
+            <version>5.0.1-stable</version>
+        </dependency>
+         <dependency>
+            <groupId>feed4j</groupId>
+            <artifactId>feed4j</artifactId>
+            <version>1.0</version>
+        </dependency>
+		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -98,6 +130,10 @@
 		</dependency>
 	</dependencies>
 	<repositories>
+		<repository>
+			<id>pentaho-releases</id>
+			<url>http://repository.pentaho.org/artifactory/repo/</url>
+		</repository>
 		<repository>
 			<id>spring-releases</id>
 			<url>https://repo.spring.io/libs-release</url>
