@@ -293,12 +293,11 @@ public class MainController {
 		return TechSchoolSupport;
 	}
 	
-	// Update json
-	@RequestMapping(value = "/articles/updateRepository", method = RequestMethod.PUT)
+	@RequestMapping(value = "/articles/updateRepository", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody HttpStatus updateArticles()
+	public @ResponseBody String updateArticles()
 			throws Exception {		
 		KettleTransformation.start();
-		return HttpStatus.ACCEPTED;
+		return "Artículos actualizados";
 	}
 }
