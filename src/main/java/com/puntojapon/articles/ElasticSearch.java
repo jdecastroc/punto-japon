@@ -16,7 +16,7 @@ public class ElasticSearch {
 //		}
 		try{
 			// Run command and wait till it's done
-	        Process p = Runtime.getRuntime().exec("src/main/resources/indexBlogs.sh");
+	        Process p = Runtime.getRuntime().exec("sh src/main/resources/indexBlogs.sh");
 	        p.waitFor();
 		} catch (InterruptedException | IOException e) {
 			// TODO Auto-generated catch block
