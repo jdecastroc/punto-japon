@@ -38,6 +38,7 @@
 					<layout>ZIP</layout>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 	<dependencies>
