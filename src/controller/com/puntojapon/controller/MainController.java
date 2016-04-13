@@ -32,6 +32,7 @@ import com.puntojapon.colleges.TechSchoolCrawler;
 import com.puntojapon.colleges.TechSchoolUrlBuilder;
 import com.puntojapon.colleges.UniversityCrawler;
 import com.puntojapon.colleges.UniversityUrlBuilder;
+import com.puntojapon.languageSchools.SchoolCrawler;
 
 @RestController
 public class MainController {
@@ -289,6 +290,9 @@ public class MainController {
 	}
 
 	// Tech School Faculty Information Page
+	// localhost:80/fp/id/234/support
+	// localhost:80/buscadorCurriculums/nombre/
+	
 	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchoolFacultySupport(@PathVariable("idTechSchool") String idTechSchool)
@@ -296,12 +300,12 @@ public class MainController {
 		String TechSchoolSupport = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
 		TechSchoolSupport = crawler.getFacultySupport(idTechSchool, "no value");
-
+		
 		return TechSchoolSupport;
 	}
 
 	// Update articles from the blog and index them in elastic search
-	@RequestMapping(value = "/articles/updateRepository", method = RequestMethod.GET)
+	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
 		KettleTransformation.start();
@@ -320,6 +324,18 @@ public class MainController {
         String prettyJson = gson.toJson(json);
 		
 		return !prettyJson.equals("")? prettyJson : "error";
+	}
+	
+	// Language School Info page
+	@RequestMapping(value = "/escuelasIdiomas/id/{idSchool}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showLanguageSchoolInformation(@PathVariable("idSchool") String idSchool)
+			throws Exception {
+		String languageSchoolInfo = "";
+		SchoolCrawler crawler = new SchoolCrawler();
+		languageSchoolInfo = crawler.getSchoolInfo(idSchool);
+		
+		return languageSchoolInfo;
 	}
 
 }
