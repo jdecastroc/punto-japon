@@ -27,6 +27,7 @@ public class SchoolInfo {
 	private String schoolStatus;
 	private String admissionRequirements;
 	private String selectionProcess;
+	private String otherCourses;
 	private String mapUrl;
 	// country - number of people
 	private Map<String, Integer> registeredStudents = new HashMap<String, Integer>();
@@ -45,7 +46,7 @@ public class SchoolInfo {
 	// type of School - number of people
 	private Map<String, Integer> studentsDestination = new HashMap<String, Integer>();
 	// feature number - Description
-	private Map<Integer, Integer> schoolFeatures = new HashMap<Integer, Integer>();
+	private Map<Integer, String> schoolFeatures = new HashMap<Integer, String>();
 	
 	public SchoolInfo(){
 		
@@ -222,6 +223,10 @@ public class SchoolInfo {
 	public void setSelectionProcess(String selectionProcess) {
 		this.selectionProcess = selectionProcess;
 	}
+	
+	public void setOtherCourses(String otherCourses) {
+		this.otherCourses = otherCourses;
+	}
 
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
@@ -233,6 +238,10 @@ public class SchoolInfo {
 
 	public Vector<CourseInfo> getAuthorizedCourseList() {
 		return authorizedCourseList;
+	}
+	
+	public void addCourse(CourseInfo course) {
+		getAuthorizedCourseList().addElement(course);
 	}
 
 	public Map<Integer, Integer> getN1Stadistics() {
@@ -259,7 +268,7 @@ public class SchoolInfo {
 		return studentsDestination;
 	}
 
-	public Map<Integer, Integer> getSchoolFeatures() {
+	public Map<Integer, String> getSchoolFeatures() {
 		return schoolFeatures;
 	}
 

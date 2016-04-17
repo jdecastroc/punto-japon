@@ -326,6 +326,8 @@ public class MainController {
 		return !prettyJson.equals("")? prettyJson : "error";
 	}
 	
+	//TODO Search on the articles
+	
 	// Language School Info page
 	@RequestMapping(value = "/escuelasIdiomas/id/{idSchool}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)

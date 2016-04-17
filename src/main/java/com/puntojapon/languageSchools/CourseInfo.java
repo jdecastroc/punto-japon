@@ -4,24 +4,23 @@ public class CourseInfo {
 
 	private String course;
 	private String purpose;
-	private String lenght;
+	private String length;
 	private String classHours;
 	private String weeks;
 	private String monthAdmission;
-	private int selectionFee;
-	private int admissionFee;
-	private int tuitionFee;
-	private int othersFee;
-	private int totalFee;
-	private String otherCourses;
+	private String selectionFee;
+	private String admissionFee;
+	private String tuitionFee;
+	private String othersFee;
+	private String totalFee;
 
-	public CourseInfo(String courseInput, String purposeInput, String lenghtInput, String classHoursInput,
-			String weeksInput, String monthAdmissionInput, int selectionFeeInput, int admissionFeeInput,
-			int tuitionFeeInput, int othersFeeInput, int totalFeeInput, String otherCourses) {
+	public CourseInfo(String courseInput, String purposeInput, String lengthInput, String classHoursInput,
+			String weeksInput, String monthAdmissionInput, String selectionFeeInput, String admissionFeeInput,
+			String tuitionFeeInput, String othersFeeInput, String totalFeeInput) {
 
 		setCourse(courseInput);
 		setPurpose(purposeInput);
-		setLenght(lenghtInput);
+		setLength(lengthInput);
 		setClassHours(classHoursInput);
 		setWeeks(weeksInput);
 		setMonthAdmission(monthAdmissionInput);
@@ -30,8 +29,11 @@ public class CourseInfo {
 		setTuitionFee(tuitionFeeInput);
 		setOthersFee(othersFeeInput);
 		setTotalFee(totalFeeInput);
-		setOtherCourses(otherCourses);
 
+	}
+	
+	public CourseInfo () {
+		
 	}
 
 	public String getCourse() {
@@ -42,8 +44,8 @@ public class CourseInfo {
 		return purpose;
 	}
 
-	public String getLenght() {
-		return lenght;
+	public String getLength() {
+		return length;
 	}
 
 	public String getClassHours() {
@@ -58,28 +60,24 @@ public class CourseInfo {
 		return monthAdmission;
 	}
 
-	public int getSelectionFee() {
+	public String getSelectionFee() {
 		return selectionFee;
 	}
 
-	public int getAdmissionFee() {
+	public String getAdmissionFee() {
 		return admissionFee;
 	}
 
-	public int getTuitionFee() {
+	public String getTuitionFee() {
 		return tuitionFee;
 	}
 
-	public int getOthersFee() {
+	public String getOthersFee() {
 		return othersFee;
 	}
 
-	public int getTotalFee() {
+	public String getTotalFee() {
 		return totalFee;
-	}
-
-	public String getOtherCourses() {
-		return otherCourses;
 	}
 
 	public void setCourse(String course) {
@@ -90,8 +88,8 @@ public class CourseInfo {
 		this.purpose = purpose;
 	}
 
-	public void setLenght(String lenght) {
-		this.lenght = lenght;
+	public void setLength(String length) {
+		this.length = length;
 	}
 
 	public void setClassHours(String classHours) {
@@ -106,28 +104,24 @@ public class CourseInfo {
 		this.monthAdmission = monthAdmission;
 	}
 
-	public void setSelectionFee(int selectionFee) {
+	public void setSelectionFee(String selectionFee) {
 		this.selectionFee = selectionFee;
 	}
 
-	public void setAdmissionFee(int admissionFee) {
+	public void setAdmissionFee(String admissionFee) {
 		this.admissionFee = admissionFee;
 	}
 
-	public void setTuitionFee(int tuitionFee) {
+	public void setTuitionFee(String tuitionFee) {
 		this.tuitionFee = tuitionFee;
 	}
 
-	public void setOthersFee(int othersFee) {
+	public void setOthersFee(String othersFee) {
 		this.othersFee = othersFee;
 	}
 
-	public void setTotalFee(int totalfee) {
+	public void setTotalFee(String totalfee) {
 		this.totalFee = totalfee;
-	}
-
-	public void setOtherCourses(String otherCourses) {
-		this.otherCourses = otherCourses;
 	}
 
 }
