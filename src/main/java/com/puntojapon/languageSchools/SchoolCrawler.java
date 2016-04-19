@@ -15,6 +15,39 @@ import com.google.gson.*;
 
 public class SchoolCrawler {
 
+	public String getSchoolList(String area) throws Exception {
+
+		// Create the School json structure
+		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+		SchoolList schoolList = new SchoolList(area);
+
+		String url = "http://www.nisshinkyo.org/search/area.php?lng=2&area=" + area + "#terms";
+		
+		//TODO Area translator spanish -> Japanese for the url
+		
+		System.out.println("Voy a -> " + url);
+
+		// Language School List crawler
+		// TODO Change userAgent when application finished
+		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+				.get();
+
+		Elements text = document.select("div#mainBox > table.termsDetail > tbody > tr");
+
+		for (Element element : text) {
+
+			if (!element.select("th").hasClass("title") && element.select("th") != null) {
+
+				// Set school id, name and address
+				schoolList.addSchool(element.select("th > a").attr("href"), element.select("th > a").text().trim(),
+						element.select("td").text().trim());
+
+			}
+		}
+
+		return gson.toJson(schoolList);
+	}
+
 	public String getSchoolInfo(String idSchool) throws Exception {
 
 		// Create the School json structure
@@ -502,8 +535,8 @@ public class SchoolCrawler {
 			}
 
 			// School map base on google maps API query
-			languageSchool.setMapUrl("https://www.google.com/maps/search/" + languageSchool.getName());
-			
+			languageSchool.setMapUrl("https://www.google.com/maps/search/" + languageSchool.getJapaneseName());
+
 		}
 		return gson.toJson(languageSchool);
 	}

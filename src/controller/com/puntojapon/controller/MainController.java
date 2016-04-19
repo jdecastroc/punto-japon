@@ -292,7 +292,7 @@ public class MainController {
 	// Tech School Faculty Information Page
 	// localhost:80/fp/id/234/support
 	// localhost:80/buscadorCurriculums/nombre/
-	
+
 	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchoolFacultySupport(@PathVariable("idTechSchool") String idTechSchool)
@@ -300,7 +300,7 @@ public class MainController {
 		String TechSchoolSupport = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
 		TechSchoolSupport = crawler.getFacultySupport(idTechSchool, "no value");
-		
+
 		return TechSchoolSupport;
 	}
 
@@ -316,18 +316,30 @@ public class MainController {
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getLatestArticles() throws Exception {
-	     
+
 		String obtainedJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
 		JsonParser parser = new JsonParser();
-        JsonObject json = parser.parse(obtainedJson).getAsJsonObject();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String prettyJson = gson.toJson(json);
-		
-		return !prettyJson.equals("")? prettyJson : "error";
+		JsonObject json = parser.parse(obtainedJson).getAsJsonObject();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String prettyJson = gson.toJson(json);
+
+		return !prettyJson.equals("") ? prettyJson : "error";
 	}
-	
-	//TODO Search on the articles
-	
+
+	// TODO Search on the articles
+
+	// Language School List page
+	@RequestMapping(value = "/escuelasIdiomas/{area}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String showLanguageSchoolList(@PathVariable("area") String area)
+			throws Exception {
+		String languageSchoolList = "";
+		SchoolCrawler crawler = new SchoolCrawler();
+		languageSchoolList = crawler.getSchoolList(area);
+
+		return languageSchoolList;
+	}
+
 	// Language School Info page
 	@RequestMapping(value = "/escuelasIdiomas/id/{idSchool}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
@@ -336,7 +348,7 @@ public class MainController {
 		String languageSchoolInfo = "";
 		SchoolCrawler crawler = new SchoolCrawler();
 		languageSchoolInfo = crawler.getSchoolInfo(idSchool);
-		
+
 		return languageSchoolInfo;
 	}
 

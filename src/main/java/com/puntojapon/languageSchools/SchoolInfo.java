@@ -135,6 +135,10 @@ public class SchoolInfo {
 	public String getSelectionProcess() {
 		return selectionProcess;
 	}
+	
+	public String getOtherCourses() {
+		return otherCourses;
+	}
 
 	public String getMapUrl() {
 		return mapUrl;
