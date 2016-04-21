@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class SchoolInfo {
 
-	private boolean search = true;
+	private boolean search = false;
 	private String id;
 	private String name;
 	private String japaneseName;
@@ -29,6 +29,7 @@ public class SchoolInfo {
 	private String selectionProcess;
 	private String otherCourses;
 	private String mapUrl;
+	
 	// country - number of people
 	private Map<String, Integer> registeredStudents = new HashMap<String, Integer>();
 	// Course's list
@@ -49,7 +50,7 @@ public class SchoolInfo {
 	private Map<Integer, String> schoolFeatures = new HashMap<Integer, String>();
 	
 	public SchoolInfo(){
-		
+		setSearch(false);
 	}
 
 	public boolean isSearch() {
@@ -153,7 +154,10 @@ public class SchoolInfo {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name != null) {
+			setSearch(true);
+			this.name = name;
+		}
 	}
 
 	public void setJapaneseName(String japaneseName) {

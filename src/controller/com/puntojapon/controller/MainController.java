@@ -8,6 +8,8 @@
  */
 package com.puntojapon.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -33,6 +35,9 @@ import com.puntojapon.colleges.TechSchoolUrlBuilder;
 import com.puntojapon.colleges.UniversityCrawler;
 import com.puntojapon.colleges.UniversityUrlBuilder;
 import com.puntojapon.languageSchools.SchoolCrawler;
+import com.puntojapon.work.JobsCrawler;
+
+import eu.bitwalker.useragentutils.UserAgent;
 
 @RestController
 public class MainController {
@@ -290,8 +295,6 @@ public class MainController {
 	}
 
 	// Tech School Faculty Information Page
-	// localhost:80/fp/id/234/support
-	// localhost:80/buscadorCurriculums/nombre/
 
 	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
@@ -304,7 +307,7 @@ public class MainController {
 		return TechSchoolSupport;
 	}
 
-	// Update articles from the blog and index them in elastic search
+	// Update articles from the blog and index them into elastic search
 	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
@@ -327,12 +330,52 @@ public class MainController {
 	}
 
 	// TODO Search on the articles
+	@RequestMapping(value = "/articulos/buscar", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String searchCv(@RequestParam(value = "titulo") String titulo) throws Exception {
+
+		StringBuilder processOutput = new StringBuilder();
+
+		// Query para busqueda en elasticsearch
+		String query = "{\"query\": {\"nested\": {\"path\": \"data\",\"query\": {\"match\": {\"data.Title\": \"" + titulo + "\"}},\"inner_hits\": {}}}}";
+
+		if (!titulo.equals("")) {
+			System.out.println("Consulta: " + query);
+
+			// Se arma el proceso que se va a ejecutar en el servidor
+			ProcessBuilder processBuilder = new ProcessBuilder("curl", "-s", "-XPOST",
+					"http://51.255.202.84:9200/blogs/articulos/_search", "-d", query);
+
+			processBuilder.redirectErrorStream(true);
+			Process process = processBuilder.start();
+
+			// Buffer para leer el output del proceso
+			try (BufferedReader processOutputReader = new BufferedReader(
+					new InputStreamReader(process.getInputStream()));) {
+				String readLine;
+
+				while ((readLine = processOutputReader.readLine()) != null) {
+					processOutput.append(readLine + System.lineSeparator());
+				}
+				process.waitFor();
+			}
+
+		}
+		
+		JsonParser parser = new JsonParser();
+		JsonObject json = (JsonObject) parser.parse(processOutput.toString().trim());
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String prettyJson = gson.toJson(json);
+		
+		return !prettyJson.equals("") ? prettyJson : "error";
+	}
+
+	// ----------------------
 
 	// Language School List page
 	@RequestMapping(value = "/escuelasIdiomas/{area}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showLanguageSchoolList(@PathVariable("area") String area)
-			throws Exception {
+	public @ResponseBody String showLanguageSchoolList(@PathVariable("area") String area) throws Exception {
 		String languageSchoolList = "";
 		SchoolCrawler crawler = new SchoolCrawler();
 		languageSchoolList = crawler.getSchoolList(area);
@@ -350,6 +393,21 @@ public class MainController {
 		languageSchoolInfo = crawler.getSchoolInfo(idSchool);
 
 		return languageSchoolInfo;
+	}
+
+	// Jobs provided by ApplyQ API
+	@RequestMapping(value = "/trabajo/applyq/{prefecture}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getApplyqJobs(@PathVariable("prefecture") String prefecture,
+			@RequestParam(value = "page") int page) throws Exception {
+		String jobList = "";
+		JobsCrawler crawler = new JobsCrawler();
+		// UserAgent userAgent =
+		// UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+		// jobList = crawler.getJobsApplyq(prefecture, userAgent);
+		jobList = crawler.getJobsApplyq(prefecture, page);
+
+		return jobList;
 	}
 
 }
