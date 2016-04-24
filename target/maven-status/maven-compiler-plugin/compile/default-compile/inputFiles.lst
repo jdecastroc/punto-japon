@@ -1,5 +1,7 @@
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\package-info.java
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\articles\SearchArticles.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\languageSchools\SchoolInfo.java
+G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\SwaggerConfig.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\UniversityUrlBuilder.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\news\package-info.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\CollegeBasicInfo.java
@@ -9,6 +11,7 @@ G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\CollegeFacultyLi
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\articles\package-info.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\TechSchoolUrlBuilder.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\Application.java
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\work\JobsCrawler.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\package-info.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\work\package-info.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\articles\KettleTransformation.java
@@ -19,12 +22,14 @@ G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\GradSchool.java
 G:\Desarrollo\punto-japon\src\controller\com\puntojapon\controller\MainController.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\languageSchools\SchoolCrawler.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\Translator.java
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\languageSchools\JapanAreas.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\articles\ElasticSearch.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\CollegeCrawler.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\CollegeList.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\Faculty.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\University.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\UrlBuilder.java
+G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\languageSchools\SchoolList.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\GradSchoolUrlBuilder.java
 G:\Desarrollo\punto-japon\src\test\java\com\puntojapon\test\CrawlerTest.java
 G:\Desarrollo\punto-japon\src\main\java\com\puntojapon\colleges\TechSchoolCrawler.java

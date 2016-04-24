@@ -2,14 +2,12 @@
  * RESTFul service
  * 
  * @author: Jorge de Castro
- * @version: 27/01/2016/A
+ * @version: 24/04/2016/A
  * @see <a href = "https://bitbucket.org/jdecastroc/punto-japon" /> Bitbucket
  *      repository </a>
  */
 package com.puntojapon.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -27,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.puntojapon.articles.KettleTransformation;
+import com.puntojapon.articles.SearchArticles;
 import com.puntojapon.colleges.CollegeList;
 import com.puntojapon.colleges.GradSchoolCrawler;
 import com.puntojapon.colleges.GradSchoolUrlBuilder;
@@ -37,11 +36,50 @@ import com.puntojapon.colleges.UniversityUrlBuilder;
 import com.puntojapon.languageSchools.SchoolCrawler;
 import com.puntojapon.work.JobsCrawler;
 
-import eu.bitwalker.useragentutils.UserAgent;
+//import eu.bitwalker.useragentutils.UserAgent;
 
+/**
+ * MainController works, like the name says, as the main controller of the REST
+ * application. It provides to call the different program functions in order to
+ * retrieve information provided in a well-formed json
+ * 
+ * @author jdecastroc
+ *
+ */
 @RestController
 public class MainController {
 
+	/**
+	 * SearchUni take the information given by the user in the mapped URL and
+	 * use it to retrieve a list of Japanese universities
+	 * 
+	 * @param prefecture
+	 *            -> list of prefectures provided by the user
+	 * @param typeStudiesList
+	 *            -> list of type of studies provided by the user to search the
+	 *            universities that match
+	 * @param nameUni
+	 *            -> name of the universities to search
+	 * @param typeUni
+	 *            -> type of universities to search
+	 * @param admisionMonth
+	 *            -> admission month of the universities to search
+	 * @param deadLine
+	 *            -> dead line to give the admission documents of the
+	 *            universities to search
+	 * @param eju
+	 *            -> specifies whether or not is necessary to take the Japanese
+	 *            exam to enter the universities to search
+	 * @param engExam
+	 *            -> specifies whether or not is necessary to take the English
+	 *            exam to enter the universities to search
+	 * @param admisionUni
+	 *            -> specifies the admission procedure of the universities to
+	 *            search
+	 * @return all the information related to the universities which matched
+	 *         with the different parameters
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/{prefecture}/{typeStudies}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
@@ -70,7 +108,25 @@ public class MainController {
 		return universityList;
 	}
 
-	// Grad school
+	/**
+	 * SearchGradSchool take the information given by the user in the mapped URL
+	 * and use it to retrieve a list of Japanese GradSchools
+	 * 
+	 * @param prefecture
+	 *            -> list of prefectures provided by the user
+	 * @param nameGrad
+	 *            -> name of the GradSchool to search
+	 * @param typeGrad
+	 *            -> type of GradSchool to search
+	 * @param typeCourse
+	 *            -> Specifies the nature of the course the user want to search
+	 * @param englishCourse
+	 *            -> Specifies whether or not is necessary to take a previous
+	 *            English exam
+	 * @return all the information related to the GradSchools which matched with
+	 *         the different parameters
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String searchGradSchool(@PathVariable("prefecture") String[] prefecture,
@@ -95,9 +151,21 @@ public class MainController {
 		return gradSchoolList;
 	}
 
+	/**
+	 * SearchFpSchool take the information given by the user in the mapped URL
+	 * and use it to retrieve a list of Japanese TechSchools
+	 * 
+	 * @param prefecture
+	 *            -> list of prefectures provided by the user
+	 * @param nameTech
+	 *            -> name of the TechSchool to search
+	 * @return all the information related to the TechSchools which matched with
+	 *         the different parameters
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/fp/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchUni(@PathVariable("prefecture") String[] prefecture,
+	public @ResponseBody String searchTechSchool(@PathVariable("prefecture") String[] prefecture,
 			@RequestParam(value = "nameTech") String nameTech) throws Exception {
 
 		String techSchoolList = "";
@@ -115,7 +183,17 @@ public class MainController {
 		return techSchoolList;
 	}
 
-	// University Page
+	/**
+	 * showUniversities retrieve all the information of a university given a
+	 * proper university id
+	 * 
+	 * @param id
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @return all the information related to the university which matched with
+	 *         the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversity(@PathVariable("id") String id) throws Exception {
@@ -126,7 +204,17 @@ public class MainController {
 		return universityInfo;
 	}
 
-	// Grad Page
+	/**
+	 * showGradSchool retrieve all the information of a GradSchool given a
+	 * proper university id
+	 * 
+	 * @param id
+	 *            -> id of the GradSchool which information is going to be
+	 *            provided
+	 * @return all the information related to the GradSchool which matched with
+	 *         the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchool(@PathVariable("id") String id) throws Exception {
@@ -137,7 +225,17 @@ public class MainController {
 		return gradSchoolInfo;
 	}
 
-	// FP Page
+	/**
+	 * showTechSchool retrieve all the information of a TechSchool given a
+	 * proper university id
+	 * 
+	 * @param id
+	 *            -> id of the techSchool which information is going to be
+	 *            provided
+	 * @return all the information related to the techSchool which matched with
+	 *         the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/fp/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchool(@PathVariable("id") String id) throws Exception {
@@ -148,7 +246,22 @@ public class MainController {
 		return techSchoolInfo;
 	}
 
-	// University Faculty Admissions Page
+	/**
+	 * University Faculty Admissions Page
+	 * 
+	 * showUniversityFacultyAdmissions retrieve the admissions page of the
+	 * university faculty related to the given university and faculty id
+	 * 
+	 * @param idUniversity
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the university which admission
+	 *            page is going to be retrieved
+	 * @return The admission information related to the facilty which matched
+	 *         with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversityFacultyAdmissions(@PathVariable("idUniversity") String idUniversity,
@@ -160,7 +273,22 @@ public class MainController {
 		return facultyAdmissions;
 	}
 
-	// University Faculty Info Page
+	/**
+	 * University Faculty Info Page
+	 * 
+	 * showUniversityFacultyInfo retrieve the main info page of the university
+	 * faculty related to the given university and faculty id
+	 * 
+	 * @param idUniversity
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the university which info page
+	 *            is going to be retrieved
+	 * @return The main information related to the faculty which matched with
+	 *         the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversityFacultyInfo(@PathVariable("idUniversity") String idUniversity,
@@ -172,7 +300,22 @@ public class MainController {
 		return facultyInfo;
 	}
 
-	// University Faculty Student Support Page
+	/**
+	 * University Faculty Student Support Page
+	 * 
+	 * showUniversityFacultyInfo retrieve the student support page of the
+	 * university related to the given university and faculty id
+	 * 
+	 * @param idUniversity
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the university which student
+	 *            support page is going to be retrieved
+	 * @return The main faculty support information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversityFacultySupport(@PathVariable("idUniversity") String idUniversity,
@@ -184,7 +327,22 @@ public class MainController {
 		return facultySupport;
 	}
 
-	// University Faculty Facilities Page
+	/**
+	 * University Faculty Facilities Page
+	 * 
+	 * showUniversityFacultyFacilities retrieve the faculty facilities page of
+	 * the university faculty related to the given university and faculty id
+	 * 
+	 * @param idUniversity
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the university which faculty
+	 *            facilities page is going to be retrieved
+	 * @return The faculty facilities information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversityFacultyFacilities(@PathVariable("idUniversity") String idUniversity,
@@ -196,7 +354,22 @@ public class MainController {
 		return facultyFacilities;
 	}
 
-	// University Faculty Access Page
+	/**
+	 * University Faculty Access Page
+	 * 
+	 * showUniversityFacultyAccess retrieve the faculty access page of the
+	 * university faculty related to the given university and faculty id
+	 * 
+	 * @param idUniversity
+	 *            -> id of the university which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the university which faculty
+	 *            access page is going to be retrieved
+	 * @return The faculty access information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showUniversityFacultyAccess(@PathVariable("idUniversity") String idUniversity,
@@ -208,9 +381,22 @@ public class MainController {
 		return facultyAccess;
 	}
 
-	// Grad Schools Faculty
-
-	// Grad School Faculty Admissions Page
+	/**
+	 * Grad School Faculty Admissions Page
+	 * 
+	 * showGradSchoolFacultyAdmissions retrieve the faculty access page of the
+	 * grad school faculty related to the given grad school and faculty id
+	 * 
+	 * @param idGraduate
+	 *            -> id of the gradSchool which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the gradSchool which faculty
+	 *            access page is going to be retrieved
+	 * @return The faculty access information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchoolFacultyAdmissions(@PathVariable("idGraduate") String idGraduate,
@@ -222,7 +408,22 @@ public class MainController {
 		return facultyAdmissions;
 	}
 
-	// Grad School Faculty Info Page
+	/**
+	 * Grad School Faculty Info Page
+	 * 
+	 * showGradSchoolFacultyInfo retrieve the faculty info page of the grad
+	 * school faculty related to the given grad school and faculty id
+	 * 
+	 * @param idGraduate
+	 *            -> id of the gradSchool which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the gradSchool which faculty
+	 *            info page is going to be retrieved
+	 * @return The faculty main information related to the faculty which matched
+	 *         with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchoolFacultyInfo(@PathVariable("idGraduate") String idGraduate,
@@ -234,7 +435,22 @@ public class MainController {
 		return facultyInfo;
 	}
 
-	// Grad School Faculty Support Page
+	/**
+	 * Grad School Faculty Support Page
+	 * 
+	 * showGradSchoolFacultySupport retrieve the faculty support page of the
+	 * grad school faculty related to the given grad school and faculty id
+	 * 
+	 * @param idGraduate
+	 *            -> id of the gradSchool which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the gradSchool which faculty
+	 *            support page is going to be retrieved
+	 * @return The faculty support information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchoolFacultySupport(@PathVariable("idGraduate") String idGraduate,
@@ -246,7 +462,22 @@ public class MainController {
 		return facultySupport;
 	}
 
-	// Grad School Faculty Facilities Page
+	/**
+	 * Grad School Faculty Facilities Page
+	 * 
+	 * showGradSchoolFacultyFacilities retrieve the faculty facilities page of
+	 * the grad school faculty related to the given grad school and faculty id
+	 * 
+	 * @param idGraduate
+	 *            -> id of the gradSchool which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the gradSchool which faculty
+	 *            facilities page is going to be retrieved
+	 * @return The faculty facilities information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchoolFacultyFacilities(@PathVariable("idGraduate") String idGraduate,
@@ -258,7 +489,22 @@ public class MainController {
 		return facultyFacilities;
 	}
 
-	// Grad School Faculty Access Page
+	/**
+	 * Grad School Faculty Access Page
+	 * 
+	 * showGradSchoolFacultyAccess retrieve the faculty access page of the grad
+	 * school faculty related to the given grad school and faculty id
+	 * 
+	 * @param idGraduate
+	 *            -> id of the gradSchool which information is going to be
+	 *            provided
+	 * @param idFaculty
+	 *            -> id of the faculty related to the gradSchool which faculty
+	 *            access page is going to be retrieved
+	 * @return The faculty access information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showGradSchoolFacultyAccess(@PathVariable("idGraduate") String idGraduate,
@@ -270,7 +516,20 @@ public class MainController {
 		return facultyAccess;
 	}
 
-	// Tech School Faculty Essential Information Page
+	/**
+	 * Tech School Faculty Essential Information Page
+	 * 
+	 * showTechSchoolFacultyEssentialInfo retrieve the faculty essential info
+	 * page of the tech school faculty related to the given tech school and
+	 * faculty id
+	 * 
+	 * @param idTechSchool
+	 *            -> id of the techSchool which information is going to be
+	 *            provided
+	 * @return The faculty essential information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchoolFacultyEssentialInfo(@PathVariable("idTechSchool") String idTechSchool)
@@ -282,7 +541,19 @@ public class MainController {
 		return TechSchoolEssentialInfo;
 	}
 
-	// Tech School Faculty Information Page
+	/**
+	 * Tech School Faculty Information Page
+	 * 
+	 * showTechSchoolFacultyInfo retrieve the faculty info page of the tech
+	 * school faculty related to the given tech school and faculty id
+	 * 
+	 * @param idTechSchool
+	 *            -> id of the techSchool which information is going to be
+	 *            provided
+	 * @return The faculty information related to the faculty which matched with
+	 *         the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchoolFacultyInfo(@PathVariable("idTechSchool") String idTechSchool)
@@ -294,8 +565,19 @@ public class MainController {
 		return TechSchoolInfo;
 	}
 
-	// Tech School Faculty Information Page
-
+	/**
+	 * Tech School Faculty Support Page
+	 * 
+	 * showTechSchoolFacultySupport retrieve the faculty support page of the
+	 * tech school faculty related to the given tech school and faculty id
+	 * 
+	 * @param idTechSchool
+	 *            -> id of the techSchool which information is going to be
+	 *            provided
+	 * @return The faculty support information related to the faculty which
+	 *         matched with the id in a JSON format
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showTechSchoolFacultySupport(@PathVariable("idTechSchool") String idTechSchool)
@@ -307,7 +589,18 @@ public class MainController {
 		return TechSchoolSupport;
 	}
 
-	// Update articles from the blog and index them into elastic search
+	// TODO index them into elasticSearch
+	/**
+	 * Update articles from the blog and index them into elastic search
+	 * 
+	 * updateArticles update the blogs articles by applying the kettle
+	 * transformation which generate as a output the sort.json file which
+	 * include the latest articles sorted by date and a .json file related to
+	 * each blog
+	 * 
+	 * @return a message when the transformation has finished
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
@@ -315,7 +608,16 @@ public class MainController {
 		return "Artículos actualizados";
 	}
 
-	// Return sorted articles
+	/**
+	 * Return sorted articles
+	 * 
+	 * getLatesArticles read the file sort.json where the articles are stored
+	 * sorted by date and return it as a json file.
+	 * 
+	 * @return json file with the articles sorted by date. Error if the articles
+	 *         are empty
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getLatestArticles() throws Exception {
@@ -329,50 +631,36 @@ public class MainController {
 		return !prettyJson.equals("") ? prettyJson : "error";
 	}
 
-	// TODO Search on the articles
+	/**
+	 * Search on the articles
+	 * 
+	 * searchArticleByTitle allow the user to search a given string into the
+	 * stored articles titles
+	 * 
+	 * @param titulo
+	 *            -> String to search into the articles titles
+	 * @return a json file with the hits
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/articulos/buscar", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchCv(@RequestParam(value = "titulo") String titulo) throws Exception {
+	public @ResponseBody String searchArticleByTitle(@RequestParam(value = "titulo") String titulo) throws Exception {
 
-		StringBuilder processOutput = new StringBuilder();
-
-		// Query para busqueda en elasticsearch
-		String query = "{\"query\": {\"nested\": {\"path\": \"data\",\"query\": {\"match\": {\"data.Title\": \"" + titulo + "\"}},\"inner_hits\": {}}}}";
-
-		if (!titulo.equals("")) {
-			System.out.println("Consulta: " + query);
-
-			// Se arma el proceso que se va a ejecutar en el servidor
-			ProcessBuilder processBuilder = new ProcessBuilder("curl", "-s", "-XPOST",
-					"http://51.255.202.84:9200/blogs/articulos/_search", "-d", query);
-
-			processBuilder.redirectErrorStream(true);
-			Process process = processBuilder.start();
-
-			// Buffer para leer el output del proceso
-			try (BufferedReader processOutputReader = new BufferedReader(
-					new InputStreamReader(process.getInputStream()));) {
-				String readLine;
-
-				while ((readLine = processOutputReader.readLine()) != null) {
-					processOutput.append(readLine + System.lineSeparator());
-				}
-				process.waitFor();
-			}
-
-		}
-		
-		JsonParser parser = new JsonParser();
-		JsonObject json = (JsonObject) parser.parse(processOutput.toString().trim());
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String prettyJson = gson.toJson(json);
-		
-		return !prettyJson.equals("") ? prettyJson : "error";
+		return SearchArticles.searchByTitle(titulo);
 	}
 
-	// ----------------------
-
-	// Language School List page
+	/**
+	 * Language School List page
+	 * 
+	 * showLanguageSchoolList retrieve the user the Japanese language schools
+	 * from a prefecture in Japan
+	 * 
+	 * @param area
+	 *            -> prefecture where to search the Japanese language schools
+	 * @return a json file with the matches. All the japanese language schools
+	 *         from the given prefecture
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/escuelasIdiomas/{area}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showLanguageSchoolList(@PathVariable("area") String area) throws Exception {
@@ -383,7 +671,18 @@ public class MainController {
 		return languageSchoolList;
 	}
 
-	// Language School Info page
+	/**
+	 * Language School Info page
+	 * 
+	 * showLanguageSchoolInformation retrieve all the information from a
+	 * language school by a given id
+	 * 
+	 * @param idSchool
+	 *            -> id of the Japanese language school which to get the
+	 *            information
+	 * @return a json file with the information of the language school
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/escuelasIdiomas/id/{idSchool}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String showLanguageSchoolInformation(@PathVariable("idSchool") String idSchool)
@@ -395,7 +694,19 @@ public class MainController {
 		return languageSchoolInfo;
 	}
 
-	// Jobs provided by ApplyQ API
+	/**
+	 * Jobs provided by ApplyQ API
+	 * 
+	 * getApplyqJobs perform a simple API call to the ApplyQ API retrieving his
+	 * information.
+	 * 
+	 * @param prefecture
+	 *            -> prefecture where to search the jobs
+	 * @param page
+	 *            -> page related to the AppliQ API
+	 * @return json file from ApplyQ API
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/trabajo/applyq/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getApplyqJobs(@PathVariable("prefecture") String prefecture,

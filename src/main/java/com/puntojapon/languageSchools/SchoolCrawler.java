@@ -13,8 +13,21 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import com.google.gson.*;
 
+/**
+ * SchoolCrawler crawls the nisshinkyo webpage getting the information related to the Japanese language schools in Japan
+ * 
+ * @author jdecastroc
+ *
+ */
 public class SchoolCrawler {
 
+	/**
+	 * getSchoolList crawl a list of Japanese language schools page based on the user prefecture choice
+	 * 
+	 * @param englishArea -> Prefecture where to search the language schools
+	 * @return json file with the list of the Japanese language schools
+	 * @throws Exception
+	 */
 	public String getSchoolList(String englishArea) throws Exception {
 
 		// Create the School json structure
@@ -79,6 +92,13 @@ public class SchoolCrawler {
 		return gson.toJson(schoolList);
 	}
 
+	/**
+	 * getSchoolInfo crawl a Japanese language school page based on id of the Japanese school
+	 * 
+	 * @param idSchool -> id of the school to which information is going to be crawled and retrieved
+	 * @return the information of the Japanese language school in a json format
+	 * @throws Exception
+	 */
 	public String getSchoolInfo(String idSchool) throws Exception {
 
 		// Create the School json structure

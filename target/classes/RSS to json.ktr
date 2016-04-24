@@ -1557,7 +1557,7 @@
     <url_Field/>
     <read_from/>
     <urls>
-      <url>http&#x3a;&#x2f;&#x2f;creativoenjapon.com&#x2f;feed&#x2f;</url>
+      <url>https&#x3a;&#x2f;&#x2f;creativoenjapon.com&#x2f;feed&#x2f;</url>
     </urls>
     <fields>
       <field>
@@ -1751,7 +1751,7 @@
     <url_Field/>
     <read_from/>
     <urls>
-      <url>http&#x3a;&#x2f;&#x2f;japabanchel.com&#x2f;feed&#x2f;</url>
+      <url>https&#x3a;&#x2f;&#x2f;japabanchel.com&#x2f;feed&#x2f;</url>
     </urls>
     <fields>
       <field>

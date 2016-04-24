@@ -1,5 +1,18 @@
+/**
+ * Language School Crawler
+ * @author jdecastroc
+ * @version 1.0, 24 Apr 2016
+ *
+ */
 package com.puntojapon.languageSchools;
 
+/**
+ * Course contains the mainly data structure related to the language school
+ * courses which information is going to be crawled.
+ * 
+ * @author jdecastroc
+ *
+ */
 public class CourseInfo {
 
 	private String course;
@@ -14,6 +27,32 @@ public class CourseInfo {
 	private String othersFee;
 	private String totalFee;
 
+	/**
+	 * Main builder which package the object info
+	 * 
+	 * @param courseInput
+	 *            -> Name of the course
+	 * @param purposeInput
+	 *            -> Description of the purpose of the course
+	 * @param lengthInput
+	 *            -> length of the course
+	 * @param classHoursInput
+	 *            -> Total class hours of the course
+	 * @param weeksInput
+	 *            -> Total weeks
+	 * @param monthAdmissionInput
+	 *            -> Months of admission related to the course
+	 * @param selectionFeeInput
+	 *            -> Fee related to the selection
+	 * @param admissionFeeInput
+	 *            -> Fee related to the admission
+	 * @param tuitionFeeInput
+	 *            -> Fee related to the tuition
+	 * @param othersFeeInput
+	 *            -> Others fee
+	 * @param totalFeeInput
+	 *            -> Total fee of the course
+	 */
 	public CourseInfo(String courseInput, String purposeInput, String lengthInput, String classHoursInput,
 			String weeksInput, String monthAdmissionInput, String selectionFeeInput, String admissionFeeInput,
 			String tuitionFeeInput, String othersFeeInput, String totalFeeInput) {
@@ -31,11 +70,18 @@ public class CourseInfo {
 		setTotalFee(totalFeeInput);
 
 	}
-	
-	public CourseInfo () {
-		
+
+	/**
+	 * Main constructor of the class
+	 */
+	public CourseInfo() {
+
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCourse() {
 		return course;
 	}
