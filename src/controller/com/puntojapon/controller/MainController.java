@@ -11,6 +11,8 @@ package com.puntojapon.controller;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -620,8 +622,10 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getLatestArticles() throws Exception {
+	public @ResponseBody String getLatestArticles(HttpServletResponse  response) throws Exception {
 
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		
 		String obtainedJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(obtainedJson).getAsJsonObject();
