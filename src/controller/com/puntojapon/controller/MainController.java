@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.puntojapon.articles.ElasticSearch;
 import com.puntojapon.articles.KettleTransformation;
 import com.puntojapon.articles.SearchArticles;
 import com.puntojapon.colleges.CollegeList;
@@ -607,6 +608,8 @@ public class MainController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
 		KettleTransformation.start();
+		//Call to the elastic search index process
+		ElasticSearch.filesIndexation();
 		return "Artículos actualizados";
 	}
 

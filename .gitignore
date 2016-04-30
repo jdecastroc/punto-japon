@@ -4,6 +4,10 @@
 bin/
 doc/
 tmp/
+target/classes/
+target/test-classes/
+src/main/resources/articles/*.json
+src/main/resources/sort.json
 *.tmp
 *.bak
 *.swp
@@ -41,6 +45,3 @@ local.properties
 
 # STS (Spring Tool Suite)
 .springBeans
-
-#Personal
-jsoup-1.8.2.jar
