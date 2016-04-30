@@ -6,12 +6,12 @@ $(document).ready(function () {
 	  $('#moreArticles100').hide();
 
 	  $('#show-data').fadeOut('slow', function(){
-             loadArticles(5);
+             loadArticles(10);
 	  });
 
 	   $('#moreArticles10').click(function () {
 		   $('#show-data').fadeOut('slow', function(){
-             loadArticles(10);
+             loadArticles(52);
 			});
 		   $('#moreArticles10').hide();
 		   $('#moreArticles100').show();
@@ -51,34 +51,41 @@ $(document).ready(function () {
 				
 				  console.log(data);
 
-				  //showData.empty();
+				  showData.empty(); //Refresh the div where the articles are stored
 
 
 			var jsonData = data.data; //parse json
+			
 			var output = "<ul>";
-			
-			
-	//		<h1>Title 2</h1>
-    //                 <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_4073-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-     //                <article><p>
-     //                    
-     //                    </p></article>
-     //                <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a> 
-	 
-	 
-	 
-	 
-	 
-	 
-			
 			for (i = 0; i < showArticles; i++) {
+				
+				if (i%2 == false){
+				output+='<div class="col_half">';
 				output+='<h3>' + jsonData[i].Title + '</h3>';
 				output+='<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author +'.jpg" alt="' + jsonData[i].Author +'"></a></div>';
+				
 				output+=' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author +'</a></li></ul>';
 				output+='<article><p> ' + jsonData[i].Description + '<p></article>';
 				output+='<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
 				
-				output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
+				//output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
+				output+='</div>';
+				}
+				
+				else {
+				output+='<div class="col_half col_last">';
+				output+='<h3>' + jsonData[i].Title + '</h3>';
+				output+='<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author +'.jpg" alt="' + jsonData[i].Author +'"></a></div>';
+				
+				output+=' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author +'</a></li></ul>';
+				output+='<article><p> ' + jsonData[i].Description + '<p></article>';
+				output+='<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
+				
+				//output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
+				output+='</div>';	
+				}
+				
+	
 			}
 			output+="</ul>";
 			showData.append(output);
@@ -87,7 +94,6 @@ $(document).ready(function () {
 		  }
 		  
 		});
-		
 		$('#show-data').fadeIn('slow');
 	 }
 		//----------Articulos cargados----------
