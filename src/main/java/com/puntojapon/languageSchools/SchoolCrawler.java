@@ -12,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import com.google.gson.*;
+import com.puntojapon.common.RandomUserAgent;
 
 /**
  * SchoolCrawler crawls the nisshinkyo webpage getting the information related to the Japanese language schools in Japan
@@ -73,7 +74,7 @@ public class SchoolCrawler {
 
 		// Language School List crawler
 		// TODO Change userAgent when application finished
-		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 				.get();
 
 		Elements text = document.select("div#mainBox > table.termsDetail > tbody > tr");
@@ -110,7 +111,7 @@ public class SchoolCrawler {
 
 		// Crawler
 		// TODO Change userAgent when application finished
-		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 				.get();
 
 		// Removing span HTML tags

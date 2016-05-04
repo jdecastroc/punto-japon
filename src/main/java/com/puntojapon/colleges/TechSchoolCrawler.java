@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 
 import com.google.gson.*;
 import com.puntojapon.colleges.Faculty.FacultyCourse;
+import com.puntojapon.common.RandomUserAgent;
 
 /**
  * Provides all the crawlers related with the Tech Schools searchs and also Tech
@@ -74,7 +75,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 
 		// Crawler
 		// TODO Change userAgent when application finished
-		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 				.get();
 
 		// Next page
@@ -208,7 +209,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		try {
 			// TODO Change userAgent when application finished
 			Document document = Jsoup.connect(techSchool.getId())
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#schoolContainer");
 			for (Element element : text) {
@@ -310,7 +311,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Voy a -> " + "http://www.jpss.jp/en/tech/" + faculty.getParent() + "/");
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 
@@ -460,7 +461,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Voy a -> " + "http://www.jpss.jp/en/tech/" + faculty.getParent() + "/faculty/");
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/faculty/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 
@@ -547,7 +548,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 
 		try {
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/support/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 

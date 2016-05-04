@@ -11,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import com.google.gson.*;
+import com.puntojapon.common.RandomUserAgent;
 
 /**
  * Provides all the crawlers related with the university searchs and also
@@ -70,7 +71,7 @@ public class UniversityCrawler extends CollegeCrawler {
 
 		// Crawler
 		// TODO Change userAgent when application finished
-		Document document = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 				.get();
 
 		// Next page
@@ -205,7 +206,7 @@ public class UniversityCrawler extends CollegeCrawler {
 
 			// TODO Change userAgent when application finished
 			Document document = Jsoup.connect(university.getId())
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#schoolContainer");
 			for (Element element : text) {
@@ -376,7 +377,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/info/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/info/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -517,7 +518,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/support/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/support/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -599,7 +600,7 @@ public class UniversityCrawler extends CollegeCrawler {
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId()
 							+ "/facilities/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -688,7 +689,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/access/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/access/")
-					.userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 

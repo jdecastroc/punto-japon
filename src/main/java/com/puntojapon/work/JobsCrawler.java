@@ -11,6 +11,8 @@ import java.util.Arrays;
 
 import org.jsoup.Jsoup;
 
+import com.puntojapon.common.RandomUserAgent;
+
 //import eu.bitwalker.useragentutils.UserAgent;
 
 /**
@@ -54,7 +56,7 @@ public class JobsCrawler {
 			// UserAgent.parseUserAgentString(request.getHeader("User-Agent"))
 			// TODO cambiar USER AGENT
 
-			jobsJson = Jsoup.connect(url).userAgent("Puntojaponbot/0.1 (+jdecastrocabello@gmail.com").timeout(0)
+			jobsJson = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 					.ignoreContentType(true).execute().body();
 		} else {
 			jobsJson = "Invalid prefecture";
