@@ -29,12 +29,31 @@ $(document).ready(function () {
 	var areaFp = $('#areaEstudioFp');
 	var areaJapones = $('#areaEstudioJapones');
 	var areaDefault = $('#areaDefault');
+
+	var tipoGrado = $('#areaSelector');
+	var idiomaGrado = $('#idiomaSelector');
 	
 	areaGrado.hide();
 	areaPosgrado.hide();
 	areaFp.hide();
 	areaJapones.hide();
 	areaDefault.show();
+
+//Cuarta página
+	var mostrarEscuelas = $('#mostrarEscuelas');
+	var elementoUltimoPaso = $('#ui-id-4');
+	var cargaEscuelas = $('#cargandoEscuelas');
+
+	cargaEscuelas.hide();
+
+	elementoUltimoPaso.click(function () {
+		cargaEscuelas.show();
+		loadColleges();
+		mostrarEscuelas.show();
+	});
+
+
+
 	
 	prefecturaSeleccion.change(function() {
 
@@ -127,4 +146,65 @@ $(document).ready(function () {
 				break;
 		}
 	});
+
+
+	function loadColleges() {
+		switch (document.getElementById("studiesSelector").value) {
+			case "grado":	
+
+				$.ajax({
+				  type: 'GET',
+				  //url: 'http://www.jdecastroc.ovh:8081/universidades/' + 'Tokyo' + '/' + document.getElementById("areaSelector").value + '?nameUni=&typeUni=&admisionMonth=&deadLine=&eju=&engExam=&admisionUni=',
+				  url: 'http://jdecastroc.ovh:8081/universidades/Tokyo/Language',
+				  data: {nameUni: '', typeUni: '', admisionMonth: '', deadLine: '', eju: '', engExam: '', admisionUni: ''}, //Especifica los datos que se enviarán al servidor
+				  async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
+				  beforeSend: function (xhr) {
+					if (xhr && xhr.overrideMimeType) {
+					  xhr.overrideMimeType('application/json;charset=utf-8');
+					}
+				  },
+				  dataType: 'json',
+				  success: function (data, status) {
+					
+					//Do stuff with the JSON data
+					if (status == "success") {
+
+						  console.log(data);
+
+						  mostrarEscuelas.empty(); //Refresh the div where the articles are stored
+
+						  cargaEscuelas.hide();
+							//alert('Escuelas encontradas = ' + data.searchFound);
+							var jsonData = data.collegeList; //parse data array from json
+							
+							var output = "<ul>";
+							for (i = 0; i < 10; i++) { 
+
+								output+='id = ' + jsonData[i].id + '</br>';
+								output+='Japanese name = ' + jsonData[i].japaneseName + '</br>';
+								output+='Name = ' + jsonData[i].name + '</br>';
+								output+='Prefectura = ' + jsonData[i].prefecture + '</br>';
+								output+='Tipo = ' + jsonData[i].type + '</br>';
+								output+='Imagen = ' + jsonData[i].imageUrl + '</br>';
+								output+='Guia = ' + jsonData[i].guideUrl + '</br>';
+								output+='Titulo = ' + jsonData[i].title + '</br>';
+								output+='Descripcion = ' + jsonData[i].description + '</br>';
+								output+='url oficial = ' + jsonData[i].officialUrl + '</br>'; //NO LA COJE
+								output+='</br></br></br>'
+						
+							}
+
+							output+="</ul>";
+							mostrarEscuelas.append(output);
+
+							} else {
+								output+="Error en la conexión con el servidor de búsquedas. Intentalo de nuevo mas tarde.";
+								mostrarEscuelas.append(output);
+							}
+				  }
+				  
+				});
+			break;
+		}
+	}
 });

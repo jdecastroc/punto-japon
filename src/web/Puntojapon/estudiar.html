@@ -67,7 +67,7 @@
 									<h4>Niveles de estudio</h4>
 									<p>Selecciona el nivel de estudios que se adapte a tu búsqueda.</p>
 									<select class="form-control col-xs-3" id ="studiesSelector">
-									  <option value ="empty">Selecciona una nivel</option>
+									  <option value ="empty">Selecciona un nivel</option>
 									  <option value="fp">Formación profesional</option>
 									  <option value="grado">Grado universitario</option>
 									  <option value="posgrado">Master o posgrado</option>
@@ -208,7 +208,7 @@
 								<div id="areaEstudioGrado" class="col_one_fourth">
 									<h4>Tipos de estudios universitarios</h4>
 									<p>Selecciona el area de estudios que se adapte a tu búsqueda.</p>
-									<select class="form-control col-xs-3" id ="AreaSelector">
+									<select class="form-control col-xs-3" id ="areaSelector">
 									  <option value="all">Todas las especialidades</option>
 									  <option value="Literature">Literatura</option>
 									  <option value="Language">Lengua</option>
@@ -234,7 +234,7 @@
 								<div id="areaEstudioPosgrado" class="col_one_fourth">
 									<h4>Tipos de estudios de posgrado (Master y doctorado)</h4>
 									<p>Selecciona el area de estudios que se adapte a tu búsqueda.</p>
-									<select class="form-control col-xs-3" id ="AreaSelector">
+									<select class="form-control col-xs-3" id ="areaSelector">
 									  <option value="master">Master</option>
 									  <option value="doctoral">Doctoral</option>
 									  <option value="researchGrad">Programa de investigación (Graduados)</option>
@@ -266,7 +266,7 @@
 								</div>
 
 						  		<div id="areaDefault"class="alert alert-danger">
-						  			<i class="icon-remove-sign"></i><strong>Oh vaya!</strong> Se te ha olvidado rellenar la información propuesta en el paso 1.
+						  			<i class="icon-remove-sign"></i><strong>¡Oh vaya!</strong> Se te ha olvidado rellenar la información propuesta en el paso 1.
 								</div>
 						
 
@@ -276,9 +276,8 @@
 							</div>
 
 							<div id="ptab4" aria-labelledby="ui-id-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" style="display: none;" aria-hidden="true">
-								<div class="alert alert-success">
-									<strong>Thank You.</strong> Your order will be processed once we verify the Payment.
-								</div>
+								<div id="cargandoEscuelas"><p>Cargando escuelas...</p></div>
+								<div id="mostrarEscuelas"></div>
 							</div>
 						</div>
 					</div>
