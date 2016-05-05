@@ -66,11 +66,11 @@ public class UniversityCrawler extends CollegeCrawler {
 		String guideUrl = "";
 		String title = "";
 		String description = "";
+		String officialUrl = "";
 
 		String nextPageString = "";
 
 		// Crawler
-		// TODO Change userAgent when application finished
 		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
 				.get();
 
@@ -114,6 +114,12 @@ public class UniversityCrawler extends CollegeCrawler {
 			prefecture = prefectureDirty.split("/")[0];
 			type = prefectureDirty.split("/")[1];
 			// type = translate(type);
+			
+			// Getting official URL
+			if (element.select("div.rightBlock > div#OsLink > div.bottomOsLink > p > a").first() != null) {
+				Element getOfficialUrl = element.select("div.rightBlock > div#OsLink > div.bottomOsLink > p > a").first();
+				officialUrl = getOfficialUrl.text();
+			}
 
 			// Getting img link
 			if (element.select("div.leftBlock > a > img").first() != null) {
@@ -158,7 +164,7 @@ public class UniversityCrawler extends CollegeCrawler {
 			}
 
 			University university = new University(id, japaneseName, name, prefecture, type, guideUrl, imageUrl, title,
-					description, facultyList, "");
+					description, facultyList, officialUrl);
 			// university.getFacultyList().translateCollegeFacultyList();
 			universitiesList.addCollege(university);
 			counter++;
@@ -204,7 +210,6 @@ public class UniversityCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Estoy -> " + university.getId());
 
-			// TODO Change userAgent when application finished
 			Document document = Jsoup.connect(university.getId())
 					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
 

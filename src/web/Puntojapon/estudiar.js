@@ -1,5 +1,11 @@
 $(document).ready(function () {
 	
+	//Pasos
+	var elementoPrimerPaso = $('#ui-id-1');
+	var elementoSegundoPaso = $('#ui-id-2');
+	var elementoTercerPaso = $('#ui-id-3');
+	var elementoUltimoPaso = $('#ui-id-4');
+
 	var pasoTipoEstudios = $('#desContainer');
 
 //Primera pagina
@@ -41,10 +47,26 @@ $(document).ready(function () {
 
 //Cuarta página
 	var mostrarEscuelas = $('#mostrarEscuelas');
-	var elementoUltimoPaso = $('#ui-id-4');
+	
 	var cargaEscuelas = $('#cargandoEscuelas');
 
+
+
+
 	cargaEscuelas.hide();
+
+//Eventos botones
+	elementoPrimerPaso.click(function() {
+		mostrarEscuelas.empty();
+	});
+
+	elementoSegundoPaso.click(function() {
+		mostrarEscuelas.empty();
+	});
+
+	elementoTercerPaso.click(function() {
+		mostrarEscuelas.empty();
+	});
 
 	elementoUltimoPaso.click(function () {
 		cargaEscuelas.show();
@@ -169,41 +191,58 @@ $(document).ready(function () {
 					//Do stuff with the JSON data
 					if (status == "success") {
 
-						  console.log(data);
+						console.log(data);
 
-						  mostrarEscuelas.empty(); //Refresh the div where the articles are stored
+						mostrarEscuelas.empty(); //Refresh the div where the articles are stored
 
-						  cargaEscuelas.hide();
-							//alert('Escuelas encontradas = ' + data.searchFound);
-							var jsonData = data.collegeList; //parse data array from json
+						cargaEscuelas.hide();
+						//alert('Escuelas encontradas = ' + data.searchFound);
+						var jsonData = data.collegeList; //parse data array from json
 							
-							var output = "<ul>";
-							for (i = 0; i < 10; i++) { 
+						var output = "<ul>";
+						for (i = 0; i < 10; i++) { 
 
-								output+='id = ' + jsonData[i].id + '</br>';
-								output+='Japanese name = ' + jsonData[i].japaneseName + '</br>';
-								output+='Name = ' + jsonData[i].name + '</br>';
-								output+='Prefectura = ' + jsonData[i].prefecture + '</br>';
-								output+='Tipo = ' + jsonData[i].type + '</br>';
-								output+='Imagen = ' + jsonData[i].imageUrl + '</br>';
-								output+='Guia = ' + jsonData[i].guideUrl + '</br>';
-								output+='Titulo = ' + jsonData[i].title + '</br>';
-								output+='Descripcion = ' + jsonData[i].description + '</br>';
-								output+='url oficial = ' + jsonData[i].officialUrl + '</br>'; //NO LA COJE
-								output+='</br></br></br>'
-						
+							output+='id = ' + jsonData[i].id + '</br>';
+							output+='Japanese name = ' + jsonData[i].japaneseName + '</br>';
+							output+='Name = ' + jsonData[i].name + '</br>';
+							output+='Prefectura = ' + jsonData[i].prefecture + '</br>';
+							output+='Tipo = ' + jsonData[i].type + '</br>';
+							output+='Imagen = ' + jsonData[i].imageUrl + '</br>';
+							output+='Guia = ' + jsonData[i].guideUrl + '</br>';
+							output+='Titulo = ' + jsonData[i].title + '</br>';
+							output+='Descripcion = ' + jsonData[i].description + '</br>';
+							output+='url oficial = ' + jsonData[i].officialUrl + '</br></br>'; //NO LA COJE
+							
+
+							//Departamentos
+							for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
+								output+= 'Facultad = ' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</br>';
+								output+= 'Enlace = ' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '</br></br>';
 							}
 
-							output+="</ul>";
-							mostrarEscuelas.append(output);
+							output+='</br></br></br>'
+						}
 
-							} else {
-								output+="Error en la conexión con el servidor de búsquedas. Intentalo de nuevo mas tarde.";
-								mostrarEscuelas.append(output);
-							}
+						output+="</ul>";
+						mostrarEscuelas.append(output);
+
+					} else {
+						output+="Error en la conexión con el servidor de búsquedas. Intentalo de nuevo mas tarde.";
+						mostrarEscuelas.append(output);
+						}
 				  }
 				  
 				});
+			break;
+		 
+		default:
+			var output = "<ul>";
+			output+='<div class="alert alert-danger">';
+			output+='<i class="icon-remove-sign"></i><strong>¡Oh vaya!</strong> Se te ha olvidado rellenar la información en los pasos previos.';
+			output+='</div>';
+			output+="</ul>";
+			cargaEscuelas.hide();
+			mostrarEscuelas.append(output);
 			break;
 		}
 	}
