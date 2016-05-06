@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	//Semaforo
+	var semaforo = 1;
+
 	//Pasos
 	var elementoPrimerPaso = $('#ui-id-1');
 	var elementoSegundoPaso = $('#ui-id-2');
@@ -70,7 +73,9 @@ $(document).ready(function() {
 
 	elementoUltimoPaso.click(function() {
 		cargaEscuelas.show();
-		loadColleges();
+		if (semaforo > 0) {
+			loadColleges();
+		}
 		mostrarEscuelas.show();
 	});
 
@@ -171,8 +176,9 @@ $(document).ready(function() {
 
 
 	function loadColleges() {
+		semaforo--;
+		var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
 		switch (document.getElementById("studiesSelector").value) {
-			var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
 			case "grado":
 
 				$.ajax({
@@ -250,5 +256,6 @@ $(document).ready(function() {
 				mostrarEscuelas.append(output);
 				break;
 		}
+		semaforo++;
 	}
 });
