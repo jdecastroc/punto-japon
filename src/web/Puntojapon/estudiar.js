@@ -212,37 +212,42 @@ $(document).ready(function() {
 							var jsonData = data.collegeList; //parse data array from json
 
 							var output = "<ul>";
-							for (i = 0; i < data.searchFound; i++) {
+							if (data.searchFound > 0) {
+								for (i = 0; i < data.searchFound; i++) {
 
-								output += 'id = ' + jsonData[i].id + '</br>';
-								output += 'Japanese name = ' + jsonData[i].japaneseName + '</br>';
-								output += 'Name = ' + jsonData[i].name + '</br>';
-								output += 'Prefectura = ' + jsonData[i].prefecture + '</br>';
-								output += 'Tipo = ' + jsonData[i].type + '</br>';
-								output += 'Imagen = ' + jsonData[i].imageUrl + '</br>';
-								output += 'Guia = ' + jsonData[i].guideUrl + '</br>';
-								output += 'Titulo = ' + jsonData[i].title + '</br>';
-								output += 'Descripcion = ' + jsonData[i].description + '</br>';
+									output += 'id = ' + jsonData[i].id + '</br>';
+									output += 'Japanese name = ' + jsonData[i].japaneseName + '</br>';
+									output += 'Name = ' + jsonData[i].name + '</br>';
+									output += 'Prefectura = ' + jsonData[i].prefecture + '</br>';
+									output += 'Tipo = ' + jsonData[i].type + '</br>';
+									output += 'Imagen = ' + jsonData[i].imageUrl + '</br>';
+									output += 'Guia = ' + jsonData[i].guideUrl + '</br>';
+									output += 'Titulo = ' + jsonData[i].title + '</br>';
+									output += 'Descripcion = ' + jsonData[i].description + '</br>';
 
 
-								//Departamentos
-								for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
-									output += 'Facultad = ' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</br>';
-									output += 'Enlace = ' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '</br></br>';
+									//Departamentos
+									for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
+										output += 'Facultad = ' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</br>';
+										output += 'Enlace = ' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '</br></br>';
+									}
+
+									output += '</br></br></br>'
 								}
-
-								output += '</br></br></br>'
+							} else {
+								output += "<p>No se ha encontrado ninguna universidad que encaje con la búsqueda</p>";
 							}
 
 							output += "</ul>";
 							mostrarEscuelas.append(output);
+							semaforo++;
 
 						} else {
 							output += "Error en la conexión con el servidor de búsquedas. Intentalo de nuevo mas tarde.";
 							mostrarEscuelas.append(output);
 						}
 					}
-					semaforo++;
+					
 				});
 				break;
 
