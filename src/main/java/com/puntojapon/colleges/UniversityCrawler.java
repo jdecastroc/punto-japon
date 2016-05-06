@@ -114,12 +114,6 @@ public class UniversityCrawler extends CollegeCrawler {
 			prefecture = prefectureDirty.split("/")[0];
 			type = prefectureDirty.split("/")[1];
 			// type = translate(type);
-			
-			// Getting official URL
-			if (element.select("div.rightBlock > div#OsLink > div.bottomOsLink > p > a").first() != null) {
-				Element getOfficialUrl = element.select("div.rightBlock > div#OsLink > div.bottomOsLink > p > a").first();
-				officialUrl = getOfficialUrl.text();
-			}
 
 			// Getting img link
 			if (element.select("div.leftBlock > a > img").first() != null) {
