@@ -212,7 +212,7 @@ $(document).ready(function() {
 							var jsonData = data.collegeList; //parse data array from json
 
 							var output = "<ul>";
-							for (i = 0; i < 10; i++) {
+							for (i = 0; i < data.searchFound; i++) {
 
 								output += 'id = ' + jsonData[i].id + '</br>';
 								output += 'Japanese name = ' + jsonData[i].japaneseName + '</br>';
@@ -242,7 +242,7 @@ $(document).ready(function() {
 							mostrarEscuelas.append(output);
 						}
 					}
-
+					semaforo++;
 				});
 				break;
 
@@ -256,6 +256,5 @@ $(document).ready(function() {
 				mostrarEscuelas.append(output);
 				break;
 		}
-		semaforo++;
 	}
 });
