@@ -634,7 +634,7 @@ public class MainController {
 	 * @return a message when the transformation has finished
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.GET)
+	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
 		KettleTransformation.start();

@@ -47,6 +47,8 @@ $(document).ready(function() {
 	var tipoGrado = $('#areaSelector');
 	var idiomaGrado = $('#idiomaSelector');
 
+	var siguienteUltimoPaso = $('#buscar');
+
 	areaGrado.hide();
 	areaPosgrado.hide();
 	areaFp.hide();
@@ -90,11 +92,20 @@ $(document).ready(function() {
 			mostrarEscuelas.append(output);
 			mostrarEscuelas.show();
 		}
-		//$('div.escuelas').hide();
-		//mostrarEscuelas.show();
-		//escuelas.fadeOut();
-		//cargarEscuelas(1);
-		
+	});
+
+	siguienteUltimoPaso.click(function() {
+		if (semaforo > 0 && document.getElementById("prefectureSelector").value != "" && nivelEstudios.value != "") {
+			loadColleges();
+		} else {
+			var output = "<ul>";
+			output += '<div class="alert alert-danger">';
+			output += '<i class="icon-remove-sign"></i><strong>¡Oh vaya!</strong> Se te ha olvidado rellenar la información en los pasos previos.';
+			output += '</div>';
+			output += "</ul>";
+			mostrarEscuelas.append(output);
+			mostrarEscuelas.show();
+		}
 	});
 
 
