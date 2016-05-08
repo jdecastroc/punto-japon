@@ -6,8 +6,7 @@ doc/
 tmp/
 target/classes/*
 target/test-classes/*
-src/main/resources/articles/*.json
-src/main/resources/sort.json
+
 *.tmp
 *.bak
 *.swp

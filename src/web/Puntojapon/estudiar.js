@@ -26,7 +26,7 @@ $(document).ready(function() {
 	var prefecturaSeleccion = $("#prefectureSelector");
 	var languageAreaSeleccion = $("#languageAreaSelector");
 	var imagenPrefecturas = $("#prefecturasImg");
-	var imagenTokyo = $("#tokyoImg");
+	var imagenTokyo = $("#tokyoImg"); 
 
 	imagenTokyo.hide();
 	languageAreaSeleccion.hide();
