@@ -12,7 +12,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	
-	<link rel="icon" href="../../favicon.ico">
+	<link rel="icon" href="img/favicon.ico">
 
 		<!-- Stylesheets
 	============================================= -->
@@ -185,6 +185,40 @@
 											    <option value ="Prefectura_de_Okinawa">47. Okinawa</option>
 										    </optgroup>
 										</select>
+										<select class="form-control col-xs-3" id ="languageAreaSelector">
+											<optgroup label = "Tokyo Area">
+												<option value ="tokyo">Todos los barrios</option>
+											    <option value ="chiyoda">Chiyoda</option>
+											    <option value ="chuo">Chuo</option>
+											    <option value ="minato">Minato</option>
+											    <option value ="shinjuku">Shinjuku</option>
+											    <option value ="bunkyo">Bunkyo</option>
+											    <option value ="taito">Taito</option>
+											    <option value ="sumida">Sumida</option>
+											    <option value ="koto">Koto</option>
+											    <option value ="shinagawa">Shinagawa</option>
+											    <option value ="meguro">Meguro</option>
+											    <option value ="ota">Ota</option>
+											    <option value ="setagaya">Setagaya</option>
+											    <option value ="shibuya">Shibuya</option>
+											    <option value ="nakano">Nakano</option>
+											    <option value ="suginami">Suginami</option>
+											    <option value ="toshima">Toshima</option>
+											    <option value ="kita">Kita</option>
+											    <option value ="arakawa">Arakawa</option>
+											    <option value ="itabashi">Itabashi</option>
+											    <option value ="nerima">Nerima</option>
+											    <option value ="adachi">Adachi</option>
+											    <option value ="katsushika">Katsushika</option>
+											    <option value ="edogawa">Edogawa</option>
+											    <option value ="mitaka">Mitaka</option>
+											    <option value ="musashino">Musashino</option>
+											    <option value ="hachioji">Hachioji</option>
+											    <option value ="hino">Hino</option>
+											    <option value ="kiyose">Kiyose</option>
+											    <option value ="Fussa">fussa</option>
+										    </optgroup>
+										</select>
 									</div>
 									</br>
 									<div id="infoPrefectura">
@@ -196,11 +230,23 @@
 								</div>
 									</br>
 								<div class="col_half col_last" id ="desContainer">
-									 <img src="img/estudios/prefecturas.png" alt="Prefecturas de Japón" height="550" width="450"> 
+									 <img src="img/estudios/prefecturas.png" class="pop" id="prefecturasImg"alt="Prefecturas de Japón" height="550" width="450">
+									 <img src="img/estudios/tokyoArea.png" class="pop" id="tokyoImg"alt="Barrios de Tokio" height="320" width="450"> 
 								</div>
 								<div class="line"></div>
 								<a rel="1" class="button button-3d nomargin tab-linker" href="#">Anterior</a>
 								<a rel="3" class="button button-3d nomargin fright tab-linker" href="#">Siguiente</a>
+							</div>
+
+							<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">              
+										<div class="modal-body">
+											<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											<img src="" class="imagepreview" id="imagepreviewId"style="width: 100%; height: 60%">
+										</div>
+									</div>
+							 	</div>
 							</div>
 
 							<div id="ptab3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" style="display: none;" aria-hidden="true">
@@ -235,20 +281,21 @@
 									<h4>Tipos de estudios de posgrado (Master y doctorado)</h4>
 									<p>Selecciona el area de estudios que se adapte a tu búsqueda.</p>
 									<select class="form-control col-xs-3" id ="areaSelector">
+									  <option value="">Todas las especialidades</option>
 									  <option value="master">Master</option>
 									  <option value="doctoral">Doctoral</option>
 									  <option value="researchGrad">Programa de investigación (Graduados)</option>
 									  <option value="researchUnGrad">Programa de investigación (No graduados)</option>
-									  <option value="Sociology">Programa de auditoría (Graduados)</option>
-									  <option value="International">Programa de auditoría (No graduados)</option>
-									  <option value="Health Sciences">Programa enfocado a la carrera profesional</option>
+									  <option value="auditingGrad">Programa de auditoría (Graduados)</option>
+									  <option value="auditingUnGrad">Programa de auditoría (No graduados)</option>
+									  <option value="profDegree">Programa enfocado a la carrera profesional</option>
 									</select>
 								<div class="line"></div>
 									<p>Selecciona el idioma de las clases según tus preferencias de búsqueda.</p>
-									<select class="form-control col-xs-3" id ="IdiomaSelector">
+									<select class="form-control col-xs-3" id ="idiomaSelector">
 									  <option value="">Indiferente (japonés o inglés)</option>
-									  <option value="">Lecciones en inglés</option>
-									  <option value="doctoral">Algunas carreras sean principalmente en inglés</option>
+									  <option value="englishYes">Lecciones en inglés</option>
+									  <option value="englishNo">Algunas carreras sean principalmente en inglés</option>
 									</select>
 								</div>
 								
