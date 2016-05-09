@@ -49,6 +49,18 @@ $(document).ready(function() {
 
 	var siguienteUltimoPaso = $('#buscar');
 
+
+	var avanzadasUni = $('#avanzadasUni');
+	var avanzadasFp = $('#avanzadasFp');
+	var avanzadasPosgrado = $('#avanzadasPosgrado');
+	var avanzadasJapones = $('#avanzadasJapones');
+
+	avanzadasUni.hide();
+	avanzadasFp.hide();
+	avanzadasPosgrado.hide();
+	avanzadasJapones.hide();
+
+
 	areaGrado.hide();
 	areaPosgrado.hide();
 	areaFp.hide();
@@ -184,6 +196,11 @@ $(document).ready(function() {
 				areaPosgrado.hide();
 				areaFp.show();
 				areaJapones.hide();
+
+				avanzadasUni.hide();
+				avanzadasFp.show();
+				areaPosgrado.hide();
+				avanzadasJapones.hide();
 				break;
 
 			case "grado":
@@ -193,11 +210,17 @@ $(document).ready(function() {
 				showFp.hide();
 				desContainer.fadeIn('slow');
 
+
 				areaDefault.hide();
 				areaGrado.show();
 				areaPosgrado.hide();
 				areaFp.hide();
 				areaJapones.hide();
+
+				avanzadasUni.show();
+				avanzadasFp.hide();
+				avanzadasPosgrado.hide();
+				avanzadasJapones.hide();
 				break;
 
 			case "posgrado":
@@ -213,6 +236,11 @@ $(document).ready(function() {
 				areaPosgrado.show();
 				areaFp.hide();
 				areaJapones.hide();
+
+				avanzadasUni.hide();
+				avanzadasFp.hide();
+				avanzadasPosgrado.show();
+				avanzadasJapones.hide();
 				break;
 			case "japones":
 				showGrado.hide();
@@ -227,6 +255,11 @@ $(document).ready(function() {
 				areaPosgrado.hide();
 				areaFp.hide();
 				areaJapones.show();
+
+				avanzadasUni.hide();
+				avanzadasFp.hide();
+				avanzadasPosgrado.hide();
+				avanzadasJapones.show();
 				break;
 
 			case "empty":
@@ -235,6 +268,11 @@ $(document).ready(function() {
 				areaPosgrado.hide();
 				areaFp.hide();
 				areaJapones.hide();
+
+				avanzadasUni.hide();
+				avanzadasFp.hide();
+				avanzadasPosgrado.hide();
+				avanzadasJapones.hide();
 				break;
 
 			default:
@@ -243,10 +281,14 @@ $(document).ready(function() {
 				areaPosgrado.hide();
 				areaFp.hide();
 				areaJapones.hide();
+
+				avanzadasUni.hide();
+				avanzadasFp.hide();
+				avanzadasPosgrado.hide();
+				avanzadasJapones.hide();
 				break;
 		}
 	});
-
 
 	
 	function loadColleges() {
@@ -261,13 +303,13 @@ $(document).ready(function() {
 						type: 'GET',
 						url: 'http://www.jdecastroc.ovh:8081/universidades/' + prefectureSearch + '/' + document.getElementById("areaSelector").value,
 						data: {
-							nameUni: '',
-							typeUni: '',
-							admisionMonth: '',
-							deadLine: '',
-							eju: '',
-							engExam: '',
-							admisionUni: ''
+							nameUni: document.getElementById("nombreUni").value,
+							typeUni: document.getElementById("typeUni").value,
+							admisionMonth: document.getElementById("admision").value,
+							deadLine: document.getElementById("fechaLimite").value,
+							eju: document.getElementById("eju").value,
+							engExam: document.getElementById("examenEng").value,
+							admisionUni: document.getElementById("admisionApp").value,
 						}, //Especifica los datos que se enviarán al servidor
 						async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
 						beforeSend: function(xhr) {
@@ -380,7 +422,7 @@ $(document).ready(function() {
                         //http://www.jdecastroc.ovh:8081/fp/Tokyo?nameTech=
                         url: 'http://www.jdecastroc.ovh:8081/fp/' + prefectureSearch + '/',
                         data: {
-                            nameTech: '',
+                            nameTech: document.getElementById("nombreFp").value,
                         }, //Especifica los datos que se enviarán al servidor
                         async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                         beforeSend: function(xhr) {
@@ -494,7 +536,7 @@ $(document).ready(function() {
                         //http://localhost:8080/posgrado/Tokyo, Kanagawa?nameGrad=&typeGrad=&typeCourse=&englishCourse=
                         url: 'http://www.jdecastroc.ovh:8081/posgrado/' + prefectureSearch + '/',
                         data: {
-                            nameGrad: '',
+                            nameGrad: document.getElementById("nombrePosgrado").value,
                             typeGrad: document.getElementById("areaSelector").value,
                             typeCourse: '',
                             englishCourse: document.getElementById("idiomaSelector").value,
@@ -638,7 +680,7 @@ $(document).ready(function() {
                                 if (data.schoolCounter > 0) {
 
                                 //TEMA PAGINACION
-                                var elementosPagina = 5;
+                                var elementosPagina = 10;
                                 var paginas = Math.ceil(data.schoolList.length / elementosPagina);
                                 var elementosRestantes = 0;
                                 var elemento = 0;
