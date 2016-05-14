@@ -362,7 +362,7 @@ $(document).ready(function() {
 												output += ' / <a target="_blank" href="' + jsonData[i].guideUrl + '">Guía universitaria</a>';
 											}
 											if (jsonData[i].imageUrl != "") {
-												output += '<img class="pull-left img-responsive thumb img-thumbnail" width="230" height="186" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
+												output += '<img class="pull-left img-responsive thumb img-thumbnail" style="border:0; padding-right: 10px;" width="230" height="186" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
 											}
 
 											output += '<h4>' + jsonData[i].title + '</h4>';
@@ -370,11 +370,14 @@ $(document).ready(function() {
 											//Coge el substring de more... para enlazar con la universidad
 											var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["),jsonData[i].description.lastIndexOf(";"));
 											
-											output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].description.replace(more,"") + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
+											output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/univ/","escuela?tipo=univ&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
 											//Departamentos
+											output += '<div style="padding-top: 10px;">';
 											for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
 												output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
 											}
+											output += '</div>';
+
 											output += '</div>';
 											output += '<div class="divider"><i class="icon-circle"></i></div>';
 										}
@@ -475,7 +478,7 @@ $(document).ready(function() {
                                                 output += ' / <a target="_blank" href="' + jsonData[i].guideUrl + '">Guía universitaria</a>';
                                             }
                                             if (jsonData[i].imageUrl != "") {
-                                                output += '<img class="pull-left img-responsive thumb img-thumbnail" width="230" height="186" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
+                                                output += '<img class="pull-left img-responsive thumb img-thumbnail" width="230" height="186" style="border:0; padding-right: 10px;" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
                                             }
 
                                             output += '<h4>' + jsonData[i].title + '</h4>';
@@ -483,11 +486,13 @@ $(document).ready(function() {
                                             //Coge el substring de more... para enlazar con la universidad
                                             var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["),jsonData[i].description.lastIndexOf(";"));
                                             
-                                            output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].description.replace(more,"") + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
+                                            output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/tech/","escuela?tipo=tech&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
                                             //Departamentos
+                                            output += '<div style="padding-top: 10px;">';
                                             for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
                                                 output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                                             }
+                                            output += '</div>';
                                             output += '</div>';
                                             output += '<div class="divider"><i class="icon-circle"></i></div>';
                                         }
@@ -592,7 +597,7 @@ $(document).ready(function() {
                                                 output += ' / <a target="_blank" href="' + jsonData[i].guideUrl + '">Guía universitaria</a>';
                                             }
                                             if (jsonData[i].imageUrl != "") {
-                                                output += '<img class="pull-left img-responsive thumb img-thumbnail" width="230" height="186" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
+                                                output += '<img class="pull-left img-responsive thumb img-thumbnail" width="230" height="186" style="border:0; padding-right: 10px;" alt="' + jsonData[i].name +'" src="' + jsonData[i].imageUrl + '">';
                                             }
 
                                             output += '<h4>' + jsonData[i].title + '</h4>';
@@ -600,11 +605,13 @@ $(document).ready(function() {
                                             //Coge el substring de more... para enlazar con la universidad
                                             var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["),jsonData[i].description.lastIndexOf(";"));
                                             
-                                            output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].description.replace(more,"") + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
+                                            output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/grad/","escuela?tipo=grad&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more,"") + '</a>' + '</p></article></br>';
                                             //Departamentos
+                                            output += '<div style="padding-top: 10px;">';
                                             for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
                                                 output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + jsonData[i].faculties.collegeFacultyList[j].facultyUrl + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                                             }
+                                            output += '</div>';
                                             output += '</div>';
                                             output += '<div class="divider"><i class="icon-circle"></i></div>';
                                         }
@@ -704,7 +711,7 @@ $(document).ready(function() {
                                             output += '<div class="col-md-10 blogShort">';
                                             output += '<h4>' + jsonData[i].name + '</h4>';
                                             output += '<p>' + jsonData[i].address + '</p>';
-                                            output += '<a target="_blank" href="' + jsonData[i].id + '">Más información</a>';
+                                            output += '<a target="_blank" href="escuela?tipo=japones&id=' + jsonData[i].id +'">Más información</a>';
 
                                             output += '</div>';
                                             output += '<div class="divider"><i class="icon-circle"></i></div>';
