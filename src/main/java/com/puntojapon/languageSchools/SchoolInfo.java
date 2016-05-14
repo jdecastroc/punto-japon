@@ -35,15 +35,15 @@ public class SchoolInfo {
 	// Course's list
 	private Vector<CourseInfo> authorizedCourseList = new Vector<CourseInfo>();
 	// examinees - certified for N1
-	private Map<Integer, Integer> n1Stadistics = new HashMap<Integer, Integer>();
+	private Map<String, Integer> n1Stadistics = new HashMap<String, Integer>();
 	// examinees - certified for N2
-	private Map<Integer, Integer> n2Stadistics = new HashMap<Integer, Integer>();
+	private Map<String, Integer> n2Stadistics = new HashMap<String, Integer>();
 	// examinees - certified for N3
-	private Map<Integer, Integer> n3Stadistics = new HashMap<Integer, Integer>();
+	private Map<String, Integer> n3Stadistics = new HashMap<String, Integer>();
 	// examinees - certified for N4
-	private Map<Integer, Integer> n4Stadistics = new HashMap<Integer, Integer>();
+	private Map<String, Integer> n4Stadistics = new HashMap<String, Integer>();
 	// examinees - certified for N5
-	private Map<Integer, Integer> n5Stadistics = new HashMap<Integer, Integer>();
+	private Map<String, Integer> n5Stadistics = new HashMap<String, Integer>();
 	// type of School - number of people
 	private Map<String, Integer> studentsDestination = new HashMap<String, Integer>();
 	// feature number - Description
@@ -252,23 +252,23 @@ public class SchoolInfo {
 		getAuthorizedCourseList().addElement(course);
 	}
 
-	public Map<Integer, Integer> getN1Stadistics() {
+	public Map<String, Integer> getN1Stadistics() {
 		return n1Stadistics;
 	}
 
-	public Map<Integer, Integer> getN2Stadistics() {
+	public Map<String, Integer> getN2Stadistics() {
 		return n2Stadistics;
 	}
 
-	public Map<Integer, Integer> getN3Stadistics() {
+	public Map<String, Integer> getN3Stadistics() {
 		return n3Stadistics;
 	}
 
-	public Map<Integer, Integer> getN4Stadistics() {
+	public Map<String, Integer> getN4Stadistics() {
 		return n4Stadistics;
 	}
 
-	public Map<Integer, Integer> getN5Stadistics() {
+	public Map<String, Integer> getN5Stadistics() {
 		return n5Stadistics;
 	}
 

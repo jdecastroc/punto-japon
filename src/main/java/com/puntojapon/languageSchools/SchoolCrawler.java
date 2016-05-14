@@ -198,17 +198,6 @@ public class SchoolCrawler {
 				}
 
 				// Second table info
-
-				// Type of establishment
-				if (element.select("table.tableStyle04 > tbody > tr").first().nextElementSibling()
-						.select("td > table > tbody > tr").first() != null) {
-
-					languageSchool.setEmail(element.select("table.tableStyle04 > tbody > tr").first()
-							.nextElementSibling().select("td > table > tbody > tr").first().select("td").first()
-							.nextElementSibling().text().trim());
-
-				}
-
 				// Type of establishment
 				if (element.select("table.tableStyle04 > tbody > tr").first().nextElementSibling()
 						.select("td > table > tbody > tr").first() != null) {
@@ -457,16 +446,20 @@ public class SchoolCrawler {
 
 				// Results of exams
 				Element resultsExamintationTable = document.select("table").get(6);
+				int examinees, certified;
 
 				// N1 results
 				if ((resultsExamintationTable.select("tr").get(1).select("td.center").get(0) != null)
 						&& (resultsExamintationTable.select("tr").get(2).select("td.center").get(0) != null)) {
-
-					languageSchool.getN1Stadistics()
-							.put(Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
-									.get(0).text().trim()),
-									Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
-											.get(0).text().trim()));
+					
+					examinees = Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
+							.get(0).text().trim());
+					certified = Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
+							.get(0).text().trim());
+					
+					languageSchool.getN1Stadistics().put("Examinees", examinees);
+					languageSchool.getN1Stadistics().put("Certified", certified);
+					languageSchool.getN1Stadistics().put("Failed", examinees - certified);
 
 				}
 
@@ -474,11 +467,14 @@ public class SchoolCrawler {
 				if ((resultsExamintationTable.select("tr").get(1).select("td.center").get(1) != null)
 						&& (resultsExamintationTable.select("tr").get(2).select("td.center").get(1) != null)) {
 
-					languageSchool.getN2Stadistics()
-							.put(Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
-									.get(1).text().trim()),
-									Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
-											.get(1).text().trim()));
+					examinees = Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
+							.get(1).text().trim());
+					certified = Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
+							.get(1).text().trim());
+					
+					languageSchool.getN2Stadistics().put("Examinees", examinees);
+					languageSchool.getN2Stadistics().put("Certified", certified);
+					languageSchool.getN2Stadistics().put("Failed", examinees - certified);
 
 				}
 
@@ -486,11 +482,14 @@ public class SchoolCrawler {
 				if ((resultsExamintationTable.select("tr").get(1).select("td.center").get(2) != null)
 						&& (resultsExamintationTable.select("tr").get(2).select("td.center").get(2) != null)) {
 
-					languageSchool.getN3Stadistics()
-							.put(Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
-									.get(2).text().trim()),
-									Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
-											.get(2).text().trim()));
+					examinees = Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
+							.get(2).text().trim());
+					certified = Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
+							.get(2).text().trim());
+					
+					languageSchool.getN3Stadistics().put("Examinees", examinees);
+					languageSchool.getN3Stadistics().put("Certified", certified);
+					languageSchool.getN3Stadistics().put("Failed", examinees - certified);
 
 				}
 
@@ -498,11 +497,14 @@ public class SchoolCrawler {
 				if ((resultsExamintationTable.select("tr").get(1).select("td.center").get(3) != null)
 						&& (resultsExamintationTable.select("tr").get(2).select("td.center").get(3) != null)) {
 
-					languageSchool.getN4Stadistics()
-							.put(Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
-									.get(3).text().trim()),
-									Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
-											.get(3).text().trim()));
+					examinees = Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
+							.get(3).text().trim());
+					certified = Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
+							.get(3).text().trim());
+					
+					languageSchool.getN4Stadistics().put("Examinees", examinees);
+					languageSchool.getN4Stadistics().put("Certified", certified);
+					languageSchool.getN4Stadistics().put("Failed", examinees - certified);
 
 				}
 
@@ -510,11 +512,14 @@ public class SchoolCrawler {
 				if ((resultsExamintationTable.select("tr").get(1).select("td.center").get(4) != null)
 						&& (resultsExamintationTable.select("tr").get(2).select("td.center").get(4) != null)) {
 
-					languageSchool.getN5Stadistics()
-							.put(Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
-									.get(4).text().trim()),
-									Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
-											.get(4).text().trim()));
+					examinees = Integer.parseInt(resultsExamintationTable.select("tr").get(1).select("td.center")
+							.get(4).text().trim());
+					certified = Integer.parseInt(resultsExamintationTable.select("tr").get(2).select("td.center")
+							.get(4).text().trim());
+					
+					languageSchool.getN5Stadistics().put("Examinees", examinees);
+					languageSchool.getN5Stadistics().put("Certified", certified);
+					languageSchool.getN5Stadistics().put("Failed", examinees - certified);
 
 				}
 
