@@ -335,16 +335,18 @@ public class SchoolCrawler {
 					Elements regtdList = register.select("td");
 					for (Element regtd : regtdList) {
 						
-						if(regtd.text().contains(".")){
-							regtd.text().replace(".", "");
-						}
-						
 						if (regtd.text().contains(" ") && languageSchool.isSearch()) {
 							regText = regtd.text().trim();
 							String[] regParts = regText.split(" ");
 
 							// TODO Improve names split fix for those countries
 							if (!regParts[0].equals("") && !regParts[1].equals("")) {
+								if (regParts[0].equals("U.S.A")) {
+									regParts[0] = "USA";
+								}
+								if (regParts[0].equals("U.K")) {
+									regParts[0] = "UK";
+								}
 								if (regParts[0].equals("Sri")) {
 									regParts[0] = "SriLanka";
 									regParts[1] = regParts[2];
