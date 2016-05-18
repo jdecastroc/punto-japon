@@ -13011,3 +13011,45 @@ body:not(.no-transition) #wrapper,
 	margin:0!important;
 	padding:0!important
 }
+
+.chart-legend li span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  float: left;
+  margin-top: 4px;
+  margin-right: 8px;
+}
+
+.chart-legend {
+  list-style: none;
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  margin-top : 20px;
+
+}
+
+.chart-legend li {
+  margin-bottom : 4px;
+}
+
+.chart-legend li:first-letter {
+  text-transform: capitalize;
+}
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}

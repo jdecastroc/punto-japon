@@ -83,12 +83,12 @@
   <hop> <from>Japabanchel output </from><to>Sort rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Razienjapon output</from><to>Sort rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows</from><to>Sorted json output</to><enabled>Y</enabled> </hop>
-  <hop> <from>RSS kirainet</from><to>Set author Kirainet</to><enabled>Y</enabled> </hop>
-  <hop> <from>Kirainet output</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>RSS kirainet</from><to>Set author Kirainet</to><enabled>N</enabled> </hop>
+  <hop> <from>Kirainet output</from><to>Sort rows</to><enabled>N</enabled> </hop>
   <hop> <from>Set author Razi</from><to>Date format 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Date format 2</from><to>Razienjapon output</to><enabled>Y</enabled> </hop>
-  <hop> <from>Date format 3</from><to>Kirainet output</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set author Kirainet</from><to>Date format 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Date format 3</from><to>Kirainet output</to><enabled>N</enabled> </hop>
+  <hop> <from>Set author Kirainet</from><to>Date format 3</to><enabled>N</enabled> </hop>
   <hop> <from>RSS CoolJapan</from><to>Set author CoolJapan</to><enabled>Y</enabled> </hop>
   <hop> <from>Set author CoolJapan</from><to>Date format 4</to><enabled>Y</enabled> </hop>
   <hop> <from>Date format 4</from><to>Cooljapan output</to><enabled>Y</enabled> </hop>

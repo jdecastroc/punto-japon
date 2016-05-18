@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +11,10 @@
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-	
+
 	<link rel="icon" href="../img/favicon.ico">
 
-		<!-- Stylesheets
+	<!-- Stylesheets
 	============================================= -->
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
@@ -32,15 +33,69 @@
 	<title>Punto Japon</title>
 
 </head>
+
 <body>
 	<div class="container divcenter">
 		<h3>Escuelas</h3>
 		<div id="mostrarEscuela"></div>
 		<div class="modal-body" id="cargando" style="background:url(../img/loading.gif) no-repeat center center;width:32px;height:32px;"></div>
+		<div class="estadisticas">
+
+			<div class="col_half nobottommargin" id="pieChart" style="opacity: 1;">
+				<h3 class="center">Nacionalidades de estudiantes</h3>
+				<canvas style="width: 547px; height: 300px;" id="canvasNacionalidades" width="547" height="300"></canvas>
+				<div id="graficaNacionalidades-legend" class="chart-legend" style="padding: auto;"></div>
+			</div>
+
+			<div class="col_half col_last nobottommargin" id="graficoGraduado" style="opacity: 1;">
+				<h3 class="center">Destino de graduados</h3>
+				<canvas style="width: 547px; height: 300px;" id="canvasGraduados" width="547" height="300"></canvas>
+				<div id="graficaGraduados-legend" class="chart-legend"></div>
+			</div>
+		</div>
+
+		<div class="col_one_fifth nobottommargin" id="graficoN1" style="opacity: 1;">
+			<h3 class="center">Noken 1</h3>
+			<canvas style="width: 547px; height: 300px;" id="graficoCanvasN1" width="547" height="300"></canvas>
+			<p class="noResultsN1">No hay resultados</p>
+			<div id="graficoN1-legend" class="chart-legend"></div>
+		</div>
+
+		<div class="col_one_fifth nobottommargin" id="graficoN2" style="opacity: 1;">
+			<h3 class="center">Noken 2</h3>
+			<canvas style="width: 547px; height: 300px;" id="graficoCanvasN2" width="547" height="300"></canvas>
+			<p class="noResultsN2">No hay resultados</p>
+			<div id="graficoN2-legend" class="chart-legend"></div>
+		</div>
+
+		<div class="col_one_fifth nobottommargin" id="graficoN3" style="opacity: 1;">
+			<h3 class="center">Noken 3</h3>
+			<canvas style="width: 547px; height: 300px;" id="graficoCanvasN3" width="547" height="300"></canvas>
+			<p class="noResultsN3">No hay resultados</p>
+			<div id="graficoN3-legend" class="chart-legend"></div>
+		</div>
+
+		<div class="col_one_fifth nobottommargin" id="graficoN4" style="opacity: 1;">
+			<h3 class="center">Noken 4</h3>
+			<canvas style="width: 547px; height: 300px;" id="graficoCanvasN4" width="547" height="300"></canvas>
+			<p class="noResultsN4">No hay resultados</p>
+			<div id="graficoN4-legend" class="chart-legend"></div>
+		</div>
+
+		<div class="col_one_fifth col_last nobottommargin" id="graficoN5" style="opacity: 1;">
+			<h3 class="center">Noken 5</h3>
+			<canvas style="width: 547px; height: 300px;" id="graficoCanvasN5" width="547" height="300"></canvas>
+			<p class="noResultsN5">No hay resultados</p>
+			<div id="graficoN5-legend" class="chart-legend"></div>
+		</div>
+
+
+	</div>
 
 	</div>
 </body>
+
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="escuela.js" type="text/javascript"></script>
-<!--<script src="../js/plugins.js" type="text/javascript"></script>
-<script src="../js/functions.js" type="text/javascript"></script>-->
+<script src="escuela.js" type="text/javascript"></script>ç
+<script src="../js/plugins.js" type="text/javascript"></script>
+<script src="../js/functions.js" type="text/javascript"></script>
