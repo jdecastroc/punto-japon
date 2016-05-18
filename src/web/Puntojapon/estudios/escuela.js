@@ -90,7 +90,10 @@ $(document).ready(function() {
                             //Departamentos
                             output += '<div style="padding-top: 20px;">';
                             for (j = 0; j < data.faculties.collegeFacultyList.length; j++) {
-                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + data.faculties.collegeFacultyList[j].facultyUrl + '">' + data.faculties.collegeFacultyList[j].facultyName + '</a>';
+                                var array_split = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.split("/");
+                                var id_univ = array_split["3"];
+                                var id_depart = array_split["4"];
+                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=univ&id=" + id_univ + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                             }
                             output += '</div>';
                             output += '</div>';
@@ -139,7 +142,10 @@ $(document).ready(function() {
                             //Departamentos
                             output += '<div style="padding-top: 20px;">';
                             for (j = 0; j < data.faculties.collegeFacultyList.length; j++) {
-                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + data.faculties.collegeFacultyList[j].facultyUrl + '">' + data.faculties.collegeFacultyList[j].facultyName + '</a>';
+                                var array_split = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.split("/");
+                                var id_grad = array_split["3"];
+                                var id_depart = array_split["4"];
+                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=grad&id=" + id_grad + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                             }
                             output += '</div>';
                             output += '</div>';
@@ -187,7 +193,10 @@ $(document).ready(function() {
                             //Departamentos
                             output += '<div style="padding-top: 20px;">';
                             for (j = 0; j < data.faculties.collegeFacultyList.length; j++) {
-                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + data.faculties.collegeFacultyList[j].facultyUrl + '">' + data.faculties.collegeFacultyList[j].facultyName + '</a>';
+                                var array = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.replace("#", "").split("/");
+                                var id_fp = array[3];
+                                var id_depart = array[5];
+                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=tech&id=" + id_fp + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                             }
                             output += '</div>';
                             output += '</div>';
@@ -354,9 +363,9 @@ $(document).ready(function() {
                             output += "<h4>Características</h4>";
                             output += "<tbody>";
                             output += "<tr>";
-                            if (data.schoolFeatures["1"] != "") output += "<td><i class='icon-line-square-plus'></i>" + data.schoolFeatures["1"] + "</td><br>";
-                            if (data.schoolFeatures["2"] != "") output += "<td><i class='icon-line-square-plus'></i>" + data.schoolFeatures["2"] + "</td><br>";
-                            if (data.schoolFeatures["3"] != "") output += "<td><i class='icon-line-square-plus'></i>" + data.schoolFeatures["3"] + "</td><br>";
+                            if (data.schoolFeatures["1"] != "") output += "<td><i class='icon-line-square-plus'></i><span style='padding-left: 5px; padding-right: 5px;'></span>" + data.schoolFeatures["1"] + "</td><br>";
+                            if (data.schoolFeatures["2"] != "") output += "<td><i class='icon-line-square-plus'></i><span style='padding-left: 5px; padding-right: 5px;'></span>" + data.schoolFeatures["2"] + "</td><br>";
+                            if (data.schoolFeatures["3"] != "") output += "<td><i class='icon-line-square-plus'></i><span style='padding-left: 5px; padding-right: 5px;'></span>" + data.schoolFeatures["3"] + "</td><br>";
                             output += "</tr>";
                             output += "</tbody>";
                             output += "</div><br>";
