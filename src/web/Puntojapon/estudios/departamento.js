@@ -23,22 +23,34 @@ function getRandomColor() {
     return color;
 }
 
-
-
 $(document).ready(function() {
 
     var tipo = getUrlParameter('tipo');
     var id = getUrlParameter('id');
     var departamento = getUrlParameter('id_depart');
     var elementos = {
-        estadisticas: $('.estadisticas')
+        estadisticas: $('.estadisticas'),
+        cargando: $("#cargando"),
+        deparamento_info: $('#tab-9')
     };
 
+    var globalGraphSettings = {
+        animation: Modernizr.canvas,
+        responsive: true,
+        sliceVisibilityThreshold: 0,
+        animationEasing: "easeOutQuart",
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+        segmentStrokeColor: "#f9f9f9",
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li style=\"list-style-type: none;\"><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    };
+
+    var datosNacionalidades = [];
+
     elementos.estadisticas.hide();
+    //  elementos.departamento_info.hide();
 
     switch (tipo) {
         case "univ":
-            $("#cargando").show();
             $.ajax({
                 type: 'GET',
                 url: 'http://jdecastroc.ovh:8081/universidades/id/' + id,
@@ -55,7 +67,6 @@ $(document).ready(function() {
                     //Do stuff with the JSON data
                     if (status == "success") {
                         var output = "";
-
                         if (data.search == true) {
                             output += '<div class="col-md-10 blogShort">';
                             output += '<h2>' + data.name + ' - ' + data.japaneseName + '</h2>';
@@ -83,7 +94,6 @@ $(document).ready(function() {
                             output += '<div class="divider"><i class="icon-circle"></i></div>';
                         }
                     }
-                    $("#cargando").hide();
                     $('#mostrarEscuela').append(output);
                 }
             });
@@ -105,8 +115,7 @@ $(document).ready(function() {
                     if (status == "success") {
                         var output = "";
                         if (data.search == true) {
-                            output += "Nombre departamento = " + data.name + "<br>";
-                            output += "Noticias = " + data.news + "<br>";
+                            $('#departamento-principal').append("<h2>" + data.name + "</h2>" + data.news);
 
                             output += "<h4>Acceso a facultad</h4>";
                             for (p = 0; p < data.facultyAccess.maps.length; p++) {
@@ -115,7 +124,7 @@ $(document).ready(function() {
                                 output += "Latitud: " + data.facultyAccess.maps[p].lat + "<br>";
                                 output += "Diracción: " + data.facultyAccess.maps[p].address + "<br>";
                                 output += "Sitios cercanos: " + data.facultyAccess.maps[p].nearbyPlaces + "<br>";
-                                output += "Otra información: " + data.facultyAccess.maps[p].otherInfo + "<br>";
+                                output += "Otra información: " + data.facultyAccess.maps[p].otherInfo + "<br>"; //Split
                             }
                         } else {
                             output += "No se ha encontrado información relacionada";
@@ -142,14 +151,11 @@ $(document).ready(function() {
                     if (status == "success") {
                         var output = "";
                         if (data.search == true) {
-                            output += "Nombre departamento = " + data.name + "<br>";
-                            output += "Noticias = " + data.news + "<br>";
-
                             output += "<h4>Admisiones</h4>";
                             output += data.facultyAdmissions.lastUpdate + "<br>";
 
                             for (p = 0; p < data.facultyAdmissions.rowTable.length; p++) {
-                                output += "<b>" + data.facultyAdmissions.rowTable[p].register + "</b>:  " + data.facultyAdmissions.rowTable[p].content + "<br>";
+                                output += "<b>" + data.facultyAdmissions.rowTable[p].register + "</b><br>" + data.facultyAdmissions.rowTable[p].content + "<br><br>";
                             }
                         } else {
                             output += "No se ha encontrado información relacionada";
@@ -158,6 +164,7 @@ $(document).ready(function() {
                     $('#admisiones').append(output);
                 }
             });
+
             //AJAX FUNCION INSTALACIONES
             $.ajax({
                 type: 'GET',
@@ -176,15 +183,9 @@ $(document).ready(function() {
                     if (status == "success") {
                         var output = "";
                         if (data.search == true) {
-                            $('#departamento-principal').append("<h2>" + data.name + "</h2>" + data.news);
-                            output += "Nombre departamento = " + data.name + "<br>";
-                            output += "Noticias = " + data.news + "<br>";
-
                             output += "<h4>Instalaciones</h4>";
-
-
                             for (p = 0; p < data.facultyFacilities.objectTable.length; p++) {
-                                output += "<b>" + data.facultyFacilities.objectTable[p].register + "</b>:  " + data.facultyFacilities.objectTable[p].content + "<br>";
+                                output += "<b>" + data.facultyFacilities.objectTable[p].register + "</b><br>" + data.facultyFacilities.objectTable[p].content + "<br><br>";
                             }
                         } else {
                             output += "No se ha encontrado información relacionada";
@@ -211,11 +212,9 @@ $(document).ready(function() {
                     if (status == "success") {
                         var output = "";
                         if (data.search == true) {
-                            $('#departamento-principal').append("<h2>" + data.name + "</h2>" + data.news);
-
                             output += "<h4>Ayuda al estudiante</h4>";
                             for (p = 0; p < data.facultySupport.objectTable.length; p++) {
-                                output += "<b>" + data.facultySupport.objectTable[p].register + "</b>:  " + data.facultySupport.objectTable[p].content + "<br>";
+                                output += "<b>" + data.facultySupport.objectTable[p].register + "</b><br>  " + data.facultySupport.objectTable[p].content + "<br><br>";
                             }
                         } else {
                             output += "No se ha encontrado información relacionada";
@@ -245,19 +244,8 @@ $(document).ready(function() {
                         if (data.search == true) {
                             output += "<h4>Información</h4>";
                             for (p = 0; p < data.facultyInfo.objectTable.length; p++) {
-                                output += "<b>" + data.facultyInfo.objectTable[p].register + "</b>:  " + data.facultyInfo.objectTable[p].content + "<br>";
+                                output += "<b>" + data.facultyInfo.objectTable[p].register + "</b><br>" + data.facultyInfo.objectTable[p].content + "<br><br>";
                             }
-
-                            var globalGraphSettings = {
-                                animation: Modernizr.canvas,
-                                responsive: true,
-                                sliceVisibilityThreshold: 0,
-                                animationEasing: "easeOutQuart",
-                                tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-                                segmentStrokeColor: "#f9f9f9",
-                                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li style=\"list-style-type: none;\"><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-                            };
-                            var datosNacionalidades = [];
 
                             for (k = 0; k < data.facultyInfo.regStudentsList.length; k++) {
                                 datosNacionalidades.push({
@@ -267,11 +255,6 @@ $(document).ready(function() {
                                 });
                             }
 
-                            function mostrarNacionalidades() {
-                                var ctx = document.getElementById("canvasNacionalidades").getContext("2d");
-                                var graficaInternacional = new Chart(ctx).Pie(datosNacionalidades, globalGraphSettings);
-                                document.getElementById("graficaNacionalidades-legend").innerHTML = graficaInternacional.generateLegend();
-                            }
                             $('#pieChart').appear(function() {
                                 $(this).css({
                                     opacity: 1
@@ -282,11 +265,22 @@ $(document).ready(function() {
                                 accY: -155
                             }, 'easeInCubic');
 
-                            elementos.estadisticas.show();
+                            // Don't show the students nationality chart if there is empty content
+                            if (data.facultyInfo.regStudentsList[0].content != "") {
+                              elementos.estadisticas.show();
+                            } else {
+                              elementos.estadisticas.hide();
+                            }
 
                             output += "<h3>Lista de departamentos</h3>";
                             for (m = 0; m < data.facultyInfo.departmentList.length; m++) {
-                              output += "<br><b>" + data.facultyInfo.departmentList[m].register + "</b>:  " + data.facultyInfo.departmentList[m].content + "<br>";
+                                var registerData = data.facultyInfo.departmentList[m].content.split("●");
+                                output += "<br><b>" + data.facultyInfo.departmentList[m].register + "</b><br>";
+                                output += "<ul>";
+                                for (n = 1; n < registerData.length; n++) {
+                                    output += "<li>" + registerData[n] + "</li>";
+                                }
+                                output += "</ul>";
                             }
 
                         } else {
@@ -300,7 +294,6 @@ $(document).ready(function() {
 
 
         case "grad":
-            $("#cargando").show();
             $.ajax({
                 type: 'GET',
                 url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id,
@@ -345,7 +338,6 @@ $(document).ready(function() {
                             output += '<div class="divider"><i class="icon-circle"></i></div>';
                         }
                     }
-                    $("#cargando").hide();
                     $('#mostrarEscuela').append(output);
                 }
             });
@@ -353,7 +345,6 @@ $(document).ready(function() {
             break;
 
         case "tech":
-            $("#cargando").show();
             $.ajax({
                 type: 'GET',
                 url: 'http://jdecastroc.ovh:8081/fp/id/' + id,
@@ -404,8 +395,14 @@ $(document).ready(function() {
 
             //AJAX ACCESO
 
-
             break;
     }
-    $("#cargando").hide();
+    elementos.cargando.hide();
+
+
+    function mostrarNacionalidades() {
+        var ctx = document.getElementById("canvasNacionalidades").getContext("2d");
+        var graficaInternacional = new Chart(ctx).Pie(datosNacionalidades, globalGraphSettings);
+        document.getElementById("graficaNacionalidades-legend").innerHTML = graficaInternacional.generateLegend();
+    }
 });
