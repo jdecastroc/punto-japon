@@ -13053,3 +13053,20 @@ body:not(.no-transition) #wrapper,
     width:100%;
     position:absolute;
 }
+
+/*#headerContainer {
+	width: 100vw;
+}*/
+
+#header {
+	position: fixed;
+	top: 0;
+	z-index: 99;
+	transition: none;
+}
+
+#divisor {
+	position: fixed;
+	bottom: 20;
+	z-index: 0;
+}

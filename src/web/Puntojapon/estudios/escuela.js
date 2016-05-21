@@ -496,13 +496,6 @@ $(document).ready(function() {
                                     color: getRandomColor(),
                                 });
                             };
-                            if (data.registeredStudents.Others > MINIMO_ESTUDIANTES) {
-                                datosNacionalidades.push({
-                                    label: 'Otros',
-                                    value: data.registeredStudents.Others,
-                                    color: getRandomColor(),
-                                });
-                            };
                             if (data.registeredStudents.India > MINIMO_ESTUDIANTES) {
                                 datosNacionalidades.push({
                                     label: 'India',
