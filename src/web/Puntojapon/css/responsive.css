@@ -355,9 +355,9 @@
 	#primary-menu-trigger {
 		opacity: 1;
 		pointer-events: auto;
-		top: 25px;
+		top: 5px;
 		margin-top: 0;
-		left: 0;
+		right: 0;
 		z-index: 1;
 	}
 
@@ -1767,4 +1767,3 @@ only screen and (                min-resolution: 2dppx) and (max-width: 991px) {
 	#logo a.standard-logo { display: none; }
 	#logo a.retina-logo { display: inline-block; }
 }
-
