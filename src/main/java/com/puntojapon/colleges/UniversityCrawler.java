@@ -50,11 +50,24 @@ public class UniversityCrawler extends CollegeCrawler {
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList universitiesList,
 			String jsonUniversitiesList, int counter) throws Exception {
 
+		
+		
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		boolean next = true; // Used to exit recursion
-		System.out.println("Estoy -> " + url);
+		
+		
+		for(String p : prefectureSearchName){
+			if(matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false){
+				universitiesList.setSearchState(false);
+				jsonUniversitiesList = gson.toJson(universitiesList);
+				System.out.println("ERROR: prefectura no encontrada " + p);
+				return jsonUniversitiesList;
+			} else {
+				System.out.println("Crawleando... " + url);
+			}
+		}
 
 		// Main info of each uni
 		String id = "";
@@ -342,6 +355,12 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			//Check whether there is information retrieved
+			if (faculty.getFacultyAdmissions().getLastUpdare().equals("") && faculty.getFacultyAdmissions().getRowTable().isEmpty()) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -481,6 +500,11 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyInfo().getDepartmentList().isEmpty() && faculty.getFacultyInfo().getObjectTable().isEmpty()) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -562,6 +586,11 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultySupport().getObjectTable().isEmpty() && faculty.getFacultySupport().getSupportTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -645,6 +674,11 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyFacilities().getObjectTable().isEmpty() && faculty.getFacultyFacilities().getFacilitiesTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -742,6 +776,11 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyAccess().getMaps().isEmpty() && faculty.getFacultyAccess().getAccessTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);

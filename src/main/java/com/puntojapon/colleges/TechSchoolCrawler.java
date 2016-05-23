@@ -58,6 +58,18 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		boolean next = true; // Used to exit recursion
+		
+		for(String p : prefectureSearchName){
+			if(matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false){
+				TechSchoolsList.setSearchState(false);
+				jsonTechSchoolsList = gson.toJson(TechSchoolsList);
+				System.out.println("ERROR: prefectura no encontrada " + p);
+				return jsonTechSchoolsList;
+			} else {
+				System.out.println("Crawleando... " + url);
+			}
+		}
+		
 		System.out.println("Estoy -> " + url);
 
 		// Main info of each uni
@@ -75,8 +87,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 
 		// Crawler
 		// TODO Change userAgent when application finished
-		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
-				.get();
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent())
+				.timeout((int) Math.random() * 5).get();
 
 		// Next page
 		Elements textNextPage = document.select("div.pager > a, div.pager > span");
@@ -208,8 +220,8 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		System.out.println("Estoy -> " + techSchool.getId());
 		try {
 			// TODO Change userAgent when application finished
-			Document document = Jsoup.connect(techSchool.getId())
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+			Document document = Jsoup.connect(techSchool.getId()).userAgent(RandomUserAgent.getRandomUserAgent())
+					.timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#schoolContainer");
 			for (Element element : text) {
@@ -311,7 +323,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Voy a -> " + "http://www.jpss.jp/en/tech/" + faculty.getParent() + "/");
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 
@@ -429,6 +441,12 @@ public class TechSchoolCrawler extends CollegeCrawler {
 				}
 
 			}
+
+			if (faculty.getFacultyTechEssentialInfo().getTitle().equals("")
+					&& faculty.getFacultyTechEssentialInfo().getEntranceInfo().getContent().isEmpty()) {
+				faculty.setSearch(false);
+			}
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -461,7 +479,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Voy a -> " + "http://www.jpss.jp/en/tech/" + faculty.getParent() + "/faculty/");
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/faculty/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 
@@ -514,6 +532,12 @@ public class TechSchoolCrawler extends CollegeCrawler {
 				faculty.getFacultyTechInfo().addCourse(course);
 
 			}
+
+			if (faculty.getFacultyTechInfo().getCourses().isEmpty()
+					&& faculty.getFacultyTechInfo().getTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -548,7 +572,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 
 		try {
 			Document document = Jsoup.connect("http://www.jpss.jp/en/tech/" + faculty.getParent() + "/support/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements headMenu = document.select("div#DepMenu > ul.clearFix > li");
 
@@ -572,6 +596,11 @@ public class TechSchoolCrawler extends CollegeCrawler {
 					getContent = "";
 				}
 			}
+
+			if (faculty.getFacultyTechSupport().getObjectInfo().isEmpty() && faculty.getFacultyTechSupport().getTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);

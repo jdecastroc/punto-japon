@@ -55,7 +55,17 @@ public class GradSchoolCrawler extends CollegeCrawler {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		boolean next = true; // Used to exit recursion
-		System.out.println("Estoy -> " + url);
+		
+		for(String p : prefectureSearchName){
+			if(matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false){
+				gradSchoolsList.setSearchState(false);
+				jsongradSchoolsList = gson.toJson(gradSchoolsList);
+				System.out.println("ERROR: prefectura no encontrada " + p);
+				return jsongradSchoolsList;
+			} else {
+				System.out.println("Crawleando... " + url);
+			}
+		}
 
 		// Main info of each gradSchool
 		String id = "";
@@ -487,6 +497,11 @@ public class GradSchoolCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyInfo().getDepartmentList().isEmpty() && faculty.getFacultyInfo().getObjectTable().isEmpty()) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -515,7 +530,7 @@ public class GradSchoolCrawler extends CollegeCrawler {
 	public String getFacultySupport(String gradSchoolParent, String id) {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
-		// Specify which content of a faculty it's going to be crawled
+		// Specify which content of a faculty is going to be crawled
 		Faculty faculty = new Faculty(gradSchoolParent, id, "support");
 
 		try {
@@ -569,6 +584,11 @@ public class GradSchoolCrawler extends CollegeCrawler {
 				}
 
 			}
+			
+			if (faculty.getFacultySupport().getObjectTable().isEmpty() && faculty.getFacultySupport().getSupportTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -651,6 +671,11 @@ public class GradSchoolCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyFacilities().getObjectTable().isEmpty() && faculty.getFacultyFacilities().getFacilitiesTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -747,6 +772,11 @@ public class GradSchoolCrawler extends CollegeCrawler {
 					}
 				}
 			}
+			
+			if (faculty.getFacultyAccess().getMaps().isEmpty() && faculty.getFacultyAccess().getAccessTitle().equals("")) {
+				faculty.setSearch(false);
+			}
+			
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);

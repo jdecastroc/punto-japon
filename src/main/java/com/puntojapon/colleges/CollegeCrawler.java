@@ -112,5 +112,13 @@ public abstract class CollegeCrawler {
 	 * @return json object with the faculty access information
 	 */
 	public abstract String getFacultyAccess(String parent, String id);
+	
+	public static boolean matchStringOnArray(String[] arr, String targetValue) {
+		for(String s: arr){
+			if(s.equals(targetValue) || targetValue.equals("all"))
+				return true;
+		}
+		return false;
+	}
 
 }
