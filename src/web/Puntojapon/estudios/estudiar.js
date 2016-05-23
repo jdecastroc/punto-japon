@@ -169,16 +169,19 @@ $(document).ready(function() {
     //Wikipedia get Info
     prefecturaSeleccion.change(function() {
 
-        var playListURL = 'https://es.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&callback=?&rvparse=&titles=' + document.getElementById("prefectureSelector").value;
+        if (document.getElementById("prefectureSelector").value != "all") {
 
-        $.getJSON(playListURL, function(data) {
-            $.each(data.query.pages, function(i, item) {
-                document.getElementById("tituloPrefectura").innerText = item.title;
-                document.getElementById("descripcionPrefectura").innerText = item.extract;
-                document.getElementById("wikipedia").innerText = 'https://es.wikipedia.org/wiki/' + document.getElementById("prefectureSelector").value;
+            var playListURL = 'https://es.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&callback=?&rvparse=&titles=' + document.getElementById("prefectureSelector").value;
+
+            $.getJSON(playListURL, function(data) {
+                $.each(data.query.pages, function(i, item) {
+                    document.getElementById("tituloPrefectura").innerText = item.title;
+                    document.getElementById("descripcionPrefectura").innerText = item.extract;
+                    document.getElementById("wikipedia").innerText = 'https://es.wikipedia.org/wiki/' + document.getElementById("prefectureSelector").value;
+                });
             });
-        });
-        infoPrefectura.fadeIn('slow');
+            infoPrefectura.fadeIn('slow');
+        }
     });
 
 
@@ -201,6 +204,12 @@ $(document).ready(function() {
                 avanzadasFp.show();
                 areaPosgrado.hide();
                 avanzadasJapones.hide();
+
+                $('option#todasPrefecturas').show();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
 
             case "grado":
@@ -221,6 +230,12 @@ $(document).ready(function() {
                 avanzadasFp.hide();
                 avanzadasPosgrado.hide();
                 avanzadasJapones.hide();
+
+                $('option#todasPrefecturas').show();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
 
             case "posgrado":
@@ -241,6 +256,12 @@ $(document).ready(function() {
                 avanzadasFp.hide();
                 avanzadasPosgrado.show();
                 avanzadasJapones.hide();
+
+                $('option#todasPrefecturas').show();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
             case "japones":
                 showGrado.hide();
@@ -260,6 +281,12 @@ $(document).ready(function() {
                 avanzadasFp.hide();
                 avanzadasPosgrado.hide();
                 avanzadasJapones.show();
+
+                $('option#todasPrefecturas').hide();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
 
             case "empty":
@@ -273,6 +300,12 @@ $(document).ready(function() {
                 avanzadasFp.hide();
                 avanzadasPosgrado.hide();
                 avanzadasJapones.hide();
+
+                $('option#todasPrefecturas').show();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
 
             default:
@@ -286,6 +319,12 @@ $(document).ready(function() {
                 avanzadasFp.hide();
                 avanzadasPosgrado.hide();
                 avanzadasJapones.hide();
+
+                $('option#todasPrefecturas').show();
+                document.getElementById('prefectureSelector').getElementsByTagName('option')[0].selected = 'selected';
+                document.getElementById("tituloPrefectura").innerText = "";
+                document.getElementById("descripcionPrefectura").innerText = "";
+                document.getElementById("wikipedia").innerText = "";
                 break;
         }
     });

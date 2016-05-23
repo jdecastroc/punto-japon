@@ -142,10 +142,10 @@ $(document).ready(function() {
                             //Departamentos
                             output += '<div style="padding-top: 20px;">';
                             for (j = 0; j < data.faculties.collegeFacultyList.length; j++) {
-                                var array_split = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.split("/");
+                                var array_split = data.faculties.collegeFacultyList[j].facultyUrl.split("/");
                                 var id_grad = array_split["3"];
                                 var id_depart = array_split["4"];
-                                output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=grad&id=" + id_grad + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
+                                output += '<a class="button button-3d button-mini button-rounded button-aqua" href="' + "departamento?tipo=grad&id=" + id_grad + "&id_depart=" + id_depart + '">' + data.faculties.collegeFacultyList[j].facultyName + '</a>';
                             }
                             output += '</div>';
                             output += '</div>';

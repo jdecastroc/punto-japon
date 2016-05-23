@@ -50,16 +50,13 @@ public class UniversityCrawler extends CollegeCrawler {
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList universitiesList,
 			String jsonUniversitiesList, int counter) throws Exception {
 
-		
-		
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		boolean next = true; // Used to exit recursion
-		
-		
-		for(String p : prefectureSearchName){
-			if(matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false){
+
+		for (String p : prefectureSearchName) {
+			if (matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false) {
 				universitiesList.setSearchState(false);
 				jsonUniversitiesList = gson.toJson(universitiesList);
 				System.out.println("ERROR: prefectura no encontrada " + p);
@@ -84,8 +81,8 @@ public class UniversityCrawler extends CollegeCrawler {
 		String nextPageString = "";
 
 		// Crawler
-		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5)
-				.get();
+		Document document = Jsoup.connect(url).userAgent(RandomUserAgent.getRandomUserAgent())
+				.timeout((int) Math.random() * 5).get();
 
 		// Next page
 		Elements textNextPage = document.select("div.pager > a, div.pager > span");
@@ -217,8 +214,8 @@ public class UniversityCrawler extends CollegeCrawler {
 		try {
 			System.out.println("Estoy -> " + university.getId());
 
-			Document document = Jsoup.connect(university.getId())
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+			Document document = Jsoup.connect(university.getId()).userAgent(RandomUserAgent.getRandomUserAgent())
+					.timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#schoolContainer");
 			for (Element element : text) {
@@ -355,12 +352,13 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
-			
-			//Check whether there is information retrieved
-			if (faculty.getFacultyAdmissions().getLastUpdare().equals("") && faculty.getFacultyAdmissions().getRowTable().isEmpty()) {
+
+			// Check whether there is information retrieved
+			if (faculty.getFacultyAdmissions().getLastUpdare().equals("")
+					&& faculty.getFacultyAdmissions().getRowTable().isEmpty()) {
 				faculty.setSearch(false);
 			}
-			
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -395,7 +393,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/info/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/info/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -500,11 +498,12 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
-			
-			if (faculty.getFacultyInfo().getDepartmentList().isEmpty() && faculty.getFacultyInfo().getObjectTable().isEmpty()) {
+
+			if (faculty.getFacultyInfo().getDepartmentList().isEmpty()
+					&& faculty.getFacultyInfo().getObjectTable().isEmpty()) {
 				faculty.setSearch(false);
 			}
-			
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -541,7 +540,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/support/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/support/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -586,11 +585,12 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
-			
-			if (faculty.getFacultySupport().getObjectTable().isEmpty() && faculty.getFacultySupport().getSupportTitle().equals("")) {
+
+			if (faculty.getFacultySupport().getObjectTable().isEmpty()
+					&& faculty.getFacultySupport().getSupportTitle().equals("")) {
 				faculty.setSearch(false);
 			}
-			
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -628,7 +628,7 @@ public class UniversityCrawler extends CollegeCrawler {
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId()
 							+ "/facilities/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -674,11 +674,12 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
-			
-			if (faculty.getFacultyFacilities().getObjectTable().isEmpty() && faculty.getFacultyFacilities().getFacilitiesTitle().equals("")) {
+
+			if (faculty.getFacultyFacilities().getObjectTable().isEmpty()
+					&& faculty.getFacultyFacilities().getFacilitiesTitle().equals("")) {
 				faculty.setSearch(false);
 			}
-			
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
@@ -722,7 +723,7 @@ public class UniversityCrawler extends CollegeCrawler {
 					+ "/access/");
 			Document document = Jsoup
 					.connect("http://www.jpss.jp/en/univ/" + faculty.getParent() + "/" + faculty.getId() + "/access/")
-					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int)Math.random() * 5).get();
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
 
 			Elements text = document.select("div#DepCnt");
 
@@ -768,7 +769,8 @@ public class UniversityCrawler extends CollegeCrawler {
 					// Other info
 					if (map.select("div.accessDataOther > dl.clearFix > dd.padT10").last() != null) {
 						Element getOtherInfo = map.select("div.accessDataOther > dl.clearFix > dd.padT10").last();
-						otherInfo = getOtherInfo.text().trim();
+						if (!getOtherInfo.text().trim().equals(nearbyPlaces))
+							otherInfo = getOtherInfo.text().trim();
 					}
 
 					if (!name.equals("") && !lng.equals("") && !lat.equals("")) {
@@ -776,11 +778,12 @@ public class UniversityCrawler extends CollegeCrawler {
 					}
 				}
 			}
-			
-			if (faculty.getFacultyAccess().getMaps().isEmpty() && faculty.getFacultyAccess().getAccessTitle().equals("")) {
+
+			if (faculty.getFacultyAccess().getMaps().isEmpty()
+					&& faculty.getFacultyAccess().getAccessTitle().equals("")) {
 				faculty.setSearch(false);
 			}
-			
+
 		} catch (Exception e) {
 			faculty.setSearch(false);
 			System.out.println(e);
