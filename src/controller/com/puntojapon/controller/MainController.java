@@ -762,4 +762,16 @@ public class MainController {
 		return jobList;
 	}
 
+	@RequestMapping(value = "/trabajo/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getJobs(HttpServletResponse response, @PathVariable("prefecture") String prefecture,
+			@PathVariable("specialty") String specialty, @RequestParam(value = "page") int page) throws Exception {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		String jobList = "";
+		JobsCrawler crawler = new JobsCrawler();
+		
+		jobList = crawler.getJobs(prefecture, specialty, page);
+
+		return jobList;
+	}
 }
