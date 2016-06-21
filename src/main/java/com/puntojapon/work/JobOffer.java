@@ -42,7 +42,7 @@ public class JobOffer {
 	}
 
 	public void setTags(ArrayList<String> tags) {
-		this.tags = tags;
+		this.tags = new ArrayList<String>(tags);
 	}
 
 	public void setDescription(String description) {

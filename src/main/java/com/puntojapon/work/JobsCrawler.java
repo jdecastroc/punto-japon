@@ -19,9 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.puntojapon.common.RandomUserAgent;
 
-
-//import eu.bitwalker.useragentutils.UserAgent;
-
 /**
  * JobsCrawler performs a simple API call to the ApplyQ API. By selecting the
  * area to search the jobs, the call retrieves a json file sorted by date
@@ -37,6 +34,8 @@ public class JobsCrawler {
 			"hyogo", "nara", "wakayama", "tottori", "shimane", "okayama", "hiroshima", "yamaguchi", "tokushima",
 			"kagawa", "ehime", "kochi", "fukuoka", "saga", "nagasaki", "kumamoto", "oita", "miyazaki", "kagoshima",
 			"okinawa" };
+	
+	//TODO Final list of professions
 
 	/**
 	 * getJobsApplyq perform the call to the ApplyQ API and retrieve his json
@@ -104,7 +103,7 @@ public class JobsCrawler {
 			for (Element sourceElement : jobsSource) {
 
 				// Check has next page
-				if (sourceElement.select("div.row.pagination.nopagenum > div.pagenum > a.cell").first() != null) {
+				if (sourceElement.select("div.row.pagination.nopagenum > a.cell").first() != null) {
 					jobsList.setHasNextPage(true);
 				} else {
 					jobsList.setHasNextPage(false);
@@ -126,7 +125,7 @@ public class JobsCrawler {
 
 					// Company
 					if (offer.select("div.w3").first() != null) {
-						company = offer.select("div.w2").first().text().trim();
+						company = offer.select("div.w3").first().text().trim();
 					}
 
 					// Location
@@ -135,7 +134,8 @@ public class JobsCrawler {
 					}
 
 					// Tags
-					if (offer.select("div.jobpost_profession").first().select("a").first() != null) {
+					if (offer.select("div.jobpost_profession > a").first() != null) {
+
 						Elements tagArea = offer.select("div.jobpost_profession").first().select("a");
 						for (Element tag : tagArea) {
 							tags.add(tag.text().trim());
@@ -144,12 +144,13 @@ public class JobsCrawler {
 
 					// Description and link
 					if (offer.select("a.jobpost_short").first() != null) {
-						description = offer.select("a.jobpost_short").text().trim();
+						description = offer.select("a.jobpost_short").text().trim() + "...";
 						link = offer.select("a.jobpost_short").attr("href").trim();
 					}
 
 					jobsList.addJob(new JobOffer(name, publishDate, company, location, tags, description, link));
 					jobsList.setSearchFound(jobsList.getSearchFound() + 1);
+					tags.clear();
 
 				}
 
