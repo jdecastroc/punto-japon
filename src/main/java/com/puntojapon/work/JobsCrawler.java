@@ -59,7 +59,7 @@ public class JobsCrawler {
 		if (Arrays.asList(PREFECTURES_LIST).contains(prefecture.trim().toLowerCase()) && page >= 0) {
 
 			String url = "https://www.applyq.com/jobfeed_json?pro=all&geo=" + prefecture + "&page=" + page;
-
+			System.out.println("Voy a -> " + url);
 			// PRUEBA
 			// UserAgent.parseUserAgentString(request.getHeader("User-Agent"))
 			// TODO cambiar USER AGENT
@@ -93,6 +93,8 @@ public class JobsCrawler {
 			ArrayList<String> tags = new ArrayList<String>();
 			String description = "";
 			String link = "";
+			
+			System.out.println("Voy a -> https://www.applyq.com/jobs/" + prefecture + "/" + specialty + "?p=" + page);
 
 			Document document = Jsoup
 					.connect("https://www.applyq.com/jobs/" + prefecture + "/" + specialty + "?p=" + page)
