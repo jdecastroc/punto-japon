@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.puntojapon.articles.ElasticSearch;
@@ -51,6 +52,11 @@ import com.puntojapon.work.JobsCrawler;
  */
 @RestController
 public class MainController {
+	
+	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="Search results were empty")  // 404
+    public class RequestNotFoundException extends RuntimeException {
+		
+    }
 
 	/**
 	 * SearchUni take the information given by the user in the mapped URL and
@@ -771,6 +777,11 @@ public class MainController {
 		JobsCrawler crawler = new JobsCrawler();
 		
 		jobList = crawler.getJobs(prefecture, specialty, page);
+		
+		JsonElement jelement = new JsonParser().parse(jobList);
+		JsonObject jobject = jelement.getAsJsonObject();
+		String result = jobject.get("searchState").toString();
+		if (result.equals("false")) throw new RequestNotFoundException();
 
 		return jobList;
 	}

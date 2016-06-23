@@ -11,11 +11,13 @@ $(document).ready(function() {
         loadArticles(10);
     });
 
-    //Cargar articulos
-    function loading() {
-        //Animacion de carga
-        showData.text('Cargando artículos');
-    }
+    $(document).ajaxStart(function() {
+        $("#cargandoArticulos").show();
+    });
+
+    $(document).ajaxStop(function() {
+        $('#cargandoArticulos').hide();
+    });
 
     function loadArticles(showArticles) {
 
@@ -35,11 +37,7 @@ $(document).ready(function() {
                 //Do stuff with the JSON data
 
                 if (status == "success") {
-
-
                     //  showData.empty(); //Refresh the div where the articles are stored
-
-
                     var jsonData = data.data; //parse json
                     var output = "";
                     if (articulosCargados < jsonData.length) {

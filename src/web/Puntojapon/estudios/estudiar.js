@@ -335,6 +335,10 @@ $(document).ready(function() {
         cargaEscuelas.show();
         semaforo--;
         var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
+        if (document.getElementById("prefectureSelector").value == "all"){
+          prefectureSearch = "all";
+        }
+
 
         switch (document.getElementById("studiesSelector").value) {
             case "grado":

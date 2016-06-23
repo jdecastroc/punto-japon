@@ -71,6 +71,22 @@ $(document).ready(function() {
         }
     });
 
+    $('#empezarBusqueda').click(function() {
+        if (document.getElementById("prefectureSelector").value != "" && document.getElementById("specialtySelector").value != "") {
+            paginaOferta = 0;
+            loadOffers();
+        } else {
+            mostrarOfertas.empty();
+            var output = "<ul>";
+            output += '<div class="alert alert-danger">';
+            output += '<i class="icon-remove-sign"></i><strong>¡Oh vaya!</strong> Se te ha olvidado rellenar la información en los pasos previos.';
+            output += '</div>';
+            output += "</ul>";
+            mostrarOfertas.append(output);
+            mostrarOfertas.show();
+        }
+    });
+
     prefecturaSeleccion.change(function() {
         if (document.getElementById("prefectureSelector").value != "all") {
 
@@ -104,8 +120,10 @@ $(document).ready(function() {
         mostrarOfertas.empty();
         semaforo--;
         var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
+
         $.ajax({
             type: 'GET',
+            //url: 'http://www.jdecastroc.ovh:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
             url: 'http://www.jdecastroc.ovh:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
             data: {
                 page: paginaOferta,
@@ -152,9 +170,14 @@ $(document).ready(function() {
                     mostrarOfertas.show();
                 }
             },
-            error: function() {
+            error: function(xhr) {
                 mostrarOfertas.empty(); //Refresh the div where the jobs are stored
-                var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                jsonErrorValue = jQuery.parseJSON(xhr.responseText);
+                if (jsonErrorValue.message === "Search results were empty") {
+                  var output = 'No se han encontrado resultados.';
+                } else {
+                  var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                }
                 mostrarOfertas.append(output);
                 mostrarOfertas.show();
             },
