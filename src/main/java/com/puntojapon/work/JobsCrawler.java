@@ -34,8 +34,8 @@ public class JobsCrawler {
 			"hyogo", "nara", "wakayama", "tottori", "shimane", "okayama", "hiroshima", "yamaguchi", "tokushima",
 			"kagawa", "ehime", "kochi", "fukuoka", "saga", "nagasaki", "kumamoto", "oita", "miyazaki", "kagoshima",
 			"okinawa" };
-	
-	//TODO Final list of professions
+
+	// TODO Final list of professions
 
 	/**
 	 * getJobsApplyq perform the call to the ApplyQ API and retrieve his json
@@ -93,7 +93,7 @@ public class JobsCrawler {
 			ArrayList<String> tags = new ArrayList<String>();
 			String description = "";
 			String link = "";
-			
+
 			System.out.println("Voy a -> https://www.applyq.com/jobs/" + prefecture + "/" + specialty + "?p=" + page);
 
 			Document document = Jsoup

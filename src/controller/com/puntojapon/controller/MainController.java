@@ -38,6 +38,7 @@ import com.puntojapon.colleges.TechSchoolUrlBuilder;
 import com.puntojapon.colleges.UniversityCrawler;
 import com.puntojapon.colleges.UniversityUrlBuilder;
 import com.puntojapon.languageSchools.SchoolCrawler;
+import com.puntojapon.live.HousesCrawler;
 import com.puntojapon.work.JobsCrawler;
 
 //import eu.bitwalker.useragentutils.UserAgent;
@@ -52,11 +53,11 @@ import com.puntojapon.work.JobsCrawler;
  */
 @RestController
 public class MainController {
-	
-	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="Search results were empty")  // 404
-    public class RequestNotFoundException extends RuntimeException {
-		
-    }
+
+	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Search results were empty") // 404
+	public class RequestNotFoundException extends RuntimeException {
+
+	}
 
 	/**
 	 * SearchUni take the information given by the user in the mapped URL and
@@ -91,7 +92,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/{prefecture}/{typeStudies}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchUni(HttpServletResponse  response, @PathVariable("prefecture") String[] prefecture,
+	public @ResponseBody String searchUni(HttpServletResponse response, @PathVariable("prefecture") String[] prefecture,
 			@PathVariable("typeStudies") String[] typeStudiesList, @RequestParam(value = "nameUni") String nameUni,
 			@RequestParam(value = "typeUni") String[] typeUni,
 			@RequestParam(value = "admisionMonth") String[] admisionMonth,
@@ -100,7 +101,7 @@ public class MainController {
 			@RequestParam(value = "admisionUni") String[] admisionUni) throws Exception {
 
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String universityList = "";
 		String url = "";
 		CollegeList universitiesList = new CollegeList(
@@ -140,11 +141,12 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchGradSchool(HttpServletResponse  response, @PathVariable("prefecture") String[] prefecture,
-			@RequestParam(value = "nameGrad") String nameGrad, @RequestParam(value = "typeGrad") String[] typeGrad,
+	public @ResponseBody String searchGradSchool(HttpServletResponse response,
+			@PathVariable("prefecture") String[] prefecture, @RequestParam(value = "nameGrad") String nameGrad,
+			@RequestParam(value = "typeGrad") String[] typeGrad,
 			@RequestParam(value = "typeCourse") String[] typeCourse,
 			@RequestParam(value = "englishCourse") String[] englishCourse) throws Exception {
-		
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
 
 		String gradSchoolList = "";
@@ -178,9 +180,10 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/fp/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchTechSchool(HttpServletResponse  response, @PathVariable("prefecture") String[] prefecture,
-			@RequestParam(value = "nameTech") String nameTech) throws Exception {
-		
+	public @ResponseBody String searchTechSchool(HttpServletResponse response,
+			@PathVariable("prefecture") String[] prefecture, @RequestParam(value = "nameTech") String nameTech)
+			throws Exception {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
 
 		String techSchoolList = "";
@@ -211,10 +214,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversity(HttpServletResponse  response, @PathVariable("id") String id) throws Exception {
-		
+	public @ResponseBody String showUniversity(HttpServletResponse response, @PathVariable("id") String id)
+			throws Exception {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String universityInfo = "";
 		UniversityCrawler crawler = new UniversityCrawler();
 		universityInfo = crawler.getCollege(id);
@@ -235,10 +239,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchool(HttpServletResponse  response, @PathVariable("id") String id) throws Exception {
-		
+	public @ResponseBody String showGradSchool(HttpServletResponse response, @PathVariable("id") String id)
+			throws Exception {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String gradSchoolInfo = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
 		gradSchoolInfo = crawler.getCollege(id);
@@ -259,10 +264,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/fp/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showTechSchool(HttpServletResponse  response, @PathVariable("id") String id) throws Exception {
-		
+	public @ResponseBody String showTechSchool(HttpServletResponse response, @PathVariable("id") String id)
+			throws Exception {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String techSchoolInfo = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
 		techSchoolInfo = crawler.getCollege(id);
@@ -288,11 +294,12 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversityFacultyAdmissions(HttpServletResponse  response, @PathVariable("idUniversity") String idUniversity,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
-		
+	public @ResponseBody String showUniversityFacultyAdmissions(HttpServletResponse response,
+			@PathVariable("idUniversity") String idUniversity, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String facultyAdmissions = "";
 		UniversityCrawler crawler = new UniversityCrawler();
 		facultyAdmissions = crawler.getFacultyAdmissions(idUniversity, idFaculty);
@@ -318,8 +325,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversityFacultyInfo(HttpServletResponse  response, @PathVariable("idUniversity") String idUniversity,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showUniversityFacultyInfo(HttpServletResponse response,
+			@PathVariable("idUniversity") String idUniversity, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyInfo = "";
 		UniversityCrawler crawler = new UniversityCrawler();
@@ -346,8 +354,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversityFacultySupport(HttpServletResponse  response, @PathVariable("idUniversity") String idUniversity,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showUniversityFacultySupport(HttpServletResponse response,
+			@PathVariable("idUniversity") String idUniversity, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultySupport = "";
 		UniversityCrawler crawler = new UniversityCrawler();
@@ -374,8 +383,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversityFacultyFacilities(HttpServletResponse  response, @PathVariable("idUniversity") String idUniversity,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showUniversityFacultyFacilities(HttpServletResponse response,
+			@PathVariable("idUniversity") String idUniversity, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyFacilities = "";
 		UniversityCrawler crawler = new UniversityCrawler();
@@ -402,8 +412,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/universidades/id/{idUniversity}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showUniversityFacultyAccess(HttpServletResponse  response, @PathVariable("idUniversity") String idUniversity,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showUniversityFacultyAccess(HttpServletResponse response,
+			@PathVariable("idUniversity") String idUniversity, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyAccess = "";
 		UniversityCrawler crawler = new UniversityCrawler();
@@ -430,8 +441,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchoolFacultyAdmissions(HttpServletResponse  response, @PathVariable("idGraduate") String idGraduate,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showGradSchoolFacultyAdmissions(HttpServletResponse response,
+			@PathVariable("idGraduate") String idGraduate, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyAdmissions = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
@@ -458,8 +470,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchoolFacultyInfo(HttpServletResponse  response, @PathVariable("idGraduate") String idGraduate,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showGradSchoolFacultyInfo(HttpServletResponse response,
+			@PathVariable("idGraduate") String idGraduate, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyInfo = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
@@ -486,8 +499,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchoolFacultySupport(HttpServletResponse  response, @PathVariable("idGraduate") String idGraduate,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showGradSchoolFacultySupport(HttpServletResponse response,
+			@PathVariable("idGraduate") String idGraduate, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultySupport = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
@@ -514,8 +528,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/facilities", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchoolFacultyFacilities(HttpServletResponse  response, @PathVariable("idGraduate") String idGraduate,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showGradSchoolFacultyFacilities(HttpServletResponse response,
+			@PathVariable("idGraduate") String idGraduate, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyFacilities = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
@@ -542,8 +557,9 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/posgrado/id/{idGraduate}/{idFaculty}/access", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showGradSchoolFacultyAccess(HttpServletResponse  response, @PathVariable("idGraduate") String idGraduate,
-			@PathVariable("idFaculty") String idFaculty) throws Exception {
+	public @ResponseBody String showGradSchoolFacultyAccess(HttpServletResponse response,
+			@PathVariable("idGraduate") String idGraduate, @PathVariable("idFaculty") String idFaculty)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String facultyAccess = "";
 		GradSchoolCrawler crawler = new GradSchoolCrawler();
@@ -568,8 +584,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/admissions", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showTechSchoolFacultyEssentialInfo(HttpServletResponse  response, @PathVariable("idTechSchool") String idTechSchool)
-			throws Exception {
+	public @ResponseBody String showTechSchoolFacultyEssentialInfo(HttpServletResponse response,
+			@PathVariable("idTechSchool") String idTechSchool) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String TechSchoolEssentialInfo = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
@@ -593,8 +609,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/info", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showTechSchoolFacultyInfo(HttpServletResponse  response, @PathVariable("idTechSchool") String idTechSchool)
-			throws Exception {
+	public @ResponseBody String showTechSchoolFacultyInfo(HttpServletResponse response,
+			@PathVariable("idTechSchool") String idTechSchool) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String TechSchoolInfo = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
@@ -618,8 +634,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/fp/id/{idTechSchool}/support", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showTechSchoolFacultySupport(HttpServletResponse  response, @PathVariable("idTechSchool") String idTechSchool)
-			throws Exception {
+	public @ResponseBody String showTechSchoolFacultySupport(HttpServletResponse response,
+			@PathVariable("idTechSchool") String idTechSchool) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String TechSchoolSupport = "";
 		TechSchoolCrawler crawler = new TechSchoolCrawler();
@@ -644,7 +660,7 @@ public class MainController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String updateArticles() throws Exception {
 		KettleTransformation.start();
-		//Call to the elastic search index process
+		// Call to the elastic search index process
 		ElasticSearch.filesIndexation();
 		return "Artículos actualizados";
 	}
@@ -661,10 +677,10 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getLatestArticles(HttpServletResponse  response) throws Exception {
+	public @ResponseBody String getLatestArticles(HttpServletResponse response) throws Exception {
 
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		
+
 		String obtainedJson = new String(Files.readAllBytes(Paths.get("src/main/resources/sort.json")));
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(obtainedJson).getAsJsonObject();
@@ -687,7 +703,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/articulos/buscar", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String searchArticleByTitle(HttpServletResponse  response, @RequestParam(value = "titulo") String titulo) throws Exception {
+	public @ResponseBody String searchArticleByTitle(HttpServletResponse response,
+			@RequestParam(value = "titulo") String titulo) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 
 		return SearchArticles.searchByTitle(titulo);
@@ -707,7 +724,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/escuelasIdiomas/{area}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showLanguageSchoolList(HttpServletResponse  response, @PathVariable("area") String area) throws Exception {
+	public @ResponseBody String showLanguageSchoolList(HttpServletResponse response, @PathVariable("area") String area)
+			throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String languageSchoolList = "";
 		SchoolCrawler crawler = new SchoolCrawler();
@@ -730,8 +748,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/escuelasIdiomas/id/{idSchool}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String showLanguageSchoolInformation(HttpServletResponse  response, @PathVariable("idSchool") String idSchool)
-			throws Exception {
+	public @ResponseBody String showLanguageSchoolInformation(HttpServletResponse response,
+			@PathVariable("idSchool") String idSchool) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String languageSchoolInfo = "";
 		SchoolCrawler crawler = new SchoolCrawler();
@@ -755,8 +773,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/trabajo/applyq/{prefecture}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getApplyqJobs(HttpServletResponse  response, @PathVariable("prefecture") String prefecture,
-			@RequestParam(value = "page") int page) throws Exception {
+	public @ResponseBody String getApplyqJobs(HttpServletResponse response,
+			@PathVariable("prefecture") String prefecture, @RequestParam(value = "page") int page) throws Exception {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String jobList = "";
 		JobsCrawler crawler = new JobsCrawler();
@@ -775,14 +793,50 @@ public class MainController {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String jobList = "";
 		JobsCrawler crawler = new JobsCrawler();
-		
+
 		jobList = crawler.getJobs(prefecture, specialty, page);
-		
+
 		JsonElement jelement = new JsonParser().parse(jobList);
 		JsonObject jobject = jelement.getAsJsonObject();
 		String result = jobject.get("searchState").toString();
-		if (result.equals("false")) throw new RequestNotFoundException();
+		if (result.equals("false"))
+			throw new RequestNotFoundException();
 
 		return jobList;
+	}
+
+	@RequestMapping(value = "/vivir/{prefecture}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getHouses(HttpServletResponse response, @PathVariable("prefecture") String prefecture,
+			@RequestParam(value = "page") int page, @RequestParam(value = "min_price") String minPrice,
+			@RequestParam(value = "max_price") String maxPrice, @RequestParam(value = "min_meter") String minSize,
+			@RequestParam(value = "rooms") String minLayout,
+			@RequestParam(value = "distance_station") String distanceStation,
+			@RequestParam(value = "building_type") String buildingType,
+			@RequestParam(value = "building_age") String buildingAge,
+			@RequestParam(value = "low_initial_costs") String lowInitialCosts,
+			@RequestParam(value = "no_guarantor") String noGuarantor,
+			@RequestParam(value = "no_key_money") String noKeyMoney,
+			@RequestParam(value = "pets") String petsNegotiable, @RequestParam(value = "no_deposit") String noDeposit,
+			@RequestParam(value = "short_term_ok") String shortTerm,
+			@RequestParam(value = "no_agency_fee") String noAgencyFee,
+			@RequestParam(value = "furnished") String furnished, @RequestParam(value = "internet") String internet,
+			@RequestParam(value = "wifi") String wifi, @RequestParam(value = "credit_card") String creditCardPayment)
+			throws Exception {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		String housesList = "";
+		HousesCrawler crawler = new HousesCrawler();
+
+		housesList = crawler.getHouses(page, prefecture, minPrice, maxPrice, minSize, minLayout, distanceStation,
+				buildingType, buildingAge, lowInitialCosts, noGuarantor, noKeyMoney, petsNegotiable, noDeposit,
+				shortTerm, noAgencyFee, furnished, internet, wifi, creditCardPayment);
+
+		JsonElement jelement = new JsonParser().parse(housesList);
+		JsonObject jobject = jelement.getAsJsonObject();
+		String result = jobject.get("searchState").toString();
+		if (result.equals("false"))
+			throw new RequestNotFoundException();
+
+		return housesList;
 	}
 }
