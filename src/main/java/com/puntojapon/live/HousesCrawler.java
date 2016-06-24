@@ -28,6 +28,7 @@ public class HousesCrawler {
 			String creditCardPaymentS) throws IOException {
 
 		String jsonHouses = "";
+		prefectureS = prefectureS.toLowerCase(); //To fit the request URL param requirement
 
 		// Jobs list
 		HouseList houseList = new HouseList();
@@ -50,6 +51,7 @@ public class HousesCrawler {
 			String agent = "";
 			String imageUrl = "";
 			String map = "";
+			String link = "";
 
 			// BUILD URL
 
@@ -202,13 +204,18 @@ public class HousesCrawler {
 							+ property.select("div.listing-body > div.listing-left-col > a > img").attr("src");
 				}
 
-				// TODO Map
+				// Map
 				if (property.select("div.rej-map-container") != null) {
 					map = property.select("div.rej-map-container").attr("data-address");
 				}
+				
+				// Link
+				if (property.select("div.listing-footer > listing-right-col > a") != null) {
+					link = "https://www.realestate.co.jp" + property.select("div.listing-footer > div.listing-right-col > a").attr("href");
+				}
 
 				houseList.addHouse(new House(buildingType, place, rent, size, deposit, keyMoney, floor, maintenanceFee,
-						nearestStation, agent, imageUrl, map));
+						nearestStation, agent, imageUrl, map, link));
 				houseList.setSearchFound(houseList.getSearchFound() + 1);
 
 			}

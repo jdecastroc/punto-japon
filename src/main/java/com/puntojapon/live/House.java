@@ -14,9 +14,10 @@ public class House {
 	private String agent;
 	private String imageUrl;
 	private String map;
+	private String link;
 
 	public House(String buildingType, String place, String rent, String size, String deposit, String keyMoney, String floor,
-			String maintenanceFee, String nearestStation, String agent, String imageUrl, String map) {
+			String maintenanceFee, String nearestStation, String agent, String imageUrl, String map, String link) {
 		
 		setBuildingType(buildingType);
 		setPlace(place);
@@ -30,6 +31,7 @@ public class House {
 		setAgent(agent);
 		setImageUrl(imageUrl);
 		setMap(map);
+		setLink(link);
 
 	}
 
@@ -79,6 +81,10 @@ public class House {
 
 	public void setMap(String map) {
 		this.map = map;
+	}
+	
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }
