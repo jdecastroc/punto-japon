@@ -14,6 +14,8 @@ $(document).ready(function() {
     var infoPrefectura = $('#infoPrefectura');
     var prefecturaSeleccion = $("#prefectureSelector");
 
+    // Elementos segunda tab
+    var empezarBusqueda = $('#empezarBusquedaViviendas');
 
     // Elementos ultima pagina
     var mostrarViviendas = $('#mostrarViviendas');
@@ -35,7 +37,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#empezarBusqueda').click(function() {
+    $('#empezarBusquedaViviendas').click(function() {
         if (document.getElementById("prefectureSelector").value != "") {
             paginaVivienda = 1;
             cargarViviendas();
@@ -119,7 +121,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8081/vivir/' + prefectureSearch,
+            url: 'http://www.jdecastroc.ovh:8081/vivir/' + prefectureSearch,
             data: {
                 page: paginaVivienda,
                 min_price: document.getElementById('min_price').value,
@@ -168,14 +170,14 @@ $(document).ready(function() {
 
 
 
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Alquiler:</b></span>' + data.houseList[i].rent + '<br>';
+                        output += '<i class="icon-line-bar-graph-2"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Alquiler:</b></span>' + data.houseList[i].rent + '<br>';
                         output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Tamaño:</b></span>' + data.houseList[i].size + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Depósito:</b></span>' + data.houseList[i].deposit + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Señal:</b></span>' + data.houseList[i].keyMoney + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Piso:</b></span>' + data.houseList[i].floor + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Coste mantenimiento:</b></span>' + data.houseList[i].maintenanceFee + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Estación más cercana:</b></span>' + data.houseList[i].nearestStation + '<br>';
-                        output += '<i class="icon-line2-home"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Agente:</b></span>' + data.houseList[i].agent + '<br>';
+                        output += '<i class="icon-lock"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Depósito:</b></span>' + data.houseList[i].deposit + '<br>';
+                        output += '<i class="icon-flag"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Señal:</b></span>' + data.houseList[i].keyMoney + '<br>';
+                        output += '<i class="icon-line-layers"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Piso:</b></span>' + data.houseList[i].floor + '<br>';
+                        output += '<i class="icon-line-briefcase"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Coste mantenimiento:</b></span>' + data.houseList[i].maintenanceFee + '<br>';
+                        output += '<i class="icon-map-marker"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Estación más cercana:</b></span>' + data.houseList[i].nearestStation + '<br>';
+                        output += '<i class="icon-line-head"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Agente:</b></span>' + data.houseList[i].agent + '<br>';
                         output += '<a id="mapEvent" href="https://www.google.es/maps/search/' + data.houseList[i].map + '"> Ver localización en el mapa </a><br><br>';
                         output += '<h5><a href="' + data.houseList[i].link + '">Más información</a></h5>';
 

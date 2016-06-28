@@ -19,6 +19,11 @@ $(document).ready(function() {
         $('#cargandoArticulos').hide();
     });
 
+    $('#textSearch').keyup(function() {
+        //$(this).val() // get the current value of the input field.
+        document.getElementById("buscarArticulos").setAttribute('href','buscador?titulo=' + $(this).val());
+    });
+
     function loadArticles(showArticles) {
 
         $.ajax({
@@ -40,36 +45,45 @@ $(document).ready(function() {
                     //  showData.empty(); //Refresh the div where the articles are stored
                     var jsonData = data.data; //parse json
                     var output = "";
-                    if (articulosCargados < jsonData.length) {
-                        for (i = articulosCargados; i < showArticles; i++) {
-                            articulosCargados++;
-                            if (i % 2 == false) {
-                                output += '<div class="col_half">';
-                                output += '<h3>' + jsonData[i].Title + '</h3>';
-                                output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
+                    if (jsonData != null) {
+                        if (articulosCargados < jsonData.length) {
+                            for (i = articulosCargados; i < showArticles; i++) {
+                                articulosCargados++;
+                                if (i % 2 == false) {
+                                    output += '<div class="col_half">';
+                                    output += '<h3>' + jsonData[i].Title + '</h3>';
+                                    output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
 
-                                output += ' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author + '</a></li></ul>';
-                                output += '<article><p> ' + jsonData[i].Description + '<p></article>';
-                                output += '<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
+                                    output += ' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author + '</a></li></ul>';
+                                    output += '<article><p> ' + jsonData[i].Description + '<p></article>';
+                                    output += '<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
 
-                                //output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
-                                output += '</div>';
-                            } else {
-                                output += '<div class="col_half col_last">';
-                                output += '<h3>' + jsonData[i].Title + '</h3>';
-                                output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
+                                    //output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
+                                    output += '</div>';
+                                } else {
+                                    output += '<div class="col_half col_last">';
+                                    output += '<h3>' + jsonData[i].Title + '</h3>';
+                                    output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
 
-                                output += ' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author + '</a></li></ul>';
-                                output += '<article><p> ' + jsonData[i].Description + '<p></article>';
-                                output += '<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
+                                    output += ' <ul class="entry-meta clearfix"> <li><i class="icon-calendar3"></i>' + jsonData[i].PubDate + '</li> <li><a href="#"><i class="icon-user"></i>' + jsonData[i].Author + '</a></li></ul>';
+                                    output += '<article><p> ' + jsonData[i].Description + '<p></article>';
+                                    output += '<a class="btn btn-blog pull-right marginBottom10" href=" ' + jsonData[i].Link + '">Seguir leyendo</a>';
 
-                                //output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
-                                output += '</div>';
+                                    //output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
+                                    output += '</div>';
+                                }
                             }
+                            /*                    output += "</ul>";*/
+                            showData.append(output);
                         }
-                        /*                    output += "</ul>";*/
-                        showData.append(output);
+                    } else {
+                        var output = "<ul>";
+                        output += '<div class="alert alert-warning">';
+                        output += '<i class="icon-remove-sign"></i><strong>El servidor de datos se encuentra en mantenimiento. Intentelo de nuevo mas tarde.';
+                        output += '</div>';
+                        output += "</ul>";
                     }
+                    showData.append(output);
 
                 }
             }

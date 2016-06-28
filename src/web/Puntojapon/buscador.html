@@ -73,9 +73,6 @@
     <div id="headerContainer" class="divcenter">
         <div id="logo-space" style="width: 100%; text-align: center; margin-top: 4%;">
             <img src="img/logoBig.png" align="center" style="width: 15vw; heigth: 15vw;"></img>
-            <div class="searchRow" class="row">
-                <a href="#search" class="btnSearch btn-danger btn-circle btn-lg"><i class="icon-line-search"></i></a>
-            </div>
         </div>
 
         <div id="button-space" class="row divcenter" style="margin-top: 4%; margin-bottom: 10%; text-align: center;">
@@ -85,26 +82,21 @@
         </div>
     </div>
 
-    <div id="search">
-        <button type="button" class="close">×</button>
-        <form id="sendSearch">
-            <input id ="textSearch" type="search" value="" placeholder="¿Qué quieres buscar?" />
-            <a id="buscarArticulos" href="" class="btn btn-default">Buscar artículos</a>
-            <!-- <button id="buscarArticulos" type="submit" class="btn btn-primary">Buscar en artículos</button>-->
-        </form>
-    </div>
-
     <div class="container divcenter">
         <div id="inicioArticulos"></div>
         <div id="show-data" class="divcenter"></div>
     </div>
+    <div class="container divcenter">
+    <div id="volver"><a id="buscarArticulos" href="index" class="button button-xlarge tright">Volver a artículos</a></div>
+    </div>
     <div id="carga"></div>
     <div id="cargandoArticulos" style="background:url(../img/loading.gif) no-repeat center center;width: 50%;height:200px;margin: 0 auto;"></div>
+
     <!--    <div id="divisor" class="divider divider-center"><a href="#inicioArticulos" data-scrollto="#inicioArticulos"><i class="icon-chevron-up"></i></a></div>
 -->
 </body>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="articulos.js"></script>
+<script src="buscadorArticulos.js"></script>
 <script src="search.js"></script>
 <script src="js/functions.js"></script>
 
