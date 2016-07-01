@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     //Semaforo
     var semaforo = 1;
+    var fuente = $('#fuente');
 
     //Pasos
     var elementoPrimerPaso = $('#ui-id-1');
@@ -27,6 +28,7 @@ $(document).ready(function() {
     var languageAreaSeleccion = $("#languageAreaSelector");
     var imagenPrefecturas = $("#prefecturasImg");
     var imagenTokyo = $("#tokyoImg");
+
 
     imagenTokyo.hide();
     languageAreaSeleccion.hide();
@@ -93,6 +95,7 @@ $(document).ready(function() {
     });
 
     elementoUltimoPaso.click(function() {
+        fuente.hide();
         if (semaforo > 0 && document.getElementById("prefectureSelector").value != "" && nivelEstudios.value != "") {
             loadColleges();
         } else {
@@ -107,6 +110,7 @@ $(document).ready(function() {
     });
 
     siguienteUltimoPaso.click(function() {
+        fuente.hide();
         if (semaforo > 0 && document.getElementById("prefectureSelector").value != "" && nivelEstudios.value != "") {
             loadColleges();
         } else {
@@ -122,8 +126,6 @@ $(document).ready(function() {
 
 
     $(document).on('change', '#prefectureSelector', function() {
-        //alert("valor prefectura: " + document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].value);
-        //alert("valor contenedor: " + document.getElementById('desContainer').value);
         if ((document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].value == "Tokio") && document.getElementById('studiesSelector').value == "japones") {
 
             imagenPrefecturas.hide();
@@ -332,11 +334,12 @@ $(document).ready(function() {
 
     function loadColleges() {
 
+        fuente.hide();
         cargaEscuelas.show();
         semaforo--;
         var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
-        if (document.getElementById("prefectureSelector").value == "all"){
-          prefectureSearch = "all";
+        if (document.getElementById("prefectureSelector").value == "all") {
+            prefectureSearch = "all";
         }
 
 
@@ -413,14 +416,14 @@ $(document).ready(function() {
                                         //Coge el substring de more... para enlazar con la universidad
                                         var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["), jsonData[i].description.lastIndexOf(";"));
 
-                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/univ/", "escuela?tipo=univ&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
+                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/univ/", "estudiar/escuela?tipo=univ&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
                                         //Departamentos
                                         output += '<div style="padding-top: 10px;">';
                                         for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
                                             var array_split = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.split("/");
                                             var id_univ = array_split["3"];
                                             var id_depart = array_split["4"];
-                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=univ&id=" + id_univ + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
+                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "estudiar/departamento?tipo=univ&id=" + id_univ + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
 
                                         }
                                         output += '</div>';
@@ -442,6 +445,8 @@ $(document).ready(function() {
                             } else {
                                 output += "<p>No se ha encontrado ninguna universidad que encaje con la prefectura o el tipo de estudios indicado.</p>";
                             }
+
+                            fuente.show();
 
                             output += "</ul>";
                             mostrarEscuelas.append(output);
@@ -469,8 +474,7 @@ $(document).ready(function() {
             case "fp":
                 $.ajax({
                     type: 'GET',
-                    //http://www.jdecastroc.ovh:8081/fp/Tokyo?nameTech=
-                    url: 'http://www.jdecastroc.ovh:8081/fp/' + prefectureSearch + '/',
+                    url: 'http://www.jdecastroc.ovh:8081/fp/' + prefectureSearch,
                     data: {
                         nameTech: document.getElementById("nombreFp").value,
                     }, //Especifica los datos que se enviarán al servidor
@@ -533,14 +537,14 @@ $(document).ready(function() {
                                         //Coge el substring de more... para enlazar con la universidad
                                         var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["), jsonData[i].description.lastIndexOf(";"));
 
-                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/tech/", "escuela?tipo=tech&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
+                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/tech/", "estudiar/escuela?tipo=tech&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
                                         //Departamentos
                                         output += '<div style="padding-top: 10px;">';
                                         for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
                                             var array = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.replace("#", "").split("/");
                                             var id_fp = array[3];
                                             var id_depart = array[5];
-                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=tech&id=" + id_fp + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
+                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "estudiar/departamento?tipo=tech&id=" + id_fp + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                                         }
                                         output += '</div>';
                                         output += '</div>';
@@ -556,6 +560,8 @@ $(document).ready(function() {
 
                                     output += '</div>';
                                 }
+
+                                fuente.show();
 
                             } else {
                                 output += "<p>No se ha encontrado ningun colegio de formación profesional que encaje con la prefectura o el tipo de estudios indicado.</p>";
@@ -588,12 +594,11 @@ $(document).ready(function() {
             case "posgrado":
                 $.ajax({
                     type: 'GET',
-                    //http://localhost:8080/posgrado/Tokyo, Kanagawa?nameGrad=&typeGrad=&typeCourse=&englishCourse=
-                    url: 'http://www.jdecastroc.ovh:8081/posgrado/' + prefectureSearch + '/',
+                    url: 'http://www.jdecastroc.ovh:8081/posgrado/' + prefectureSearch,
                     data: {
                         nameGrad: document.getElementById("nombrePosgrado").value,
-                        typeGrad: document.getElementById("areaSelector").value,
-                        typeCourse: '',
+                        typeGrad: document.getElementById("areaSelectorPosgrad").value,
+                        typeCourse: document.getElementById("typePosgrad").value,
                         englishCourse: document.getElementById("idiomaSelector").value,
                     }, //Especifica los datos que se enviarán al servidor
                     async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
@@ -655,14 +660,14 @@ $(document).ready(function() {
                                         //Coge el substring de more... para enlazar con la universidad
                                         var more = jsonData[i].description.substring(jsonData[i].description.lastIndexOf("["), jsonData[i].description.lastIndexOf(";"));
 
-                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/grad/", "escuela?tipo=grad&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
+                                        output += '<article><p>' + more + '<a target="_blank" href="' + jsonData[i].id.replace("/en/grad/", "estudiar/escuela?tipo=grad&id=").slice(0, -1) + '">' + jsonData[i].description.replace(more, "") + '</a>' + '</p></article></br>';
                                         //Departamentos
                                         output += '<div style="padding-top: 10px;">';
                                         for (j = 0; j < jsonData[i].faculties.collegeFacultyList.length; j++) {
                                             var array_split = jsonData[i].faculties.collegeFacultyList[j].facultyUrl.split("/");
                                             var id_grad = array_split["3"];
                                             var id_depart = array_split["4"];
-                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "departamento?tipo=grad&id=" + id_grad + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
+                                            output += '<a class="button button-3d button-mini button-rounded button-aqua" target="_blank" href="' + "estudiar/departamento?tipo=grad&id=" + id_grad + "&id_depart=" + id_depart + '">' + jsonData[i].faculties.collegeFacultyList[j].facultyName + '</a>';
                                         }
                                         output += '</div>';
                                         output += '</div>';
@@ -678,6 +683,7 @@ $(document).ready(function() {
 
                                     output += '</div>';
                                 }
+                                fuente.show();
 
                             } else {
                                 output += "<p>No se ha encontrado ningun colegio de posgrado que encaje con la prefectura o el tipo de estudios indicado.</p>";
@@ -715,7 +721,6 @@ $(document).ready(function() {
                 }
                 $.ajax({
                     type: 'GET',
-                    //http://localhost:8080/posgrado/Tokyo, Kanagawa?nameGrad=&typeGrad=&typeCourse=&englishCourse=
                     url: 'http://www.jdecastroc.ovh:8081/escuelasIdiomas/' + prefectureSearch,
                     data: {}, //Especifica los datos que se enviarán al servidor
                     async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
@@ -747,10 +752,8 @@ $(document).ready(function() {
                                 var limite = 0;
 
                                 for (p = 1; p <= paginas; p++) { //Numero de divs
-                                    //alert("Pagina + " + p);
 
                                     output += '<div class="escuelas" id="pag-estudios-' + p + '" style="display: none;">';
-
                                     limite = 0;
 
                                     if ((data.schoolList.length - elemento) > elementosPagina) {
@@ -764,7 +767,7 @@ $(document).ready(function() {
                                         output += '<div class="col-md-10 blogShort">';
                                         output += '<h4>' + jsonData[i].name + '</h4>';
                                         output += '<p>' + jsonData[i].address + '</p>';
-                                        output += '<a target="_blank" href="escuela?tipo=japones&id=' + jsonData[i].id + '">Más información</a>';
+                                        output += '<a target="_blank" href="estudiar/escuela?tipo=japones&id=' + jsonData[i].id + '">Más información</a>';
 
                                         output += '</div>';
                                         output += '<div class="divider"><i class="icon-circle"></i></div>';
@@ -779,6 +782,7 @@ $(document).ready(function() {
 
                                     output += '</div>';
                                 }
+                                fuente.show();
 
                             } else {
                                 output += "<p>No se ha encontrado ningun colegio de japonés que encaje con la prefectura o el tipo de estudios indicado.</p>";

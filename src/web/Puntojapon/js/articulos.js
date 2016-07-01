@@ -20,7 +20,6 @@ $(document).ready(function() {
     });
 
     $('#textSearch').keyup(function() {
-        //$(this).val() // get the current value of the input field.
         document.getElementById("buscarArticulos").setAttribute('href','buscador?titulo=' + $(this).val());
     });
 
@@ -86,7 +85,19 @@ $(document).ready(function() {
                     showData.append(output);
 
                 }
-            }
+            },
+            error: function(xhr) {
+                mostrarViviendas.empty(); //Refresh the div where the jobs are stored
+                jsonErrorValue = jQuery.parseJSON(xhr.responseText);
+                if (jsonErrorValue.message === "Search results were empty") {
+                    var output = 'No se han encontrado resultados.';
+                } else {
+                    var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                }
+                mostrarViviendas.append(output);
+                mostrarViviendas.show();
+            },
+            timeout: 10000 // sets timeout to 10 seconds
 
         });
         $('#show-data').fadeIn('slow');

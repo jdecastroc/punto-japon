@@ -3,6 +3,8 @@ $(document).ready(function() {
     $('#cargandoViviendas').hide();
     $('#mapModal').hide();
 
+    var fuente = $('#fuente');
+
     // Variable general
     var paginaVivienda = 1; //The pages start from 1 in the crawled website
     var semaforo = 1;
@@ -22,6 +24,7 @@ $(document).ready(function() {
 
 
     elementoUltimoPaso.click(function() {
+        fuente.hide();
         if (document.getElementById("prefectureSelector").value != "") {
             paginaVivienda = 1;
             cargarViviendas();
@@ -38,6 +41,7 @@ $(document).ready(function() {
     });
 
     $('#empezarBusquedaViviendas').click(function() {
+        fuente.hide();
         if (document.getElementById("prefectureSelector").value != "") {
             paginaVivienda = 1;
             cargarViviendas();
@@ -116,6 +120,7 @@ $(document).ready(function() {
 
     function cargarViviendas() {
         mostrarViviendas.empty();
+        fuente.hide();
         semaforo--;
         var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
 
@@ -211,6 +216,7 @@ $(document).ready(function() {
                     }, "slow");
                     mostrarViviendas.append(output);
                     mostrarViviendas.show();
+                    fuente.show();
                 }
             },
             error: function(xhr) {
@@ -226,6 +232,7 @@ $(document).ready(function() {
             },
             timeout: 10000 // sets timeout to 10 seconds
         });
+
     };
 
 

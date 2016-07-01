@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('#cargandoOfertas').hide();
 
     // Variable general
+    var fuente = $('#fuente');
     var paginaOferta = 0;
     var semaforo = 1;
     var elementoPrimerPaso = $('#ui-id-1');
@@ -18,6 +19,7 @@ $(document).ready(function() {
 
     // Elementos ultima pagina
     var mostrarOfertas = $('#mostrarOfertas');
+
 
     $(document).on('click', '.loadSchoolDiv', function() {
         cargarEscuelas($(this).text());
@@ -56,6 +58,7 @@ $(document).ready(function() {
     });
 
     elementoUltimoPaso.click(function() {
+        fuente.hide();
         if (document.getElementById("prefectureSelector").value != "" && document.getElementById("specialtySelector").value != "") {
             paginaOferta = 0;
             loadOffers();
@@ -72,6 +75,7 @@ $(document).ready(function() {
     });
 
     $('#empezarBusqueda').click(function() {
+        fuente.hide();
         if (document.getElementById("prefectureSelector").value != "" && document.getElementById("specialtySelector").value != "") {
             paginaOferta = 0;
             loadOffers();
@@ -117,6 +121,7 @@ $(document).ready(function() {
     });
 
     function loadOffers() {
+        fuente.hide();
         mostrarOfertas.empty();
         semaforo--;
         var prefectureSearch = document.getElementById('prefectureSelector').options[document.getElementById('prefectureSelector').selectedIndex].text.slice(3).trim();
@@ -167,15 +172,16 @@ $(document).ready(function() {
                     }, "slow");
                     mostrarOfertas.append(output);
                     mostrarOfertas.show();
+                    fuente.show();
                 }
             },
             error: function(xhr) {
                 mostrarOfertas.empty(); //Refresh the div where the jobs are stored
                 jsonErrorValue = jQuery.parseJSON(xhr.responseText);
                 if (jsonErrorValue.message === "Search results were empty") {
-                  var output = 'No se han encontrado resultados.';
+                    var output = 'No se han encontrado resultados.';
                 } else {
-                  var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                    var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
                 }
                 mostrarOfertas.append(output);
                 mostrarOfertas.show();

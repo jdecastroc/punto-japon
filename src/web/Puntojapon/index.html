@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <meta name="description" content="Punto de encuentro para amantes de japon, anime, manga.">
     <meta name="author" content="@jdecastroc">
 
@@ -18,12 +18,9 @@
 	============================================= -->
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="style.css" type="text/css" />
-    <link rel="stylesheet" href="css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="css/animate.css" type="text/css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-    <link rel="stylesheet" href="search.css" type="text/css" />
+    <link rel="stylesheet" href="css/search.css" type="text/css" />
 
     <link rel="stylesheet" href="css/responsive.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,17 +47,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="estudios/buscador" class="sf-with-ul">
+                            <a href="estudios" class="sf-with-ul">
                                 <div>Estudiar</div>
                             </a>
                         </li>
                         <li>
-                            <a href="trabajo/buscador" class="sf-with-ul">
+                            <a href="trabajo" class="sf-with-ul">
                                 <div>Trabajar</div>
                             </a>
                         </li>
                         <li>
-                            <a href="vivir/buscador" class="sf-with-ul">
+                            <a href="vivienda" class="sf-with-ul">
                                 <div>Vivir</div>
                             </a>
                         </li>
@@ -74,23 +71,22 @@
         <div id="logo-space" style="width: 100%; text-align: center; margin-top: 4%;">
             <img src="img/logoBig.png" align="center" style="width: 15vw; heigth: 15vw;"></img>
             <div class="searchRow" class="row">
-                <a href="#search" class="btnSearch btn-danger btn-circle btn-lg"><i class="icon-line-search"></i></a>
+                <a href="#search" class="btnSearch btn-danger btn-circle btn-lg"><i style="margin-top: 15%" class="icon-line-search"></i></a>
             </div>
         </div>
 
         <div id="button-space" class="row divcenter" style="margin-top: 4%; margin-bottom: 10%; text-align: center;">
-            <a class="button button-rounded button-reveal button-large button-border tright" href="estudios/buscador"><i class="icon-book3"></i><span>Estudiar</span></a>
-            <a class="button button-rounded button-reveal button-large button-border tright" href="trabajo/buscador"><i class="icon-briefcase"></i><span>Trabajar</span></a>
-            <a class="button button-rounded button-reveal button-large button-border tright" href="vivir/buscador"><i class="icon-home2"></i><span>Vivir</span></a>
+            <a class="button button-rounded button-reveal button-large button-border tright" href="estudios"><i class="icon-book3"></i><span>Estudiar</span></a>
+            <a class="button button-rounded button-reveal button-large button-border tright" href="trabajo"><i class="icon-briefcase"></i><span>Trabajar</span></a>
+            <a class="button button-rounded button-reveal button-large button-border tright" href="vivienda"><i class="icon-home2"></i><span>Vivir</span></a>
         </div>
     </div>
 
     <div id="search">
-        <button type="button" class="close">×</button>
+        <button style="margin-top: 3%;"type="button" class="close">×</button>
         <form id="sendSearch">
             <input id ="textSearch" type="search" value="" placeholder="¿Qué quieres buscar?" />
             <a id="buscarArticulos" href="" class="btn btn-default">Buscar artículos</a>
-            <!-- <button id="buscarArticulos" type="submit" class="btn btn-primary">Buscar en artículos</button>-->
         </form>
     </div>
 
@@ -99,13 +95,13 @@
         <div id="show-data" class="divcenter"></div>
     </div>
     <div id="carga"></div>
-    <div id="cargandoArticulos" style="background:url(../img/loading.gif) no-repeat center center;width: 50%;height:200px;margin: 0 auto;"></div>
+    <div id="cargandoArticulos" style="background:url(img/loading.gif) no-repeat center center;width: 50%;height:200px;margin: 0 auto;"></div>
     <!--    <div id="divisor" class="divider divider-center"><a href="#inicioArticulos" data-scrollto="#inicioArticulos"><i class="icon-chevron-up"></i></a></div>
 -->
 </body>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="articulos.js"></script>
-<script src="search.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/articulos.js"></script>
+<script src="js/search.js"></script>
 <script src="js/functions.js"></script>
 
 </html>
