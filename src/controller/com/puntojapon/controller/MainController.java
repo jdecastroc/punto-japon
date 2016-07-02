@@ -701,11 +701,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/articulos/actualizarRepositorio", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String updateArticles() throws Exception {
+	public @ResponseBody String updateArticles(HttpServletRequest request) throws Exception {
 		KettleTransformation.start();
 		// Call to the elastic search index process
 		ElasticSearch.filesIndexation();
-		appLogger.logInfo(" [REPOSITORY_UPDATED]");
+		appLogger.logInfo(" (" + request.getRemoteAddr() + ") [REPOSITORY_UPDATED]");
 		return "Artículos actualizados";
 	}
 

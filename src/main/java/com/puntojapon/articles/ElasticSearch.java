@@ -24,7 +24,8 @@ public class ElasticSearch {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Error while trying to execute indexBlogs.sh");
-			appLogger.logWarn(" [ERROR_ELASTIC_INDEX] - " + e);
+			appLogger.logInfo(" (127.0.0.1) [REPOSITORY_UPDATED] - " + e);
+			
 		}
 	}
 

@@ -53,7 +53,7 @@ public class KettleTransformation {
         } catch (KettleException e) {
             // TODO Auto-generated catch block
             //e.printStackTrace();
-            appLogger.logError(" [KETTLE_TRANSFORMATION_WARNING] - " + e);
+            appLogger.logError(" (127.0.0.1) [KETTLE_TRANSFORMATION_WARNING] - " + e);
         }
 
 	}
