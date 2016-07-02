@@ -8,10 +8,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.puntojapon.common.appLogger;
 
 public class SearchArticles {
 	
-	public static String searchByTitle (String title) throws IOException, InterruptedException {
+	public static String searchByTitle (String title, String remoteIp) throws IOException, InterruptedException {
 		
 		StringBuilder processOutput = new StringBuilder();
 
@@ -19,7 +20,7 @@ public class SearchArticles {
 		String query = "{\"query\": {\"nested\": {\"path\": \"data\",\"query\": {\"match\": {\"data.Title\": \"" + title + "\"}},\"inner_hits\": {}}}}";
 
 		if (!title.equals("")) {
-			System.out.println("Consulta: " + query);
+			appLogger.logInfo(" (" + remoteIp + ") [ARTICLES_SEARCH] - " + title);
 
 			// Se arma el proceso que se va a ejecutar en el servidor
 			ProcessBuilder processBuilder = new ProcessBuilder("curl", "-s", "-XPOST",

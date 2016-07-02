@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 
 import com.google.gson.*;
 import com.puntojapon.common.RandomUserAgent;
+import com.puntojapon.common.appLogger;
 
 /**
  * Provides all the crawlers related with the gradSchool searchs and also
@@ -50,7 +51,7 @@ public class GradSchoolCrawler extends CollegeCrawler {
 
 	@Override
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList gradSchoolsList,
-			String jsongradSchoolsList, int counter) throws Exception {
+			String jsongradSchoolsList, int counter, String remoteIp) throws Exception {
 
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
@@ -60,7 +61,7 @@ public class GradSchoolCrawler extends CollegeCrawler {
 			if(matchStringOnArray(UrlBuilder.PREFECTURES_LIST, p) == false){
 				gradSchoolsList.setSearchState(false);
 				jsongradSchoolsList = gson.toJson(gradSchoolsList);
-				System.out.println("ERROR: prefectura no encontrada " + p);
+				appLogger.logError(" [NOT_FOUND_PREFECTURE] - " + p);
 				return jsongradSchoolsList;
 			} else {
 				System.out.println("Crawleando... " + url);
@@ -190,7 +191,7 @@ public class GradSchoolCrawler extends CollegeCrawler {
 			return jsongradSchoolsList;
 		} else {
 			return jsongradSchoolsList = getCollegeList(nextPageString, prefectureSearchName, gradSchoolsList,
-					jsongradSchoolsList, counter);
+					jsongradSchoolsList, counter, remoteIp);
 		}
 	}
 
@@ -214,7 +215,7 @@ public class GradSchoolCrawler extends CollegeCrawler {
 		GradSchool gradSchool = new GradSchool();
 		try {
 			gradSchool.setId("http://www.jpss.jp/en/grad/" + id + "/");
-			System.out.println("Estoy -> " + gradSchool.getId());
+			//System.out.println("Estoy -> " + gradSchool.getId());
 
 			// TODO Change userAgent when application finished
 

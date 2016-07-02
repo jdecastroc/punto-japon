@@ -52,7 +52,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 	 */
 	@Override
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList TechSchoolsList,
-			String jsonTechSchoolsList, int counter) throws Exception {
+			String jsonTechSchoolsList, int counter, String remoteIp) throws Exception {
 
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
@@ -193,7 +193,7 @@ public class TechSchoolCrawler extends CollegeCrawler {
 			return jsonTechSchoolsList;
 		} else {
 			return jsonTechSchoolsList = getCollegeList(nextPageString, prefectureSearchName, TechSchoolsList,
-					jsonTechSchoolsList, counter);
+					jsonTechSchoolsList, counter, remoteIp);
 		}
 	}
 

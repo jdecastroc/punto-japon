@@ -2,6 +2,8 @@ package com.puntojapon.articles;
 
 import java.io.IOException;
 
+import com.puntojapon.common.appLogger;
+
 public class ElasticSearch {
 	
 	public static void filesIndexation() {
@@ -22,6 +24,7 @@ public class ElasticSearch {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Error while trying to execute indexBlogs.sh");
+			appLogger.logWarn(" [ERROR_ELASTIC_INDEX] - " + e);
 		}
 	}
 

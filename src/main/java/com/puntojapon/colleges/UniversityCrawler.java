@@ -48,7 +48,7 @@ public class UniversityCrawler extends CollegeCrawler {
 	 */
 	@Override
 	public String getCollegeList(String url, String[] prefectureSearchName, CollegeList universitiesList,
-			String jsonUniversitiesList, int counter) throws Exception {
+			String jsonUniversitiesList, int counter, String remoteIp) throws Exception {
 
 		// Create the College List of Universities
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
@@ -187,7 +187,7 @@ public class UniversityCrawler extends CollegeCrawler {
 			return jsonUniversitiesList;
 		} else {
 			return jsonUniversitiesList = getCollegeList(nextPageString, prefectureSearchName, universitiesList,
-					jsonUniversitiesList, counter);
+					jsonUniversitiesList, counter, remoteIp);
 		}
 	}
 

@@ -59,7 +59,7 @@ public abstract class CollegeCrawler {
 	 * @throws Exception
 	 */
 	public abstract String getCollegeList(String url, String[] prefectureSearchName, CollegeList universitiesList,
-			String jsonUniversitiesList, int counter) throws Exception;
+			String jsonUniversitiesList, int counter, String remoteIp) throws Exception;
 
 	/**
 	 * @param id

@@ -8,6 +8,8 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
 
+import com.puntojapon.common.appLogger;
+
 /**
  * @author jdecastroc
  *
@@ -50,7 +52,8 @@ public class KettleTransformation {
             
         } catch (KettleException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
+            appLogger.logError(" [KETTLE_TRANSFORMATION_WARNING] - " + e);
         }
 
 	}

@@ -47,7 +47,7 @@ public class CrawlerTest {
 		
 		UniversityCrawler crawlerTest1 = new UniversityCrawler();
 		crawlerTest1.getCollegeList(url, prefecture, universitiesList, returnJson,
-				counter);
+				counter, "");
 		
 		crawlerUniversities = crawlerTest1.getCollegeCounter();
 		realUniversitiesCount = Integer.parseInt(realCrawlerCounter(correctUrl));
