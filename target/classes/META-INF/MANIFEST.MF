@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Implementation-Title: punto-japon
+Implementation-Title: punto-japon-deploy
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Airwave
+Built-By: Jorge
 Implementation-Vendor-Id: com.puntojapon.app
-Build-Jdk: 1.8.0_66
+Build-Jdk: 1.8.0_92
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

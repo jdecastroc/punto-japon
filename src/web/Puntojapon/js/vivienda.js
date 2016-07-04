@@ -126,7 +126,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://www.jdecastroc.ovh:8081/vivir/' + prefectureSearch,
+            url: 'http://www.infojapon.com:8081/vivir/' + prefectureSearch,
             data: {
                 page: paginaVivienda,
                 min_price: document.getElementById('min_price').value,

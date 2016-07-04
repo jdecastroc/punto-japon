@@ -5,10 +5,10 @@
 
 
 	<groupId>com.puntojapon.app</groupId>
-	<artifactId>punto-japon</artifactId>
+	<artifactId>punto-japon-deploy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>punto-japon</name>
+	<name>punto-japon-deploy</name>
 	<url>http://maven.apache.org</url>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

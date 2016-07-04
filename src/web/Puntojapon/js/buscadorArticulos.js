@@ -40,7 +40,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://www.jdecastroc.ovh:8081/articulos/buscar',
+            url: 'http://www.infojapon.com:8081/articulos/buscar',
             data: {
                 titulo: textSearch
             }, //Especifica los datos que se enviarán al servidor

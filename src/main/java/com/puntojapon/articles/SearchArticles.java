@@ -24,7 +24,7 @@ public class SearchArticles {
 
 			// Se arma el proceso que se va a ejecutar en el servidor
 			ProcessBuilder processBuilder = new ProcessBuilder("curl", "-s", "-XPOST",
-					"http://51.255.202.84:9200/blogs/articulos/_search", "-d", query);
+					"http://91.134.143.80:9200/blogs/articulos/_search", "-d", query);
 
 			processBuilder.redirectErrorStream(true);
 			Process process = processBuilder.start();

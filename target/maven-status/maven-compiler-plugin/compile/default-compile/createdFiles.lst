@@ -1,4 +1,5 @@
 com\puntojapon\colleges\Faculty$FacultyAccess.class
+com\puntojapon\controller\MainController$RequestNotFoundException.class
 com\puntojapon\articles\ElasticSearch.class
 com\puntojapon\colleges\GradSchoolCrawler.class
 com\puntojapon\colleges\Faculty$MapData.class
@@ -6,11 +7,15 @@ com\puntojapon\colleges\University.class
 com\puntojapon\colleges\UrlBuilder.class
 com\puntojapon\colleges\CollegeList.class
 com\puntojapon\languageSchools\SchoolList$School.class
+com\puntojapon\common\RandomUserAgent.class
 com\puntojapon\colleges\Faculty$RowContent.class
 com\puntojapon\colleges\UniversityCrawler.class
 com\puntojapon\colleges\GradSchool.class
+com\puntojapon\live\HousesCrawler.class
 com\puntojapon\controller\Application.class
 com\puntojapon\colleges\Faculty$FacultyTechEssentialInfo.class
+com\puntojapon\live\HouseList.class
+com\puntojapon\work\JobsList.class
 com\puntojapon\colleges\UniversityUrlBuilder.class
 com\puntojapon\colleges\GradSchoolUrlBuilder.class
 com\puntojapon\articles\KettleTransformation.class
@@ -20,6 +25,7 @@ com\puntojapon\colleges\TechSchool.class
 com\puntojapon\colleges\CollegeFacultyList.class
 com\puntojapon\colleges\Faculty$FacultyTechSupport.class
 com\puntojapon\colleges\TechSchoolCrawler.class
+com\puntojapon\live\House.class
 com\puntojapon\colleges\CollegeBasicInfo.class
 com\puntojapon\test\CrawlerTest.class
 com\puntojapon\colleges\Faculty$FacultyCourse.class
@@ -38,7 +44,9 @@ com\puntojapon\colleges\Faculty.class
 com\puntojapon\work\JobsCrawler.class
 com\puntojapon\colleges\Faculty$RowContentContainer.class
 com\puntojapon\controller\MainController.class
+com\puntojapon\common\appLogger.class
 com\puntojapon\colleges\CollegeFaculty.class
 com\puntojapon\controller\SwaggerConfig.class
 com\puntojapon\colleges\Faculty$FacultyAdmissions.class
 com\puntojapon\colleges\Faculty$FacultyInfo.class
+com\puntojapon\work\JobOffer.class

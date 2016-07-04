@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://www.jdecastroc.ovh:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
+            url: 'http://www.infojapon.com:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
             data: {
                 page: paginaOferta,
             }, //Especifica los datos que se enviarán al servidor

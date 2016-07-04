@@ -347,7 +347,7 @@ $(document).ready(function() {
             case "grado":
                 $.ajax({
                     type: 'GET',
-                    url: 'http://www.jdecastroc.ovh:8081/universidades/' + prefectureSearch + '/' + document.getElementById("areaSelector").value,
+                    url: 'http://www.infojapon.com:8081/universidades/' + prefectureSearch + '/' + document.getElementById("areaSelector").value,
                     data: {
                         nameUni: document.getElementById("nombreUni").value,
                         typeUni: document.getElementById("typeUni").value,
@@ -474,7 +474,7 @@ $(document).ready(function() {
             case "fp":
                 $.ajax({
                     type: 'GET',
-                    url: 'http://www.jdecastroc.ovh:8081/fp/' + prefectureSearch,
+                    url: 'http://www.infojapon.com:8081/fp/' + prefectureSearch,
                     data: {
                         nameTech: document.getElementById("nombreFp").value,
                     }, //Especifica los datos que se enviarán al servidor
@@ -594,7 +594,7 @@ $(document).ready(function() {
             case "posgrado":
                 $.ajax({
                     type: 'GET',
-                    url: 'http://www.jdecastroc.ovh:8081/posgrado/' + prefectureSearch,
+                    url: 'http://www.infojapon.com:8081/posgrado/' + prefectureSearch,
                     data: {
                         nameGrad: document.getElementById("nombrePosgrado").value,
                         typeGrad: document.getElementById("areaSelectorPosgrad").value,
@@ -721,7 +721,7 @@ $(document).ready(function() {
                 }
                 $.ajax({
                     type: 'GET',
-                    url: 'http://www.jdecastroc.ovh:8081/escuelasIdiomas/' + prefectureSearch,
+                    url: 'http://www.infojapon.com:8081/escuelasIdiomas/' + prefectureSearch,
                     data: {}, //Especifica los datos que se enviarán al servidor
                     async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                     beforeSend: function(xhr) {
