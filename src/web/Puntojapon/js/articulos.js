@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 
     $('#textSearch').keyup(function() {
-        document.getElementById("buscarArticulos").setAttribute('href','buscador?titulo=' + $(this).val());
+        document.getElementById("buscarArticulos").setAttribute('href', 'buscador?titulo=' + $(this).val());
     });
 
     function loadArticles(showArticles) {
@@ -48,7 +48,10 @@ $(document).ready(function() {
                         if (articulosCargados < jsonData.length) {
                             for (i = articulosCargados; i < showArticles; i++) {
                                 articulosCargados++;
+                                console.log("Articulos cargados: " + articulosCargados + " y la i indica " + i);
+                                console.log("Articulos show: " + showArticles);
                                 if (i % 2 == false) {
+                                  console.log("IMPRIMO EL ARTICULO izquierda " + i);
                                     output += '<div class="col_half">';
                                     output += '<h3>' + jsonData[i].Title + '</h3>';
                                     output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
@@ -60,6 +63,7 @@ $(document).ready(function() {
                                     //output+='<div class="divider"><i class="icon-circle"></i></div>';//Separador de artículos
                                     output += '</div>';
                                 } else {
+                                  console.log("IMPRIMO EL ARTICULO derecha" + i);
                                     output += '<div class="col_half col_last">';
                                     output += '<h3>' + jsonData[i].Title + '</h3>';
                                     output += '<div class="testi-image pull-left img-responsive"><a href="#"><img src="img/articulos/' + jsonData[i].Author + '.jpg" alt="' + jsonData[i].Author + '"></a></div>';
@@ -81,21 +85,22 @@ $(document).ready(function() {
                         output += '<i class="icon-remove-sign"></i><strong>El servidor de datos se encuentra en mantenimiento. Intentelo de nuevo mas tarde.';
                         output += '</div>';
                         output += "</ul>";
+                        showData.append(output);
                     }
-                    showData.append(output);
+
 
                 }
             },
             error: function(xhr) {
-                mostrarViviendas.empty(); //Refresh the div where the jobs are stored
+                showData.empty(); //Refresh the div where the jobs are stored
                 jsonErrorValue = jQuery.parseJSON(xhr.responseText);
                 if (jsonErrorValue.message === "Search results were empty") {
                     var output = 'No se han encontrado resultados.';
                 } else {
                     var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
                 }
-                mostrarViviendas.append(output);
-                mostrarViviendas.show();
+                showData.append(output);
+                showData.show();
             },
             timeout: 10000 // sets timeout to 10 seconds
 
