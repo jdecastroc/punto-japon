@@ -175,7 +175,7 @@ $(document).ready(function() {
                     fuente.show();
                 }
             },
-            timeout: 10000; // sets timeout to 10 seconds
+            timeout: 10000, // sets timeout to 10 seconds
             error: function(xhr) {
                 mostrarOfertas.empty(); //Refresh the div where the jobs are stored
                 if (jQuery.parseJSON(xhr.responseText) != "") {

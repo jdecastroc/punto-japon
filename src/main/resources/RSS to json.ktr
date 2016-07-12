@@ -101,10 +101,10 @@
   <hop> <from>Date format 6</from><to>PeriodistaenJapon output</to><enabled>Y</enabled> </hop>
   <hop> <from>RSS PeriodistaenJapon</from><to>Set author PeriodistaenJapon</to><enabled>Y</enabled> </hop>
   <hop> <from>PeriodistaenJapon output</from><to>Sort rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>RSS AkiMonogatari</from><to>Set author AkiMonogatari</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set author AkiMonogatari</from><to>Date format 7</to><enabled>Y</enabled> </hop>
-  <hop> <from>Date format 7</from><to>AkiMonogatari output</to><enabled>Y</enabled> </hop>
-  <hop> <from>AkiMonogatari output</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>RSS AkiMonogatari</from><to>Set author AkiMonogatari</to><enabled>N</enabled> </hop>
+  <hop> <from>Set author AkiMonogatari</from><to>Date format 7</to><enabled>N</enabled> </hop>
+  <hop> <from>Date format 7</from><to>AkiMonogatari output</to><enabled>N</enabled> </hop>
+  <hop> <from>AkiMonogatari output</from><to>Sort rows</to><enabled>N</enabled> </hop>
   <hop> <from>RSS NegociosJapon</from><to>Set author NegociosJapon</to><enabled>Y</enabled> </hop>
   <hop> <from>Set author NegociosJapon</from><to>Date format 8</to><enabled>Y</enabled> </hop>
   <hop> <from>Date format 8</from><to>NegociosenJapon output</to><enabled>Y</enabled> </hop>
