@@ -175,18 +175,22 @@ $(document).ready(function() {
                     fuente.show();
                 }
             },
+            timeout: 10000; // sets timeout to 10 seconds
             error: function(xhr) {
                 mostrarOfertas.empty(); //Refresh the div where the jobs are stored
-                jsonErrorValue = jQuery.parseJSON(xhr.responseText);
-                if (jsonErrorValue.message === "Search results were empty") {
-                    var output = 'No se han encontrado resultados.';
+                if (jQuery.parseJSON(xhr.responseText) != "") {
+                    jsonErrorValue = jQuery.parseJSON(xhr.responseText);
+                    if (jsonErrorValue.message === "Search results were empty") {
+                        var output = 'No se han encontrado resultados.';
+                    } else {
+                        var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                    }
                 } else {
-                    var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                  var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
                 }
                 mostrarOfertas.append(output);
                 mostrarOfertas.show();
-            },
-            timeout: 10000 // sets timeout to 10 seconds
+            }
         });
     };
 });
