@@ -53,7 +53,7 @@ $(document).ready(function() {
         case "univ":
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id,
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -111,7 +111,7 @@ $(document).ready(function() {
             //AJAX ACCESO UNIVERSIDAD
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id + '/' + departamento + '/access',
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id + '/' + departamento + '/access',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -191,7 +191,7 @@ $(document).ready(function() {
             //AJAX ADMISIONES UNIVERSIDAD
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id + '/' + departamento + '/admissions',
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id + '/' + departamento + '/admissions',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -223,7 +223,7 @@ $(document).ready(function() {
             //AJAX FUNCION INSTALACIONES
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id + '/' + departamento + '/facilities',
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id + '/' + departamento + '/facilities',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -257,7 +257,7 @@ $(document).ready(function() {
             //AJAX FUNCION AYUDA AL ESTUDIANTE
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id + '/' + departamento + '/support',
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id + '/' + departamento + '/support',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -295,7 +295,7 @@ $(document).ready(function() {
             //AJAX informacion universidades
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id + '/' + departamento + '/info',
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id + '/' + departamento + '/info',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -364,7 +364,7 @@ $(document).ready(function() {
         case "grad":
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id,
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -423,7 +423,7 @@ $(document).ready(function() {
             //AJAX ACCESO FUNCION
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id + '/' + departamento + '/access',
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id + '/' + departamento + '/access',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -504,7 +504,7 @@ $(document).ready(function() {
             //AJAX ADMISIONES UNIVERSIDAD
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id + '/' + departamento + '/admissions',
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id + '/' + departamento + '/admissions',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -536,7 +536,7 @@ $(document).ready(function() {
             //AJAX FUNCION INSTALACIONES
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id + '/' + departamento + '/facilities',
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id + '/' + departamento + '/facilities',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -571,7 +571,7 @@ $(document).ready(function() {
             //AJAX FUNCION AYUDA AL ESTUDIANTE
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id + '/' + departamento + '/support',
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id + '/' + departamento + '/support',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -609,7 +609,7 @@ $(document).ready(function() {
             //AJAX informacion universidades
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id + '/' + departamento + '/info',
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id + '/' + departamento + '/info',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -691,7 +691,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/fp/id/' + id,
+                url: 'http://www.infojapon.com:8081/fp/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -751,7 +751,7 @@ $(document).ready(function() {
             //ADMISIONES FP
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/fp/id/' + id + '/admissions',
+                url: 'http://www.infojapon.com:8081/fp/id/' + id + '/admissions',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -794,7 +794,7 @@ $(document).ready(function() {
             //INFORMACIÓN FP
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/fp/id/' + id + '/info',
+                url: 'http://www.infojapon.com:8081/fp/id/' + id + '/info',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -834,7 +834,7 @@ $(document).ready(function() {
             //Apoyo FP
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/fp/id/' + id + '/support',
+                url: 'http://www.infojapon.com:8081/fp/id/' + id + '/support',
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {

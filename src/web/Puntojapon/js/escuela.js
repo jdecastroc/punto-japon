@@ -58,7 +58,7 @@ $(document).ready(function() {
             $("#cargando").show();
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/universidades/id/' + id,
+                url: 'http://www.infojapon.com:8081/universidades/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -110,7 +110,7 @@ $(document).ready(function() {
             $("#cargando").show();
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/posgrado/id/' + id,
+                url: 'http://www.infojapon.com:8081/posgrado/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -161,7 +161,7 @@ $(document).ready(function() {
             $("#cargando").show();
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/fp/id/' + id,
+                url: 'http://www.infojapon.com:8081/fp/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
@@ -212,7 +212,7 @@ $(document).ready(function() {
             $("#cargando").show();
             $.ajax({
                 type: 'GET',
-                url: 'http://jdecastroc.ovh:8081/escuelasIdiomas/id/' + id,
+                url: 'http://www.infojapon.com:8081/escuelasIdiomas/id/' + id,
                 data: {}, //Especifica los datos que se enviarán al servidor
                 async: true, //Cuidado con el true! esto es asíncrono puede generar problemas con otros fragmentos de código. Hace que el código se ejecute de manera concurrente
                 beforeSend: function(xhr) {
