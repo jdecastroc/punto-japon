@@ -250,6 +250,10 @@ public class JobsCrawler {
 						tags.add(offer.select("div.card-item > dl.dl-inline-sm > dd").last().text().trim());
 					}
 					
+					if (offer.select("div.card-item > a.card-image > img.img-thumbnail").first() != null) { //Images
+						tags.add("https://jobs.gaijinpot.com" + offer.select("div.card-item > a.card-image > img.img-thumbnail").first().attr("src").trim());
+					}
+					
 					if (!name.equals("") && !company.equals("")){
 					jobsList.addJob(new JobOffer(name, publishDate, company, location, tags, description, link));
 					jobsList.setSearchFound(jobsList.getSearchFound() + 1);

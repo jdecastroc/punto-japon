@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     // Variable general
     var fuente = $('#fuente');
-    var paginaOferta = 0;
+    var paginaOferta = 1;
     var semaforo = 1;
     var elementoPrimerPaso = $('#ui-id-1');
     var elementoSegundoPaso = $('#ui-id-2');
@@ -60,7 +60,7 @@ $(document).ready(function() {
     elementoUltimoPaso.click(function() {
         fuente.hide();
         if (document.getElementById("prefectureSelector").value != "" && document.getElementById("specialtySelector").value != "") {
-            paginaOferta = 0;
+            paginaOferta = 1;
             loadOffers();
         } else {
             mostrarOfertas.empty();
@@ -77,7 +77,7 @@ $(document).ready(function() {
     $('#empezarBusqueda').click(function() {
         fuente.hide();
         if (document.getElementById("prefectureSelector").value != "" && document.getElementById("specialtySelector").value != "") {
-            paginaOferta = 0;
+            paginaOferta = 1;
             loadOffers();
         } else {
             mostrarOfertas.empty();
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://www.infojapon.com:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
+            url: 'http://localhost:8081/trabajo/' + prefectureSearch + '/' + document.getElementById("specialtySelector").value,
             data: {
                 page: paginaOferta,
             }, //Especifica los datos que se enviarán al servidor
@@ -140,31 +140,34 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(data, status) {
-                //Do stuff with the JSON data
                 if (status == "success" && data.searchState === true) {
                     mostrarOfertas.empty(); //Refresh the div where the jobs are stored
                     var jsonData = data.jobsList; //parse data array from json
                     var output = '<div id="postlist">';
 
                     for (var i = 0; i < data.jobsList.length; i++) {
-                        output += '<div class="panel"><div class="panel-heading"><div class="text-center"><div class="row"><div class="col-sm-9">';
-                        output += '<h3 class="pull-left"><a href="' + data.jobsList[i].link + '">' + data.jobsList[i].name + '</a></h3>';
-                        output += '<h5 class="pull-left" style="margin-left: 5%; margin-top: 1%;">' + data.jobsList[i].company + ' - ' + data.jobsList[i].location + '</h5>';
-                        output += '</div><div class="col-sm-3"><h4 class="pull-right">' + data.jobsList[i].publishDate + '</h4></div></div></div></div>';
+                        output += '<div class="col_half">';
 
-                        output += '<div class="panel-body">' + data.jobsList[i].description + '<a href="' + data.jobsList[i].link + '">   [Ir a oferta]</a></div>';
-
-                        output += '<div class="panel-footer">';
-                        for (var p = 0; p < data.jobsList[i].tags.length; p++) {
-                            output += '<span class="label label-default" style="margin-right: 2%;">' + data.jobsList[i].tags[p] + '</span>';
-                        }
-                        output += '</div></div>';
+                        output += '<div class="title-block">';
+                        output += '<h2><a href=' + data.jobsList[i].link + '>' + data.jobsList[i].name + '</a></h2>';
+                        output += '<span>' + data.jobsList[i].company + '</span>';
+                        output += "</div>";
+                        output += '<i class="icon-calendar"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Fecha de publicación:</b></span>' + data.jobsList[i].publishDate + '<br>';
+                        output += '<i class="icon-map-marker"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Lugar:</b></span>' + data.jobsList[i].tags[2] + '<br>';
+                        output += '<i class="icon-line-briefcase"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Tipo de contrato:</b></span>' + data.jobsList[i].tags[0] + '<br>';
+                        output += '<i class="icon-flag"></i><span style="padding-left: 5px; padding-right: 5px;"><b>Salario:</b></span>' + data.jobsList[i].tags[1] + '<br>';
+                        output += "</div>";
+                        output += '<div class="col_half col_last">';
+                        output += ((data.jobsList[i].tags[3] == null) ? "" : "<img style=margin-top: 3%; display: block; src=" + data.jobsList[i].tags[3] + ">");
+                        output += "</div>";
+                        //output += "</div>";
+                        output += "<div class='clear'></div>";
                     }
                     output += "</div>";
-                    if (paginaOferta > 0) {
+                    if (paginaOferta > 1)
                         output += '<a id="paginaAnterior" class="button button-3d nomargin tab-linker pull-left">Anterior</a>';
-                    }
-                    output += '<a id="paginaSiguiente" class="button button-3d nomargin tab-linker pull-right">Siguiente</a>';
+                    if (data.hasNextPage === true)
+                        output += '<a id="paginaSiguiente" class="button button-3d nomargin tab-linker pull-right">Siguiente</a>';
 
                     semaforo++;
                     $("html, body").animate({
@@ -186,7 +189,7 @@ $(document).ready(function() {
                         var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
                     }
                 } else {
-                  var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
+                    var output = 'No se ha podido conectar con el servidor de datos. Intentelo de nuevo más tarde.';
                 }
                 mostrarOfertas.append(output);
                 mostrarOfertas.show();

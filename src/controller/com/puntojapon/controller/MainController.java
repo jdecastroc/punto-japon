@@ -836,7 +836,7 @@ public class MainController {
 		return jobList;
 	}
 
-	@RequestMapping(value = "/trabajo/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/trabajoq/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getJobs(HttpServletResponse response, HttpServletRequest request,
 			@PathVariable("prefecture") String prefecture, @PathVariable("specialty") String specialty,
@@ -858,7 +858,7 @@ public class MainController {
 		return jobList;
 	}
 	
-	@RequestMapping(value = "/trabajoGa/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/trabajo/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getJobsGaijinPot(HttpServletResponse response, HttpServletRequest request,
 			@PathVariable("prefecture") String prefecture, @PathVariable("specialty") String specialty,
