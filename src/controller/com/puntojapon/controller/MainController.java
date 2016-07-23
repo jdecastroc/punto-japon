@@ -845,7 +845,29 @@ public class MainController {
 		String jobList = "";
 		JobsCrawler crawler = new JobsCrawler();
 
-		jobList = crawler.getJobs(prefecture, specialty, page);
+		jobList = crawler.getJobsApplyqDeep(prefecture, specialty, page);
+
+		JsonElement jelement = new JsonParser().parse(jobList);
+		JsonObject jobject = jelement.getAsJsonObject();
+		String result = jobject.get("searchState").toString();
+		appLogger.logInfo(" (" + request.getRemoteAddr() + ") [JOB_SEARCH_REQUEST] - Prefecture: " + prefecture
+				+ " Speciality: " + specialty);
+		if (result.equals("false"))
+			throw new RequestNotFoundException();
+
+		return jobList;
+	}
+	
+	@RequestMapping(value = "/trabajoGa/{prefecture}/{specialty}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getJobsGaijinPot(HttpServletResponse response, HttpServletRequest request,
+			@PathVariable("prefecture") String prefecture, @PathVariable("specialty") String specialty,
+			@RequestParam(value = "page") int page) throws Exception {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		String jobList = "";
+		JobsCrawler crawler = new JobsCrawler();
+
+		jobList = crawler.getJobsGaijinpot(prefecture, specialty, page);
 
 		JsonElement jelement = new JsonParser().parse(jobList);
 		JsonObject jobject = jelement.getAsJsonObject();

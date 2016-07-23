@@ -18,7 +18,7 @@ public class CrawlerTest {
 
 	@Test
 	public void universityCrawlerTest() throws Exception {
-		System.out.println("Running crawler test...");
+		System.out.println("Running university crawler test...");
 
 		int crawlerUniversities = 0;
 		int realUniversitiesCount = 0;

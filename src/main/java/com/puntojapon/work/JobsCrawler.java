@@ -73,7 +73,7 @@ public class JobsCrawler {
 		return jobsJson = "";
 	}
 
-	public String getJobs(String prefecture, String specialty, int page) throws IOException {
+	public String getJobsApplyqDeep(String prefecture, String specialty, int page) throws IOException {
 
 		String jsonJobs = "";
 
@@ -156,6 +156,106 @@ public class JobsCrawler {
 
 				}
 
+			}
+
+		}
+		if (jobsList.getSearchFound() > 0) {
+			jobsList.setSearchState(true);
+		} else {
+			jobsList.setSearchState(false);
+		}
+		jsonJobs = gson.toJson(jobsList);
+		return jsonJobs;
+	}
+
+	public String getJobsGaijinpot(String prefecture, String specialty, int page) throws IOException {
+
+		String jsonJobs = "";
+
+		// Jobs list
+		JobsList jobsList = new JobsList();
+		jobsList.setSearchType("Job offers search");
+		jobsList.setPage(page);
+		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+
+		if (Arrays.asList(PREFECTURES_LIST).contains(prefecture.trim().toLowerCase()) && page >= 0) {
+			
+			int prefectureNumber = Arrays.asList(PREFECTURES_LIST).indexOf(prefecture.trim().toLowerCase()) + 1;
+			String prefectureValue = "JP-" + prefectureNumber;
+
+			// Main info of each job
+			String name = "";
+			String publishDate = "";
+			String company = "";
+			String location = "";
+			ArrayList<String> tags = new ArrayList<String>();
+			String description = ""; // Include type of contract and salary in this case
+			String link = "";
+
+			System.out.println("Voy a -> https://jobs.gaijinpot.com/job/index/lang/en/category/" + specialty + "/region/" + prefectureValue + "/page/" + page);
+
+			Document document = Jsoup
+					.connect("https://jobs.gaijinpot.com/job/index/lang/en/category/" + specialty + "/region/" + prefectureValue + "/page/" + page)
+					.userAgent(RandomUserAgent.getRandomUserAgent()).timeout((int) Math.random() * 5).get();
+
+			Elements jobsSource = document.select("div.container > div.row > div.col-md-8");
+
+			for (Element sourceElement : jobsSource) {
+				
+				if (sourceElement.select("ul.pagination > li.pagination-next.disabled").first() == null) {
+					jobsList.setHasNextPage(true);
+				} else {
+					jobsList.setHasNextPage(false);
+				}
+				
+				Elements jobOffers = sourceElement.select("div.card");
+
+				for (Element offer : jobOffers) {
+					
+					// Name
+					if (offer.select("div.card-header > h3.card-heading > a").first() != null) {
+						name = offer.select("div.card-header > h3.card-heading > a").first().text().trim();
+					}
+					
+					// Link
+					if (offer.select("div.card-header > h3.card-heading > a").first() != null) {
+						link = "https://jobs.gaijinpot.com" + offer.select("div.card-header > h3.card-heading > a").first().attr("href").trim();
+					}
+					
+					// Publish Date
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").get(0) != null) {
+						publishDate = offer.select("div.card-item > dl.dl-inline-sm > dd").get(0).text().trim();
+					}
+					
+					// Company
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").get(1) != null) {
+						company = offer.select("div.card-item > dl.dl-inline-sm > dd").get(1).text().trim();
+					}
+					
+					// Location
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").get(4) != null) {
+						location = offer.select("div.card-item > dl.dl-inline-sm > dd").get(4).text().trim();
+					}
+					
+					// Tags
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").get(2) != null) { //Type of contract
+						tags.add(offer.select("div.card-item > dl.dl-inline-sm > dd").get(2).text().trim());
+					}
+					
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").get(3) != null) { //Salary
+						tags.add(offer.select("div.card-item > dl.dl-inline-sm > dd").get(3).text().trim());
+					}
+					
+					if (offer.select("div.card-item > dl.dl-inline-sm > dd").last() != null) { //Requeriments
+						tags.add(offer.select("div.card-item > dl.dl-inline-sm > dd").last().text().trim());
+					}
+					
+					if (!name.equals("") && !company.equals("")){
+					jobsList.addJob(new JobOffer(name, publishDate, company, location, tags, description, link));
+					jobsList.setSearchFound(jobsList.getSearchFound() + 1);
+					tags.clear();
+					}
+				}
 			}
 
 		}
